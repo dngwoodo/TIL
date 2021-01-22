@@ -1,29 +1,20 @@
 export {}
 {
-    /**
-     * Union Types: OR
-    */
-    type Direction = 'left' | 'right' | 'up' | 'down';
-    function move(direction: Direction){
-        console.log();
-    }
-    move('down')
-
-    type TileSize = 8 | 16 | 32;
-    const tile: TileSize = 16;
-
     // function: login -> success, fail
     type SuccessState = {
+        result: 'success';
         response: {
             body: string;
         }
     }
     type FailState = {
+        result: 'fail';
         reason: string;
     }
     type LoginState = SuccessState | FailState;
     function login(): LoginState{
         return {
+            result: 'success',
             response: {
                 body: 'logged in!',
             }
@@ -34,7 +25,8 @@ export {}
     // success -> 🎉 body
     // fail -> 😭 reason
     function printLoginState(state: LoginState){
-        if('response' in state){
+        // 공통적인 속성을 이용하여 구분한다. 여기서는 state.result을 사용하였다.
+        if(state.result === 'success'){
             console.log(state.response.body);
         } else {
             console.log(state.reason);
