@@ -15,7 +15,7 @@ function calculate(command: Command, a:number, b: number): number{
         case 'remainder':
             return a % b;
         default:
-            throw Error('unknown Error');
+            throw new Error('unknown Error');
     }
 }
 console.log(calculate('add', 1, 3)); // 4
