@@ -54,6 +54,28 @@ const maker = new CoffeeMaker(30);
 CoffeeMaker.makeMachine(30);
 
 
+// getter, setter ✨
+class User{
+    private internalAge = 4;
+    get fullName(): string {
+        return `${this.firstName} ${this.lastName}`
+    }
+    get age(): number {
+        return this.internalAge;
+    }
+    set age(num: number){
+        if(num < 0){
+            throw new Error('age는 0 보다 작을 수 없습니다.')
+        }
+        this.internalAge = num;
+    }
+    constructor(private firstName: string, private lastName: string){} // 이렇게 축약 가능
+}
+
+const user = new User('Steve', 'Jobs');
+console.log(user.fullName) // Steve Jobs
+user.age = -1; // throw new Error('age는 0 보다 작을 수 없습니다.')
+
 
 
 
