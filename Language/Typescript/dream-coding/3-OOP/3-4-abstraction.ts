@@ -5,10 +5,19 @@ type CoffeeCup = {
     hasMilk: boolean;
 }
 
+// 추상화를 위해서 interface를 사용하는 경우이다.
+// 1. interface를 쓰게 되면 interface 이름에 I라는 prefix를 붙이는 경우나
+// 2. class 이름 뒤에 CoffeeMachineImpl 이런식으로 붙이는 경우가 있다.
+// 3. interface에는 구현부가 빠져 있다.
+// 4. interface에 정의해둔 프로퍼티, 메서드는 implements한 class에서 무조건 구현해야 한다.
+interface CoffeeMaker {
+    makeCoffee(shots: number): CoffeeCup
+}
+
 // public
 // private <- 외부 접근 불가
 // protected <- 외부 접근 불가, 부모를 상속한 자식 클래스에서는 접근 가능
-class CoffeeMachine {
+class CoffeeMachine implements CoffeeMaker{
     private static BEANS_GRAM_PER_SHOT = 7; // 1shot 당 커피콩 7gram, class level, 클래스 마다 생성, private 때문에 외부에서 보이지 않음.
     private coffeeBeansGram: number = 0; // instance(object) level, 오브젝트 마다 생성
 
@@ -61,6 +70,11 @@ class CoffeeMachine {
     }
 }
 
-// constructor가 public일 때
-const maker = new CoffeeMachine(30);
-maker.makeCoffee(2); 
+const maker: CoffeeMachine = CoffeeMachine.makeMachine(32);
+maker.fillCoffeeBeans(32);
+maker.makeCoffee(2);
+
+// maker2는 인터페이스를 타입으로 지정했기 때문에 인터페이스 안에 들어있는 프로퍼티, 메서드만 나오게 된다.
+const maker2: CoffeeMaker = CoffeeMachine.makeMachine(32);
+maker2.fillCoffeeBeans(32); // CoffeeMaker 인터페이스에 정의가 되어 있지 않기 때문에 에러가 난다.
+maker2.makeCoffee(2);
