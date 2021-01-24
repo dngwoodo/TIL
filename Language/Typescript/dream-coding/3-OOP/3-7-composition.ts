@@ -61,10 +61,19 @@ class CoffeeMachine implements CoffeeMaker {
     }
 }
 
+// MilkFrother, SugarProvider 인터페이스를 이용하여 coupling 되어 있던 관계들을 decoupling 시킬 수 있다.
+interface MilkFrother {
+    makeMilk(cup: CoffeeCup): CoffeeCup;
+}
+
+interface SugarProvider {
+    addSugar(cup: CoffeeCup): CoffeeCup;
+}
+
 // 싸구려 우유 거품기 클래스, 설탕 제조기 클래스를 만들어서 의존성 주입을 통해 필요한 곳에서 땡겨다 쓸 수 있게 만들어 놓는다.
 // 이것을 Composition 이라고 한다.
 // 싸구려 우유 거품기
-class CheapMilkSteamer {
+class CheapMilkSteamer implements MilkFrother {
     private steamMilk():void {
         console.log('Steaming some milk... 🥛');
     }
@@ -79,7 +88,7 @@ class CheapMilkSteamer {
 }
 
 // 설탕 제조기
-class AutomaticSugarMixer {
+class CandySugarMixer implements SugarProvider{
     private getSugar() {
         console.log('Getting some sugar from candy 🍭');
         return true;
@@ -98,7 +107,7 @@ class CaffeLatteMachine extends CoffeeMachine {
     constructor(
         beans: number, 
         readonly serialNumber: string, 
-        private milkFrother: CheapMilkSteamer
+        private milkFrother: MilkFrother
     ) {
         // Constructors for derived classes must contain a 'super' call.ts(2377)
         // 자식 클래스에서 생성자를 따로 구현하는 경우에는 부모의 생성자도 실행시켜줘야 한다.
@@ -112,8 +121,8 @@ class CaffeLatteMachine extends CoffeeMachine {
 }
 
 class SweetCoffeeMaker extends CoffeeMachine {
-    // * sugar: AutomaticSugarMixer <- 애를 의존성 주입(dependency injection)이라고 한다.
-    constructor(private beans:number, private sugar: AutomaticSugarMixer) {
+    // * sugar: CandySugarMixer <- 애를 의존성 주입(dependency injection)이라고 한다.
+    constructor(private beans:number, private sugar: SugarProvider) {
         super(beans)
     }
     makeCoffee(shots: number): CoffeeCup{
@@ -132,13 +141,13 @@ class SweetCaffeLatteCoffeeMaker extends CoffeeMachine {
     // Composition은 코드의 재사용성을 매우 높여준다.
 
     // 단점
-    // 하지만 치명적인 단점은 주입된 CheapMilkSteamer, AutomaticSugarMixer와 너무 밀접하게 coupling 되어져 있다.
-    // 나중에 다른 Steamer나 SugarMixer로 바꾸게 되면 CheapMilkSteamer, AutomaticSugarMixer을 사용하는 클래스들을 전부 업데이트는 해주어야 한다.
+    // 하지만 치명적인 단점은 주입된 CheapMilkSteamer, CandySugarMixer와 너무 밀접하게 coupling 되어져 있다.
+    // 나중에 다른 Steamer나 SugarMixer로 바꾸게 되면 CheapMilkSteamer, CandySugarMixer을 사용하는 클래스들을 전부 업데이트는 해주어야 한다.
     // 즉, 클래스와 클래스들끼리 잘 알고 지내는 것은 매우 좋지 못하다.
     constructor(
         private beans: number, 
-        private milk: CheapMilkSteamer,
-        private sugar: AutomaticSugarMixer
+        private milk: MilkFrother,
+        private sugar: SugarProvider
     ) {
         super(beans);
     }
@@ -150,38 +159,12 @@ class SweetCaffeLatteCoffeeMaker extends CoffeeMachine {
     }
 }
 
-const machines = [
-    new CoffeeMachine(16),
-    new CaffeLatteMachine(16, 'S-1101'),
-    new SweetCoffeeMaker(16),
-    new CoffeeMachine(16),
-    new CaffeLatteMachine(16, 'S-1101'),
-    new SweetCoffeeMaker(16),
-] 
-
-// 여기서 알 수 있는 점은 하나의 인터페이스나 동일한 부모 클래스를 상속하게 되면 어떤 클래스인지 구분하지 않고 공통된 API를 호출 할 수 있다는 것이 큰 장점이다.
-machines.forEach(machine => {
-    console.log('-----------------------');
-    // 현재 machines의 타입이 CoffeeMachine[] 이다. 동일한 CoffeeMachine 클래스를 상속했기 때문이다.
-    // 그렇기 때문에 밑에 보이는 것처럼 CoffeeMachine에서 사용할 수 있는 메서드를 전부 사용 가능하다.
-    machine.makeCoffee(1);
-    machine.fillCoffeeBeans(45);
-    machine.clean();
-})
-
-const machines2: CoffeeMaker[] = [
-    new CoffeeMachine(16),
-    new CaffeLatteMachine(16, 'S-1101'),
-    new SweetCoffeeMaker(16),
-    new CoffeeMachine(16),
-    new CaffeLatteMachine(16, 'S-1101'),
-    new SweetCoffeeMaker(16),
-] 
-
-machines2.forEach(machine => {
-    console.log('-----------------------');
-    // 현재 machines의 타입이 CoffeeMaker[] 이기 때문에 makeCoffee만 사용 가능하다.
-    machine.makeCoffee(1);
-    machine.fillCoffeeBeans(45); // error, Property 'fillCoffeeBeans' does not exist on type 'CoffeeMaker'.ts(2339)
-    machine.clean(); // error, Property 'fillCoffeeBeans' does not exist on type 'CoffeeMaker'.ts(2339)
-})
+const cheapMilkSteamer = new CheapMilkSteamer();
+const candySugar = new CandySugarMixer();
+const sweetMachine = new SweetCoffeeMaker(12, candySugar);
+const latteMachine = new CaffeLatteMachine(12, 'S-1101', cheapMilkSteamer);
+const sweetLatteMachine = new SweetCaffeLatteCoffeeMaker(
+    12,
+    cheapMilkSteamer,
+    candySugar
+)
