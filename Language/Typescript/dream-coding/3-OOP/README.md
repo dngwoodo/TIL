@@ -65,10 +65,17 @@ a programming paradigm based on the concept of "objects" which can contain data 
 4. Polymorphism(다형성)<br>
    poly는 `many`, morphism는 `form`을 의미하고 `다양한 형태`라고 생각하면 된다. 예를 들어 상속을 통해 만들어진 것들의 종류에 상관없이 부모 클래스(coffee machine, animal)의 메서드(공통된 메서드 ex) makeCoffee, makeSound)에 접근할 수 있다.
 
-**_상속의 문제점_** 😈
+**_상속의 문제점 및 해결 방법_** 💫
 
-1. 부모 클래스가 바뀌게 되면 상속된 모든 자식 클래스에 영향을 미친다.
-2. Typescript에서는 한가지 이상의 클래스를 상속할 수 없다.
-   <div>
-      <img src="https://user-images.githubusercontent.com/77663233/105621735-1c49f100-5e4e-11eb-8dbe-f61a9f477cab.png" width="400px" height="200px">
-   </div>
+1. 문제점
+
+   - 부모 클래스가 바뀌게 되면 상속된 모든 자식 클래스에 영향을 미친다.
+   - Typescript에서는 한가지 이상의 클래스를 상속할 수 없다.
+      <div>
+         <img src="https://user-images.githubusercontent.com/77663233/105621735-1c49f100-5e4e-11eb-8dbe-f61a9f477cab.png" width="400px" height="200px">
+      </div>
+
+2. 해결방법
+   - `Composition`을 사용한다.
+   - 구성요소, 구성이라는 뜻을 지녔다.
+   - 필요한 것들을 조립해내가는 것을 말한다.

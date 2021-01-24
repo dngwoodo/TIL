@@ -61,34 +61,69 @@ class CoffeeMachine implements CoffeeMaker {
     }
 }
 
-class CaffeLatteMachine extends CoffeeMachine {
-    constructor(beans: number, readonly serialNumber: string) {
-        // Constructors for derived classes must contain a 'super' call.ts(2377)
-        // 자식 클래스에서 생성자를 따로 구현하는 경우에는 부모의 생성자도 실행시켜줘야 한다.
-        super(beans); // 부모 생성자에 필요한 매개변수도 넣어줘야 한다.
-    }
-    private steamMilk(): void {
+// 싸구려 우유 거품기 클래스, 설탕 제조기 클래스를 만들어서 의존성 주입을 통해 필요한 곳에서 땡겨다 쓸 수 있게 만들어 놓는다.
+// 이것을 Composition 이라고 한다.
+// 싸구려 우유 거품기
+class CheapMilkSteamer {
+    private steamMilk():void {
         console.log('Steaming some milk... 🥛');
     }
-    // 오버라이딩
-    makeCoffee(shots: number): CoffeeCup {
-        const coffee = super.makeCoffee(shots); // 부모의 makeCoff 메서드를 쓰기 위해서 super를 이용
+
+    makeMilk(cup: CoffeeCup): CoffeeCup {
         this.steamMilk();
         return {
-            ...coffee,
+            ...cup,
             hasMilk: true,
         }
     }
 }
 
-class SweetCoffeeMaker extends CoffeeMachine {
-    makeCoffee(shots: number): CoffeeCup{
-        const coffee = super.makeCoffee(shots);
+// 설탕 제조기
+class AutomaticSugarMixer {
+    private getSugar() {
+        console.log('Getting some sugar from candy 🍭');
+        return true;
+    }
+
+    addSugar(cup: CoffeeCup): CoffeeCup {
+        const sugar = this.getSugar();
         return {
-            ...coffee,
-            hasSugar: true,
+            ...cup,
+            hasSugar: sugar
         }
     }
+}
+class CaffeLatteMachine extends CoffeeMachine {
+    // * milkFrother: CheapMilkSteamer <- 애를 의존성 주입(dependency injection)이라고 한다.
+    constructor(
+        beans: number, 
+        readonly serialNumber: string, 
+        private milkFrother: CheapMilkSteamer
+    ) {
+        // Constructors for derived classes must contain a 'super' call.ts(2377)
+        // 자식 클래스에서 생성자를 따로 구현하는 경우에는 부모의 생성자도 실행시켜줘야 한다.
+        super(beans); // 부모 생성자에 필요한 매개변수도 넣어줘야 한다.
+    }
+    // 오버라이딩
+    makeCoffee(shots: number): CoffeeCup {
+        const coffee = super.makeCoffee(shots); // 부모의 makeCoff 메서드를 쓰기 위해서 super를 이용
+        return this.milkFrother.makeMilk(coffee);
+    }
+}
+
+class SweetCoffeeMaker extends CoffeeMachine {
+    // * sugar: AutomaticSugarMixer <- 애를 의존성 주입(dependency injection)이라고 한다.
+    constructor(private beans:number, private sugar: AutomaticSugarMixer) {
+        super(beans)
+    }
+    makeCoffee(shots: number): CoffeeCup{
+        const coffee = super.makeCoffee(shots);
+        return this.sugar.addSugar(coffee);
+    }
+}
+
+class SweetCaffeLatteCoffeeMaker extends CoffeeMachine {
+
 }
 
 const machines = [
