@@ -10,16 +10,12 @@ interface CoffeeMaker {
     makeCoffee(shots: number): CoffeeCup
 }
 
-class CoffeeMachine implements CoffeeMaker {
+abstract class CoffeeMachine implements CoffeeMaker {
     private static BEANS_GRAM_PER_SHOT = 7; // 1shot 당 커피콩 7gram, class level, 클래스 마다 생성, private 때문에 외부에서 보이지 않음.
     private coffeeBeansGram: number = 0; // instance(object) level, 오브젝트 마다 생성
 
     constructor(coffeeBeansGram: number) {
         this.fillCoffeeBeans(coffeeBeansGram)
-    }
-
-    static makeMachine(coffeeBeansGram: number): CoffeeMachine {
-        return new CoffeeMachine(coffeeBeansGram);
     }
 
     fillCoffeeBeans(beans: number) {
@@ -46,13 +42,10 @@ class CoffeeMachine implements CoffeeMaker {
         
     }
 
-    private extract(shots:number): CoffeeCup {
-        console.log(`Pulling ${shots} shots... ☕️`);
-        return {
-            shots,
-            hasMilk: false,
-        }
-    }
+    // abstract는 구현사항을 적지 않는다.
+    // 추상 클래스는 구현부를 적을 수도 있고 안적을 수 도 있다.
+    // 오버라이딩 해야되는 메소드에 사용해주면 된다.
+    protected abstract extract(shots:number): CoffeeCup;
 
     makeCoffee(shots: number): CoffeeCup {
         this.grindBeans(shots); // 그라인더로 커피콩 갈기
@@ -71,31 +64,28 @@ class CaffeLatteMachine extends CoffeeMachine {
         console.log('Steaming some milk... 🥛');
     }
     // 오버라이딩
-    makeCoffee(shots: number): CoffeeCup {
-        const coffee = super.makeCoffee(shots); // 부모의 makeCoff 메서드를 쓰기 위해서 super를 이용
+    protected extract(shots: number): CoffeeCup {
         this.steamMilk();
         return {
-            ...coffee,
+            shots,
             hasMilk: true,
         }
     }
 }
 
 class SweetCoffeeMaker extends CoffeeMachine {
-    makeCoffee(shots: number): CoffeeCup{
-        const coffee = super.makeCoffee(shots);
-        return {
-            ...coffee,
-            hasSugar: true,
-        }
+// 오버라이딩
+protected extract(shots: number): CoffeeCup {
+    return {
+        shots,
+        hasMilk: true,
     }
+}
 }
 
 const machines = [
-    new CoffeeMachine(16),
     new CaffeLatteMachine(16, 'S-1101'),
     new SweetCoffeeMaker(16),
-    new CoffeeMachine(16),
     new CaffeLatteMachine(16, 'S-1101'),
     new SweetCoffeeMaker(16),
 ] 
@@ -111,10 +101,8 @@ machines.forEach(machine => {
 })
 
 const machines2: CoffeeMaker[] = [
-    new CoffeeMachine(16),
     new CaffeLatteMachine(16, 'S-1101'),
     new SweetCoffeeMaker(16),
-    new CoffeeMachine(16),
     new CaffeLatteMachine(16, 'S-1101'),
     new SweetCoffeeMaker(16),
 ] 
@@ -123,6 +111,6 @@ machines2.forEach(machine => {
     console.log('-----------------------');
     // 현재 machines의 타입이 CoffeeMaker[] 이기 때문에 makeCoffee만 사용 가능하다.
     machine.makeCoffee(1);
-    machine.fillCoffeeBeans(45); // error, Property 'fillCoffeeBeans' does not exist on type 'CoffeeMaker'.ts(2339)
-    machine.clean(); // error, Property 'fillCoffeeBeans' does not exist on type 'CoffeeMaker'.ts(2339)
+    // machine.fillCoffeeBeans(45); // error, Property 'fillCoffeeBeans' does not exist on type 'CoffeeMaker'.ts(2339)
+    // machine.clean(); // error, Property 'fillCoffeeBeans' does not exist on type 'CoffeeMaker'.ts(2339)
 })
