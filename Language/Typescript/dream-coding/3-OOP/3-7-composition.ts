@@ -87,10 +87,53 @@ class CheapMilkSteamer implements MilkFrother {
     }
 }
 
+class FancyMilkSteamer implements MilkFrother {
+    private steamMilk():void {
+        console.log('Fancy Steaming some milk... 🥛');
+    }
+
+    makeMilk(cup: CoffeeCup): CoffeeCup {
+        this.steamMilk();
+        return {
+            ...cup,
+            hasMilk: true,
+        }
+    }
+}
+
+class ColdMilkSteamer implements MilkFrother {
+    private steamMilk():void {
+        console.log('Cold Steaming some milk... 🥛');
+    }
+
+    makeMilk(cup: CoffeeCup): CoffeeCup {
+        this.steamMilk();
+        return {
+            ...cup,
+            hasMilk: true,
+        }
+    }
+}
+
 // 설탕 제조기
 class CandySugarMixer implements SugarProvider{
     private getSugar() {
         console.log('Getting some sugar from candy 🍭');
+        return true;
+    }
+
+    addSugar(cup: CoffeeCup): CoffeeCup {
+        const sugar = this.getSugar();
+        return {
+            ...cup,
+            hasSugar: sugar
+        }
+    }
+}
+
+class SugarMixer implements SugarProvider{
+    private getSugar() {
+        console.log('Getting some sugar from jar!!!!');
         return true;
     }
 
@@ -159,12 +202,25 @@ class SweetCaffeLatteCoffeeMaker extends CoffeeMachine {
     }
 }
 
+// Milk
 const cheapMilkSteamer = new CheapMilkSteamer();
+const fancyMilkSteamer = new FancyMilkSteamer();
+const coldMilkMaker = new ColdMilkSteamer();
+
+// Sugar
 const candySugar = new CandySugarMixer();
-const sweetMachine = new SweetCoffeeMaker(12, candySugar);
+const sugar = new SugarMixer();
+
+// decoupling 시키기
 const latteMachine = new CaffeLatteMachine(12, 'S-1101', cheapMilkSteamer);
+const fancyLatteMachine = new CaffeLatteMachine(12, 'S-1101', fancyMilkSteamer);
+const coldLatteMachine = new CaffeLatteMachine(12, 'S-1101', coldMilkMaker);
+
+const sweetCandyMachine = new SweetCoffeeMaker(12, candySugar);
+const sweetMachine = new SweetCoffeeMaker(12, sugar);
+
 const sweetLatteMachine = new SweetCaffeLatteCoffeeMaker(
     12,
-    cheapMilkSteamer,
-    candySugar
+    cheapMilkSteamer, // 이제 여러가지 넣을 수 있음
+    candySugar // 이제 여러가지 넣을 수 있음.
 )
