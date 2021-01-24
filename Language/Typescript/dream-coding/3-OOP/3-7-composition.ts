@@ -123,7 +123,31 @@ class SweetCoffeeMaker extends CoffeeMachine {
 }
 
 class SweetCaffeLatteCoffeeMaker extends CoffeeMachine {
+    // 정리
 
+    // 설명 및 장점
+    // SweetCaffeLatteCoffeeMaker 이 클래스는 우유를 어떻게 만드는지, 설탕을 어디서 어떻게 가져와서 추가하는 지 전혀 신경 쓰지 않는다.
+    // 즉, 이 클래스는 이 설탕이 사탕을 부셔서 만든 설탕인지도 모른다.
+    // 이렇게 필요한 기능을 외부에서 가져와서 주입(injection) 받음으로서 composition을 사용해서 필요한 기능을 재사용 할 수가 있다.
+    // Composition은 코드의 재사용성을 매우 높여준다.
+
+    // 단점
+    // 하지만 치명적인 단점은 주입된 CheapMilkSteamer, AutomaticSugarMixer와 너무 밀접하게 coupling 되어져 있다.
+    // 나중에 다른 Steamer나 SugarMixer로 바꾸게 되면 CheapMilkSteamer, AutomaticSugarMixer을 사용하는 클래스들을 전부 업데이트는 해주어야 한다.
+    // 즉, 클래스와 클래스들끼리 잘 알고 지내는 것은 매우 좋지 못하다.
+    constructor(
+        private beans: number, 
+        private milk: CheapMilkSteamer,
+        private sugar: AutomaticSugarMixer
+    ) {
+        super(beans);
+    }
+    // 오버라이딩
+    makeCoffee(shots: number): CoffeeCup {
+        const coffee = super.makeCoffee(shots);
+        const sugarAdded = this.sugar.addSugar(coffee);
+        return this.milk.makeMilk(sugarAdded);
+    }
 }
 
 const machines = [
