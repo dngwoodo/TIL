@@ -14,12 +14,12 @@ class CoffeeMachine implements CoffeeMaker {
     private static BEANS_GRAM_PER_SHOT = 7; // 1shot 당 커피콩 7gram, class level, 클래스 마다 생성, private 때문에 외부에서 보이지 않음.
     private coffeeBeansGram: number = 0; // instance(object) level, 오브젝트 마다 생성
 
-    constructor(coffeeBeansGram: number) {
+    constructor(
+        coffeeBeansGram: number,
+        private milk: MilkFrother,
+        private sugar: SugarProvider
+    ) {
         this.fillCoffeeBeans(coffeeBeansGram)
-    }
-
-    static makeMachine(coffeeBeansGram: number): CoffeeMachine {
-        return new CoffeeMachine(coffeeBeansGram);
     }
 
     fillCoffeeBeans(beans: number) {
@@ -57,7 +57,10 @@ class CoffeeMachine implements CoffeeMaker {
     makeCoffee(shots: number): CoffeeCup {
         this.grindBeans(shots); // 그라인더로 커피콩 갈기
         this.preheat(); // 커피 기계 예열 시키기
-        return this.extract(shots) // 커피 추출
+        const coffee = this.extract(shots);
+        const sugarAdded = this.sugar.addSugar(coffee);
+        const milkAdded = this.milk.makeMilk(sugarAdded);
+        return milkAdded;
     }
 }
 
@@ -115,6 +118,12 @@ class ColdMilkSteamer implements MilkFrother {
     }
 }
 
+class NoMilk implements MilkFrother {
+    makeMilk(cup: CoffeeCup): CoffeeCup {
+        return cup;
+    }
+}
+
 // 설탕 제조기
 class CandySugarMixer implements SugarProvider{
     private getSugar() {
@@ -145,60 +154,10 @@ class SugarMixer implements SugarProvider{
         }
     }
 }
-class CaffeLatteMachine extends CoffeeMachine {
-    // * milkFrother: CheapMilkSteamer <- 애를 의존성 주입(dependency injection)이라고 한다.
-    constructor(
-        beans: number, 
-        readonly serialNumber: string, 
-        private milkFrother: MilkFrother
-    ) {
-        // Constructors for derived classes must contain a 'super' call.ts(2377)
-        // 자식 클래스에서 생성자를 따로 구현하는 경우에는 부모의 생성자도 실행시켜줘야 한다.
-        super(beans); // 부모 생성자에 필요한 매개변수도 넣어줘야 한다.
-    }
-    // 오버라이딩
-    makeCoffee(shots: number): CoffeeCup {
-        const coffee = super.makeCoffee(shots); // 부모의 makeCoff 메서드를 쓰기 위해서 super를 이용
-        return this.milkFrother.makeMilk(coffee);
-    }
-}
 
-class SweetCoffeeMaker extends CoffeeMachine {
-    // * sugar: CandySugarMixer <- 애를 의존성 주입(dependency injection)이라고 한다.
-    constructor(private beans:number, private sugar: SugarProvider) {
-        super(beans)
-    }
-    makeCoffee(shots: number): CoffeeCup{
-        const coffee = super.makeCoffee(shots);
-        return this.sugar.addSugar(coffee);
-    }
-}
-
-class SweetCaffeLatteCoffeeMaker extends CoffeeMachine {
-    // 정리
-
-    // 설명 및 장점
-    // SweetCaffeLatteCoffeeMaker 이 클래스는 우유를 어떻게 만드는지, 설탕을 어디서 어떻게 가져와서 추가하는 지 전혀 신경 쓰지 않는다.
-    // 즉, 이 클래스는 이 설탕이 사탕을 부셔서 만든 설탕인지도 모른다.
-    // 이렇게 필요한 기능을 외부에서 가져와서 주입(injection) 받음으로서 composition을 사용해서 필요한 기능을 재사용 할 수가 있다.
-    // Composition은 코드의 재사용성을 매우 높여준다.
-
-    // 단점
-    // 하지만 치명적인 단점은 주입된 CheapMilkSteamer, CandySugarMixer와 너무 밀접하게 coupling 되어져 있다.
-    // 나중에 다른 Steamer나 SugarMixer로 바꾸게 되면 CheapMilkSteamer, CandySugarMixer을 사용하는 클래스들을 전부 업데이트는 해주어야 한다.
-    // 즉, 클래스와 클래스들끼리 잘 알고 지내는 것은 매우 좋지 못하다.
-    constructor(
-        private beans: number, 
-        private milk: MilkFrother,
-        private sugar: SugarProvider
-    ) {
-        super(beans);
-    }
-    // 오버라이딩
-    makeCoffee(shots: number): CoffeeCup {
-        const coffee = super.makeCoffee(shots);
-        const sugarAdded = this.sugar.addSugar(coffee);
-        return this.milk.makeMilk(sugarAdded);
+class NoSugar implements SugarProvider {
+    addSugar(cup: CoffeeCup): CoffeeCup {
+        return cup;
     }
 }
 
@@ -206,20 +165,22 @@ class SweetCaffeLatteCoffeeMaker extends CoffeeMachine {
 const cheapMilkSteamer = new CheapMilkSteamer();
 const fancyMilkSteamer = new FancyMilkSteamer();
 const coldMilkMaker = new ColdMilkSteamer();
+const noMilk = new NoMilk();
 
 // Sugar
 const candySugar = new CandySugarMixer();
 const sugar = new SugarMixer();
+const noSugar = new NoSugar();
 
 // decoupling 시키기
-const latteMachine = new CaffeLatteMachine(12, 'S-1101', cheapMilkSteamer);
-const fancyLatteMachine = new CaffeLatteMachine(12, 'S-1101', fancyMilkSteamer);
-const coldLatteMachine = new CaffeLatteMachine(12, 'S-1101', coldMilkMaker);
+const latteMachine = new CoffeeMachine(12, cheapMilkSteamer, noSugar);
+const fancyLatteMachine = new CoffeeMachine(12, fancyMilkSteamer, noSugar);
+const coldLatteMachine = new CoffeeMachine(12, coldMilkMaker, noSugar);
 
-const sweetCandyMachine = new SweetCoffeeMaker(12, candySugar);
-const sweetMachine = new SweetCoffeeMaker(12, sugar);
+const sweetCandyMachine = new CoffeeMachine(12, noMilk, candySugar);
+const sweetMachine = new CoffeeMachine(12, noMilk, candySugar);
 
-const sweetLatteMachine = new SweetCaffeLatteCoffeeMaker(
+const sweetLatteMachine = new CoffeeMachine(
     12,
     cheapMilkSteamer, // 이제 여러가지 넣을 수 있음
     candySugar // 이제 여러가지 넣을 수 있음.
