@@ -1,3 +1,5 @@
+export {}
+
 // stack의 기본 기능
 // LIFO (Last In First Out)
 // push
