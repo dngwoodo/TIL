@@ -27,6 +27,8 @@ class StackImpl implements Stack{
      */
     private head?: StackNode;
 
+    constructor(private capacity: number){}
+
     get size() { // 외부에서 쓰는 것
         return this._size;
     }
@@ -35,12 +37,38 @@ class StackImpl implements Stack{
          * 6. node를 하나 생성하고 가장 마지막에 들어온 node(head)를 가르킨다.
          * 그리고 head는 새로 들어온 node를 가르켜야 한다.
          */
+        if(this.size === this.capacity){
+            throw new Error("Stack is full!");
+        }
         const node: StackNode = { value, next: this.head }
         this.head = node;
 
         this._size++;
     }
     pop(): string {
+        /**
+         * 7. 지워야 되는 node는 현재 head가 가르키고 있는 node이다.
+         * 또한 현재 this.head가 undefined라면 pop메서드의 반환 타입에 undefined도 들어가야 한다.
+         * 하지만 그렇게 되면 사용자가 pop 메서드를 사용할 때마다 null 체크(유효성 검사)를 해줘야 되기 때문에 로직안에서 처리하는 것이 좋다(if문 사용)
+         * 원래 this.head === undefined를 하는것이 맞지만 null이 들어오게 되면 그냥 통과 되므로 this.head == null로 해준다.
+         */
+        if(this.head == null) {
+            throw new Error("Stack is empty!");
+        }
+        const node = this.head;
+        this.head = node.next;
+
         this._size--;
+        return node.value
     }
 }
+
+const stack = new StackImpl(10);
+stack.push('Dongwoo 1');
+stack.push('Yugesh 2');
+stack.push('Steve 3');
+while(stack.size !== 0) {
+    console.log(stack.pop());
+}
+
+stack.pop() // throw new Error("Stack is empty!");
