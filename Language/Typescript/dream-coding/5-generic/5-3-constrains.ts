@@ -46,3 +46,22 @@ const yugeshAfterPay = pay(yugesh);
  */
 // dongwooAfterPay.workFullTime(); // error
 // yugeshAfterPay.workPartTime();  // error
+
+const obj = {
+    name: 'ellie',
+    age: 20,
+}
+
+const obj2 = {
+    anumal: '말',
+}
+
+function getValue<T>(obj: T, key: string) {
+    if(obj[key]) {
+        throw new Error("없는 키 값입니다.");
+    }
+    return obj[key];
+}
+
+console.log(getValue(obj, 'name')); // ellie
+console.log(getValue(obj, 'age'));  // 20
