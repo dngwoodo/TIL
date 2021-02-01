@@ -7,7 +7,7 @@ export {}
 // Error State: 예상 할 수 있는 에러
 
 // 전혀 예상하지 못한 에러(Exception Error)
-const array = new Array(1000000000000000000); // RangeError: Invalid array length
+// const array = new Array(1000000000000000000); // RangeError: Invalid array length
 
 /**
  * Let's make a game 🕹
@@ -29,8 +29,8 @@ function move(direction: Direction){
         case 'up':
           position.y += 1
           break;
-        // case 'he':
-        //   break;
+        case 'he':
+          break;
         default:
           /**
            * 컴파일단에서 에러를 뿜어주는게 가장 이상적이다.
@@ -42,5 +42,37 @@ function move(direction: Direction){
           throw new Error(`unknown position: ${invalid}`);
     }
 }
+
+
+// Error(Exception) Handling: try -> catch -> finally
+
+function readFile(fileName: string): string {
+    if(fileName === 'not exist!💩') {
+        throw new Error(`file not exist! ${fileName}`);
+    }
+    return 'file contents🗓';
+}
+
+function closeFile(fileName: string) {
+    //
+}
+
+const fileName = 'not exist!💩';
+
+// try는 진짜 에러가 발생할 곳에만 사용하고 다른 부분은 바깥으로 빼주는 것이 좋다.
+try {
+    console.log(readFile(fileName));    
+} catch (error) {
+    console.log(`catched!`);
+} finally {
+    // finally를 사용하는 이유는 만약 try/catch문이 함수 내부에 있고 catch에서 return을 하게 되면 바깥 로직은 실행되지 않지만
+    // finally 코드는 실행되기 때문이다.
+    closeFile(fileName);
+    console.log(`finally!!`);
+}
+
+console.log(`!!!`);
+
+
 
 
