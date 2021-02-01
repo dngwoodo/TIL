@@ -1,11 +1,22 @@
 export {}
 
-class TimeoutError extends Error {}
-class OfflineError extends Error {}
+type NetworkErrorState = {
+    result: 'fail';
+    reason: 'offline' | 'down' | 'timeout';
+}
+
+type SuccessState = {
+    result: 'success'
+}
+
+type ResultState = SuccessState | NetworkErrorState;
 
 class NetworkClient {
-    tryConnect(): void {
-        throw new OfflineError('no network');
+    tryConnect(): ResultState {
+        // 예제
+        // return { result: 'success' }    
+        return { result: 'fail', reason: 'offline' }
+        
     }
 }
 
@@ -15,8 +26,7 @@ class UserService {
     constructor(private client: NetworkClient) {}
     
     login() {
-            this.client.tryConnect();
-            // login...    
+            return this.client.tryConnect(); 
     }
 }
 
@@ -27,10 +37,9 @@ service.login(); // catched!
 class App {
     constructor(private userService: UserService) {}
     run() {
-        try {
-            this.userService.login();    
-        } catch (error) {
-            // show dialog to user
+        const status = this.userService.login();    
+        if(status.result === 'fail' && status.reason === 'offline') {
+            // 에러처리
         }
         
     }
