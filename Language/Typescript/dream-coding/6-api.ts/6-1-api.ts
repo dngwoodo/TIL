@@ -1,3 +1,4 @@
+export {}
 /**
  * command + click을 하게 되면 lib.es5.d.ts로 가게 된다.
  * vscode를 설치하면 알아서 ts가 깔리게 되고 이것들은 다운로드 된다.
@@ -39,11 +40,17 @@ type Student = {
 }
 
 const students: Student[] = [{passed: true}, {passed: true}, {passed: false}];
+
 students.every(student => student.passed); // 하나라도 false가 뜨면 종료 후 false 반환
 
 /**
  * every 사용해보기2
  * every<S extends T>(predicate: (value: T, index: number, array: T[]) => value is S, thisArg?: any): this is S[];
+ * T는 이미 Animal이다
+ * 결국 S extends T 는 Cat extends Animal을 의미한다. 
+ * value가 Animal이면 value는 Cat이다. <- 타입 가드 함수를 사용해서 구별한다.
+ * this is S[]는 현재 여기서 this는 Array<T>를 의미하며 Array<Animal>이 Cat[] 이라는 뜻이다.
+ * 
  * T 타입을 상속하는 S(서브)타입을 사용할 수 있다.
  * value is S는 value가 S에 속하는지 보는 것이다. 즉 배열안에 있는 값이 S인지 보는 것
  * is라는 것은 type predicate(user-defined type guards) 이라고 한다.
@@ -58,9 +65,11 @@ students.every(student => student.passed); // 하나라도 false가 뜨면 종�
      isDog: boolean = false;
  }
 
- const animals: Animal[] = [new Cat(), new Cat(), new Dog()];
+ const animals: Animal[] = [new Cat(), new Cat(), new Cat()];
  function isCat(animal: Animal): animal is Cat {
      return (animal as Cat).isCat !== undefined;
  }
 
- animals.every<Cat>(isCat);
+ console.log(animals.every<Cat>(isCat)) // false
+
+ 
