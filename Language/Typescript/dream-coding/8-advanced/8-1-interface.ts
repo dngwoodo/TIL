@@ -47,3 +47,23 @@ interface ZPositionInterface extends PositionInterface {
 
 type ZPositionType = PositionType & { z: number }; // intersection(교차) 타입을 이용해서 묶을(확장) 수 있음
 
+// 😄 only interfaces can be merged.
+// 인터페이스만 가능
+// interface PositionInterface { // OK
+//     w: number;
+// }
+
+// type PositionType { // error
+
+// }
+
+// 😄 Type aliases can use computed properties
+// 타입만 가능
+type Person = {
+    name: string,
+    age: number,
+}
+
+type Name = Person['name']; // string
+type NumberType = number;
+type Direction = 'left' | 'right'
