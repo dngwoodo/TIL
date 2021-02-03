@@ -42,4 +42,22 @@ videoOp = value;
 //     readonly author: string;
 // };
 
+// 좀 더 다양하게 사용해보자!
+type Nullable<T> = {
+    [P in keyof T]?: T[P] | null // null도 넣어서 사용 가능하다.
+};
+
+const obj2: Nullable<Video> = {
+    title: 'hi',
+    author: null // null도 사용가능!
+}
+
+type Proxy<T> = {
+    get(): T;
+    set(value: T): void;
+}
+
+type Proxify<T> = {
+    [P in keyof T]: Proxy<T[P]> // T[P]를 한번 더 감싸서 사용가능하다.
+}
 
