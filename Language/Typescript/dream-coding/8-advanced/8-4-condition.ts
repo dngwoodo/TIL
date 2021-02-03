@@ -1,3 +1,5 @@
+export {}
+
 type Check<T> = T extends string ? boolean : number; // 삼항 연산자 사용
 type Type = Check<string>; // boolean
 
