@@ -1,9 +1,64 @@
 @import "./reset.css";
 
+/* Document level adjustments */
+@media (max-width: 56.25rem) {
+  /* 16 * 56.25 = 900px */
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 25rem) {
+  /* 16 * 25 = 400px */
+  html {
+    font-size: 12px;
+  }
+}
 * {
   box-sizing: border-box;
 }
 
+html,
+body {
+  height: 100%;
+}
+
 body {
   background-image: url("../assets/page-back.png");
+}
+
+.motion-wrapper {
+  height: 100%;
+  max-width: 75rem;
+  margin: 0 auto;
+  background-image: url("../assets/section-back.png");
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625em;
+}
+
+.header-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.625em;
+}
+
+.header__buttons button {
+  background-color: transparent;
+  border-color: red;
+  outline: none;
+  width: 5em;
+  height: 2.5em;
+}
+
+.main {
+  flex: 1;
+  padding: 0.625em;
 }
