@@ -3,29 +3,29 @@
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
 
     /* Basic Options */
-    // "incremental": true,                   /* Enable incremental compilation */
+    // "incremental": true,                   /* Enable incremental compilation, 바뀐 부분만 컴파일 된다. 대신에 예전에 컴파일 된 것들을 디스크에 보관하므로 피시용량이 더 커질 수 있다.*/
     "target": "es5",                          /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019', 'ES2020', or 'ESNEXT'. */
-    "module": "commonjs",                     /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', 'es2020', or 'ESNext'. */
+    "module": "ES6",                     /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', 'es2020', or 'ESNext'. */
     // "lib": [],                             /* Specify library files to be included in the compilation. */
-    // "allowJs": true,                       /* Allow javascript files to be compiled. */
-    // "checkJs": true,                       /* Report errors in .js files. */
+    // "allowJs": true,                       /* Allow javascript files to be compiled. 자바스크립트 파일을 같이 쓸건지*/
+    // "checkJs": true,                       /* Report errors in .js files. 자바스크립트 파일에서 오류 출력*/
     // "jsx": "preserve",                     /* Specify JSX code generation: 'preserve', 'react-native', or 'react'. */
     // "declaration": true,                   /* Generates corresponding '.d.ts' file. */
     // "declarationMap": true,                /* Generates a sourcemap for each corresponding '.d.ts' file. */
     // "sourceMap": true,                     /* Generates corresponding '.map' file. */
-    // "outFile": "./",                       /* Concatenate and emit output to single file. */
+    // "outFile": "./",                       /* Concatenate and emit output to single file. 하나의 파일로 번들링 시킬 때 사용 */
     "outDir": "./build",                        /* Redirect output structure to the directory. 어디에 js파일을 생성하지 결정(ts파일이 있는 곳의 최상위 루트를 기준) */
     "rootDir": "./src",                       /* Specify the root directory of input files. Use to control the output directory structure with --outDir. root 디렉토리를 src로 고정. src 밖에서는 이제 ts를 만들면 에러가 남.(컴파일은 되서 js파일이 생성은 되어짐) */
-    // "composite": true,                     /* Enable project compilation */
-    // "tsBuildInfoFile": "./",               /* Specify file to store incremental compilation information */
-    // "removeComments": true,                /* Do not emit comments to output. */
-    // "noEmit": true,                        /* Do not emit outputs. */
+    // "composite": true,                     /* Enable project compilation. 이전에 빌드된 정보를 가지고 있어서 더 빠르게 빌드되도록 도와줌 */
+    // "tsBuildInfoFile": "./",               /* Specify file to store incremental compilation information. incremental가 true라면 관련된 정보들을 담을 수 파일을 지정하는 것   */
+    // "removeComments": true,                /* Do not emit comments to output. 주석 삭제처리 */
+    // "noEmit": true,                        /* Do not emit outputs. javascript로 변환하진 않음*/
     // "importHelpers": true,                 /* Import emit helpers from 'tslib'. */
     // "downlevelIteration": true,            /* Provide full support for iterables in 'for-of', spread, and destructuring when targeting 'ES5' or 'ES3'. */
-    // "isolatedModules": true,               /* Transpile each file as a separate module (similar to 'ts.transpileModule'). */
+    // "isolatedModules": true,               /* Transpile each file as a separate module (similar to 'ts.transpileModule'). 각각의 모듈을 다른 모듈로 바꿀 때 사용*/
 
     /* Strict Type-Checking Options */
-    "strict": true,                           /* Enable all strict type-checking options. */
+    "strict": true,                           /* Enable all strict type-checking options. 항상 true로 체크해주자. 안하면 그냥 javascript 쓰는것과 같다. */
     // "noImplicitAny": true,                 /* Raise error on expressions and declarations with an implied 'any' type. */
     // "strictNullChecks": true,              /* Enable strict null checks. */
     // "strictFunctionTypes": true,           /* Enable strict checking of function types. */
