@@ -1,0 +1,9 @@
+@import "./reset.css";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url("../assets/page-back.png");
+}
