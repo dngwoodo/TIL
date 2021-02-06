@@ -12,7 +12,7 @@
     // "jsx": "preserve",                     /* Specify JSX code generation: 'preserve', 'react-native', or 'react'. */
     // "declaration": true,                   /* Generates corresponding '.d.ts' file. */
     // "declarationMap": true,                /* Generates a sourcemap for each corresponding '.d.ts' file. */
-    // "sourceMap": true,                     /* Generates corresponding '.map' file. */
+    "sourceMap": true,                     /* Generates corresponding '.map' file. */
     // "outFile": "./",                       /* Concatenate and emit output to single file. 하나의 파일로 번들링 시킬 때 사용 */
     "outDir": "./build",                        /* Redirect output structure to the directory. 어디에 js파일을 생성하지 결정(ts파일이 있는 곳의 최상위 루트를 기준) */
     "rootDir": "./src",                       /* Specify the root directory of input files. Use to control the output directory structure with --outDir. root 디렉토리를 src로 고정. src 밖에서는 이제 ts를 만들면 에러가 남.(컴파일은 되서 js파일이 생성은 되어짐) */
@@ -68,5 +68,5 @@
     "forceConsistentCasingInFileNames": true  /* Disallow inconsistently-cased references to the same file. */
   },
   // "exclude": ["./src/dev.ts"], // 이 아이들은 컴파일 되지 않음
-  "include": ["./src/dev.ts"] // 이 아이들만 컴파일
+  // "include": ["./src/dev.ts"] // 이 아이들만 컴파일
 }
