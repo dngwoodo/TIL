@@ -8,22 +8,12 @@ var modalOveraly = document.querySelector(".modal__overlay");
 var modelCancelButton = document.querySelector(".modal .button--cancel");
 var modalForm = document.querySelector(".modal__form");
 // Create
-// 1. Image Button
-var hideModal = function () {
+var showModal = function () {
     modalOveraly.classList.remove("hide");
 };
-var showModal = function () {
+var hideModal = function () {
     modalOveraly.classList.add("hide");
 };
-var createImageCard = function (title, url) {
-    var li = document.createElement("li");
-    li.setAttribute("class", "main__card");
-    li.innerHTML = "\n      <img\n        src=\"" + url + "\"\n        alt=\"image\"\n      />\n      <pre>" + title + "</pre>\n      <button class=\"button button--cancel\">\u274C</button>\n  ";
-    cards.appendChild(li);
-};
-imageButton.addEventListener("click", function () {
-    hideModal();
-});
 modelCancelButton.addEventListener("click", function () {
     showModal();
 });
@@ -37,10 +27,34 @@ modalForm.addEventListener("submit", function (e) {
     if (url === "") {
         alert("url은 필수입니다.");
     }
-    createImageCard(title, url);
+    if (url.search(/youtube.com/g)) {
+        createVideoCard(title, url);
+    }
+    else if (url.search(/youtube.com/g) === -1) {
+        createImageCard(title, url);
+    }
     hideModal();
 });
-videoButton.addEventListener("click", function () { });
+// 1. Image Button
+var createImageCard = function (title, url) {
+    var li = document.createElement("li");
+    li.setAttribute("class", "main__card");
+    li.innerHTML = "\n      <img\n        src=\"" + url + "\"\n        alt=\"image\"\n      />\n      <pre>" + title + "</pre>\n      <button class=\"button button--cancel\">\u274C</button>\n  ";
+    cards.appendChild(li);
+};
+imageButton.addEventListener("click", function () {
+    showModal();
+});
+// 2. Video Button
+var createVideoCard = function (title, url) {
+    var li = document.createElement("li");
+    li.setAttribute("class", "main__card");
+    li.innerHTML = "\n      <iframe\n        src=\"" + url + "\"\n      ></iframe>\n      <pre>" + title + "</pre>\n      <button class=\"button button--cancel\">\u274C</button>\n  ";
+    cards.appendChild(li);
+};
+videoButton.addEventListener("click", function () {
+    showModal();
+});
 noteButton.addEventListener("click", function () { });
 taskButton.addEventListener("click", function () { });
 // read

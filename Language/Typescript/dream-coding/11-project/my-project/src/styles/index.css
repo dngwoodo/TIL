@@ -80,7 +80,8 @@ body {
   position: relative;
 }
 
-.main__card img {
+.main__card img,
+.main__card iframe {
   width: 50%;
   margin-right: 0.625em;
 }
