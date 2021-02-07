@@ -12,10 +12,10 @@
       <header class="header">
         <h1 class="header-title">MOTION</h1>
         <div class="header__buttons">
-          <button class="header__button button--image">IMAEG</button>
-          <button class="header__button button--video">VIDEO</button>
-          <button class="header__button button--note">NOTE</button>
-          <button class="header__button button--task">TASK</button>
+          <button class="button button--image">IMAEG</button>
+          <button class="button button--video">VIDEO</button>
+          <button class="button button--note">NOTE</button>
+          <button class="button button--task">TASK</button>
         </div>
       </header>
       <main class="main">
@@ -27,5 +27,17 @@
         </pre>
       </footer>
     </section>
+    <div class="modal__overlay hide">
+      <div class="modal">
+        <form class="modal__form">
+          <h4>Title</h4>
+          <input type="text" class="modal__title" />
+          <h4>URL</h4>
+          <input type="text" class="modal__url" />
+          <button type="submit" class="button button--add">Add</button>
+        </form>
+        <button class="button button--cancel">❌</button>
+      </div>
+    </div>
   </body>
 </html>

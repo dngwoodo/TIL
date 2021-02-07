@@ -50,12 +50,19 @@ body {
   margin-bottom: 0.625em;
 }
 
-.header__buttons button {
+/* button */
+.button {
   background-color: transparent;
   border-color: red;
   outline: none;
   width: 5em;
   height: 2.5em;
+}
+
+.button--cancel {
+  all: unset;
+  font-size: 1.25rem;
+  cursor: pointer;
 }
 
 .main {
@@ -77,6 +84,7 @@ body {
   width: 50%;
   margin-right: 0.625em;
 }
+
 .main__card pre {
   text-align: justify; /* 양쪽 정렬 */
   width: 50%;
@@ -85,11 +93,7 @@ body {
   font-size: 1.25rem;
 }
 
-.main__card button {
-  all: unset;
-  font-size: 1.25rem;
-  color: crimson;
-  cursor: pointer;
+.main__card .button--cancel {
   position: absolute;
   top: 0.75em;
   right: 0.75rem;
@@ -97,4 +101,55 @@ body {
 
 .main__card:hover {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.modal__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  border-radius: 0.313em;
+  background-color: rosybrown;
+  width: 25em;
+  height: 12.5em;
+  padding: 2.5em 0.625em;
+  position: relative;
+}
+
+.modal h4 {
+  font-weight: bold;
+  font-size: 1.125em;
+  color: royalblue;
+}
+
+.modal input {
+  height: 2.188em;
+}
+
+.modal input,
+.modal textarea {
+  margin-bottom: 0.625em;
+  width: 100%;
+}
+
+.modal .button--cancel {
+  position: absolute;
+  top: 0.75em;
+  right: 0.75rem;
+}
+
+.modal .button--add {
+  float: right;
+}
+
+.hide {
+  display: none;
 }
