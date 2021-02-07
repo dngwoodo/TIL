@@ -5,19 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="../src/styles/index.css" />
+    <script type="module" src="../build/app.js"></script>
   </head>
   <body>
     <section class="motion-wrapper">
       <header class="header">
         <h1 class="header-title">MOTION</h1>
         <div class="header__buttons">
-          <button>IMAEG</button>
-          <button>VIDEO</button>
-          <button>NOTE</button>
-          <button>TASK</button>
+          <button class="header__button button--image">IMAEG</button>
+          <button class="header__button button--video">VIDEO</button>
+          <button class="header__button button--note">NOTE</button>
+          <button class="header__button button--task">TASK</button>
         </div>
       </header>
-      <main class="main"></main>
+      <main class="main">
+        <ul class="main__cards"></ul>
+      </main>
       <footer class="footer">
         <pre>
           &copy; 2021. dngwoodo All code cannot be copied without permission. 

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <img
+      srcset="
+        ../src/assets/400px.png   400w,
+        ../src/assets/700px.jpg   700w,
+        ../src/assets/1000px.jpg 1000w
+      "
+      sizes="(max-width: 500px) 444px,
+      (max-width: 800px) 777px,
+      1222px"
+      src="../src/assets/page-back.png"
+      alt="image"
+    />
+    <!-- <img src="https://picsum.photos/1000/300" alt="image" /> -->
+  </body>
+</html>
+
+<!-- 정리 -->
+<!-- 400px~700px = 가로너비 400px 사진 요청
+701px~1000px = 가로너비 700px 사진 요청
+1001px~ = 가로너비 1000px 사진 요청
+
+w(width) 디스크립터 = 브라우저한테 가로 너비 400px 이미지라고 알려주는 단위
+width = 출력 크기
+sizes = 출력 크기 + 최적 크기
+src = srcset와 sizes를 지원하지 않는 브라우저에서 사용
+
+알아야 될 것
+만약에 1000px이미지를 이미 브라우저에서 들고 있다면 굳이 400px 짜리 이미지를 다시 요청하진 않음. -->
