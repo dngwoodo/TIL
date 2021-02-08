@@ -26,7 +26,7 @@ const hideModal = () => {
 };
 
 modelCancelButton.addEventListener("click", () => {
-  showModal();
+  hideModal();
 });
 
 modalForm.addEventListener("submit", (e) => {
@@ -89,9 +89,29 @@ videoButton.addEventListener("click", () => {
   showModal();
 });
 
-noteButton.addEventListener("click", () => {});
+// 3. Note Button
+const changeModalForm = () => {
+  const secondHead = document.querySelector(
+    ".modal__form h4:nth-child(3)"
+  ) as HTMLHeadElement;
+  const url = document.querySelector(".modal__url") as HTMLInputElement;
+  const modalAddButton = document.querySelector(
+    ".button--add"
+  ) as HTMLButtonElement;
+
+  secondHead.textContent = "Body";
+  url.remove();
+
+  const textarea = document.createElement("textarea");
+  textarea.setAttribute("cols", "30");
+  textarea.setAttribute("cols", "10");
+  modalForm.insertBefore(textarea, modalAddButton); // 부모노드.insertBefore(삽입할 노드, 기준점 노드);
+};
+
+noteButton.addEventListener("click", () => {
+  showModal();
+  changeModalForm();
+});
 taskButton.addEventListener("click", () => {});
 
-// read
-// update
 // delete

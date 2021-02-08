@@ -15,7 +15,7 @@ var hideModal = function () {
     modalOveraly.classList.add("hide");
 };
 modelCancelButton.addEventListener("click", function () {
-    showModal();
+    hideModal();
 });
 modalForm.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -55,8 +55,21 @@ var createVideoCard = function (title, url) {
 videoButton.addEventListener("click", function () {
     showModal();
 });
-noteButton.addEventListener("click", function () { });
+// 3. Note Button
+var changeModalForm = function () {
+    var secondHead = document.querySelector(".modal__form h4:nth-child(3)");
+    var url = document.querySelector(".modal__url");
+    var modalAddButton = document.querySelector(".button--add");
+    secondHead.textContent = "Body";
+    url.remove();
+    var textarea = document.createElement("textarea");
+    textarea.setAttribute("cols", "30");
+    textarea.setAttribute("cols", "10");
+    modalForm.insertBefore(textarea, modalAddButton); // 부모노드.insertBefore(삽입할 노드, 기준점 노드);
+};
+noteButton.addEventListener("click", function () {
+    showModal();
+    changeModalForm();
+});
 taskButton.addEventListener("click", function () { });
-// read
-// update
 // delete
