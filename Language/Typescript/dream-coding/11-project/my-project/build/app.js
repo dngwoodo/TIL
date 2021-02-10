@@ -8,7 +8,8 @@ var urlModalOveraly = document.querySelector(".modal__overlay--url");
 var bodyModalOveraly = document.querySelector(".modal__overlay--body");
 var urlModalCancelButton = document.querySelector(".modal__overlay--url .button--cancel");
 var bodyModalCancelButton = document.querySelector(".modal__overlay--body .button--cancel");
-var modalForm = document.querySelector(".modal__form");
+var urlModalForm = document.querySelector(".modal__overlay--url .modal__form");
+var bodyModalForm = document.querySelector(".modal__overlay--body .modal__form");
 // Create
 var showModal = function (modal) {
     modal.classList.remove("hide");
@@ -22,15 +23,17 @@ urlModalCancelButton.addEventListener("click", function () {
 bodyModalCancelButton.addEventListener("click", function () {
     hideModal(bodyModalOveraly);
 });
-modalForm.addEventListener("submit", function (e) {
+urlModalForm.addEventListener("submit", function (e) {
     e.preventDefault();
     var title = document.querySelector(".modal__title").value.trim();
     var url = document.querySelector(".modal__url").value.trim();
     if (title === "") {
         alert("title은 필수입니다.");
+        return;
     }
     if (url === "") {
         alert("url은 필수입니다.");
+        return;
     }
     if (url.search(/youtube.com/g)) {
         createVideoCard(title, url);
@@ -39,6 +42,21 @@ modalForm.addEventListener("submit", function (e) {
         createImageCard(title, url);
     }
     hideModal(urlModalOveraly);
+});
+bodyModalForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var title = document.querySelector(".modal__overlay--body .modal__title").value.trim();
+    var body = document.querySelector(".modal__overlay--body .modal__body").value.trim();
+    if (title === "") {
+        alert("title은 필수입니다.");
+        return;
+    }
+    if (body === "") {
+        alert("body는 필수입니다.");
+        return;
+    }
+    createNoteCard(title, body);
+    hideModal(bodyModalOveraly);
 });
 // 1. Image Button
 var createImageCard = function (title, url) {
@@ -61,6 +79,12 @@ videoButton.addEventListener("click", function () {
     showModal(urlModalOveraly);
 });
 // 3. Note Button
+var createNoteCard = function (title, body) {
+    var li = document.createElement("li");
+    li.setAttribute("class", "main__card main__card--note");
+    li.innerHTML = "\n      <strong class=\"main__title\">" + title + "</strong>\n      <pre class=\"main__body\">" + body + "</pre>\n      <button class=\"button button--cancel\">\u274C</button>\n  ";
+    cards.appendChild(li);
+};
 noteButton.addEventListener("click", function () {
     showModal(bodyModalOveraly);
 });

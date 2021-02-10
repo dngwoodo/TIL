@@ -19,8 +19,12 @@ const urlModalCancelButton = document.querySelector(
 const bodyModalCancelButton = document.querySelector(
   ".modal__overlay--body .button--cancel"
 ) as HTMLButtonElement;
-
-const modalForm = document.querySelector(".modal__form") as HTMLFormElement;
+const urlModalForm = document.querySelector(
+  ".modal__overlay--url .modal__form"
+) as HTMLFormElement;
+const bodyModalForm = document.querySelector(
+  ".modal__overlay--body .modal__form"
+) as HTMLFormElement;
 
 // Create
 const showModal = (modal: HTMLDivElement) => {
@@ -39,7 +43,7 @@ bodyModalCancelButton.addEventListener("click", function () {
   hideModal(bodyModalOveraly);
 });
 
-modalForm.addEventListener("submit", (e) => {
+urlModalForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const title = (document.querySelector(
     ".modal__title"
@@ -50,16 +54,44 @@ modalForm.addEventListener("submit", (e) => {
 
   if (title === "") {
     alert("title은 필수입니다.");
+    return;
   }
+
   if (url === "") {
     alert("url은 필수입니다.");
+    return;
   }
+
   if (url.search(/youtube.com/g)) {
     createVideoCard(title, url);
   } else if (url.search(/youtube.com/g) === -1) {
     createImageCard(title, url);
   }
   hideModal(urlModalOveraly);
+});
+
+bodyModalForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const title = (document.querySelector(
+    ".modal__overlay--body .modal__title"
+  ) as HTMLInputElement).value.trim();
+  const body = (document.querySelector(
+    ".modal__overlay--body .modal__body"
+  ) as HTMLInputElement).value.trim();
+
+  if (title === "") {
+    alert("title은 필수입니다.");
+    return;
+  }
+
+  if (body === "") {
+    alert("body는 필수입니다.");
+    return;
+  }
+
+  createNoteCard(title, body);
+
+  hideModal(bodyModalOveraly);
 });
 
 // 1. Image Button
@@ -100,6 +132,17 @@ videoButton.addEventListener("click", () => {
 });
 
 // 3. Note Button
+const createNoteCard = (title: string, body: string) => {
+  const li = document.createElement("li");
+  li.setAttribute("class", "main__card main__card--note");
+  li.innerHTML = `
+      <strong class="main__title">${title}</strong>
+      <pre class="main__body">${body}</pre>
+      <button class="button button--cancel">❌</button>
+  `;
+  cards.appendChild(li);
+};
+
 noteButton.addEventListener("click", () => {
   showModal(bodyModalOveraly);
 });
