@@ -7,26 +7,36 @@ const videoButton = document.querySelector(
 const noteButton = document.querySelector(".button--note") as HTMLButtonElement;
 const taskButton = document.querySelector(".button--task") as HTMLButtonElement;
 const cards = document.querySelector(".main__cards") as HTMLUListElement;
-const modalOveraly = document.querySelector(
-  ".modal__overlay"
+const urlModalOveraly = document.querySelector(
+  ".modal__overlay--url"
 ) as HTMLDivElement;
-const modelCancelButton = document.querySelector(
-  ".modal .button--cancel"
+const bodyModalOveraly = document.querySelector(
+  ".modal__overlay--body"
+) as HTMLDivElement;
+const urlModalCancelButton = document.querySelector(
+  ".modal__overlay--url .button--cancel"
+) as HTMLButtonElement;
+const bodyModalCancelButton = document.querySelector(
+  ".modal__overlay--body .button--cancel"
 ) as HTMLButtonElement;
 
 const modalForm = document.querySelector(".modal__form") as HTMLFormElement;
 
 // Create
-const showModal = () => {
-  modalOveraly.classList.remove("hide");
+const showModal = (modal: HTMLDivElement) => {
+  modal.classList.remove("hide");
 };
 
-const hideModal = () => {
-  modalOveraly.classList.add("hide");
+const hideModal = (modal: HTMLDivElement) => {
+  modal.classList.add("hide");
 };
 
-modelCancelButton.addEventListener("click", () => {
-  hideModal();
+urlModalCancelButton.addEventListener("click", function () {
+  hideModal(urlModalOveraly);
+});
+
+bodyModalCancelButton.addEventListener("click", function () {
+  hideModal(bodyModalOveraly);
 });
 
 modalForm.addEventListener("submit", (e) => {
@@ -49,7 +59,7 @@ modalForm.addEventListener("submit", (e) => {
   } else if (url.search(/youtube.com/g) === -1) {
     createImageCard(title, url);
   }
-  hideModal();
+  hideModal(urlModalOveraly);
 });
 
 // 1. Image Button
@@ -68,7 +78,7 @@ const createImageCard = (title: string, url: string) => {
 };
 
 imageButton.addEventListener("click", () => {
-  showModal();
+  showModal(urlModalOveraly);
 });
 
 // 2. Video Button
@@ -86,32 +96,14 @@ const createVideoCard = (title: string, url: string) => {
 };
 
 videoButton.addEventListener("click", () => {
-  showModal();
+  showModal(urlModalOveraly);
 });
 
 // 3. Note Button
-const changeModalForm = () => {
-  const secondHead = document.querySelector(
-    ".modal__form h4:nth-child(3)"
-  ) as HTMLHeadElement;
-  const url = document.querySelector(".modal__url") as HTMLInputElement;
-  const modalAddButton = document.querySelector(
-    ".button--add"
-  ) as HTMLButtonElement;
-
-  secondHead.textContent = "Body";
-  url.remove();
-
-  const textarea = document.createElement("textarea");
-  textarea.setAttribute("cols", "30");
-  textarea.setAttribute("cols", "10");
-  modalForm.insertBefore(textarea, modalAddButton); // 부모노드.insertBefore(삽입할 노드, 기준점 노드);
-};
-
 noteButton.addEventListener("click", () => {
-  showModal();
-  changeModalForm();
+  showModal(bodyModalOveraly);
 });
+
 taskButton.addEventListener("click", () => {});
 
 // delete

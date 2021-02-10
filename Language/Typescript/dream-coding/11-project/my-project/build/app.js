@@ -4,18 +4,23 @@ var videoButton = document.querySelector(".button--video");
 var noteButton = document.querySelector(".button--note");
 var taskButton = document.querySelector(".button--task");
 var cards = document.querySelector(".main__cards");
-var modalOveraly = document.querySelector(".modal__overlay");
-var modelCancelButton = document.querySelector(".modal .button--cancel");
+var urlModalOveraly = document.querySelector(".modal__overlay--url");
+var bodyModalOveraly = document.querySelector(".modal__overlay--body");
+var urlModalCancelButton = document.querySelector(".modal__overlay--url .button--cancel");
+var bodyModalCancelButton = document.querySelector(".modal__overlay--body .button--cancel");
 var modalForm = document.querySelector(".modal__form");
 // Create
-var showModal = function () {
-    modalOveraly.classList.remove("hide");
+var showModal = function (modal) {
+    modal.classList.remove("hide");
 };
-var hideModal = function () {
-    modalOveraly.classList.add("hide");
+var hideModal = function (modal) {
+    modal.classList.add("hide");
 };
-modelCancelButton.addEventListener("click", function () {
-    hideModal();
+urlModalCancelButton.addEventListener("click", function () {
+    hideModal(urlModalOveraly);
+});
+bodyModalCancelButton.addEventListener("click", function () {
+    hideModal(bodyModalOveraly);
 });
 modalForm.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -33,7 +38,7 @@ modalForm.addEventListener("submit", function (e) {
     else if (url.search(/youtube.com/g) === -1) {
         createImageCard(title, url);
     }
-    hideModal();
+    hideModal(urlModalOveraly);
 });
 // 1. Image Button
 var createImageCard = function (title, url) {
@@ -43,7 +48,7 @@ var createImageCard = function (title, url) {
     cards.appendChild(li);
 };
 imageButton.addEventListener("click", function () {
-    showModal();
+    showModal(urlModalOveraly);
 });
 // 2. Video Button
 var createVideoCard = function (title, url) {
@@ -53,23 +58,11 @@ var createVideoCard = function (title, url) {
     cards.appendChild(li);
 };
 videoButton.addEventListener("click", function () {
-    showModal();
+    showModal(urlModalOveraly);
 });
 // 3. Note Button
-var changeModalForm = function () {
-    var secondHead = document.querySelector(".modal__form h4:nth-child(3)");
-    var url = document.querySelector(".modal__url");
-    var modalAddButton = document.querySelector(".button--add");
-    secondHead.textContent = "Body";
-    url.remove();
-    var textarea = document.createElement("textarea");
-    textarea.setAttribute("cols", "30");
-    textarea.setAttribute("cols", "10");
-    modalForm.insertBefore(textarea, modalAddButton); // 부모노드.insertBefore(삽입할 노드, 기준점 노드);
-};
 noteButton.addEventListener("click", function () {
-    showModal();
-    changeModalForm();
+    showModal(bodyModalOveraly);
 });
 taskButton.addEventListener("click", function () { });
 // delete

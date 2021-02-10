@@ -27,13 +27,25 @@
         </pre>
       </footer>
     </section>
-    <div class="modal__overlay hide">
+    <div class="modal__overlay modal__overlay--url hide">
       <div class="modal">
         <form class="modal__form">
           <h4>Title</h4>
           <input type="text" class="modal__title" />
           <h4>URL</h4>
           <input type="text" class="modal__url" />
+          <button type="submit" class="button button--add">Add</button>
+        </form>
+        <button class="button button--cancel">❌</button>
+      </div>
+    </div>
+    <div class="modal__overlay modal__overlay--body hide">
+      <div class="modal">
+        <form class="modal__form">
+          <h4>Title</h4>
+          <input type="text" class="modal__title" />
+          <h4>Body</h4>
+          <textarea type="text" class="modal__body"></textarea>
           <button type="submit" class="button button--add">Add</button>
         </form>
         <button class="button button--cancel">❌</button>
