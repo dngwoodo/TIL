@@ -147,6 +147,9 @@ noteButton.addEventListener("click", () => {
   showModal(bodyModalOveraly);
 });
 
-taskButton.addEventListener("click", () => {});
+// 4. task Button
+taskButton.addEventListener("click", () => {
+  showModal(bodyModalOveraly);
+});
 
 // delete

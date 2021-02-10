@@ -88,5 +88,8 @@ var createNoteCard = function (title, body) {
 noteButton.addEventListener("click", function () {
     showModal(bodyModalOveraly);
 });
-taskButton.addEventListener("click", function () { });
+// 4. task Button
+taskButton.addEventListener("click", function () {
+    showModal(bodyModalOveraly);
+});
 // delete
