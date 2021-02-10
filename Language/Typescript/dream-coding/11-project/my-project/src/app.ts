@@ -147,9 +147,14 @@ noteButton.addEventListener("click", () => {
   showModal(bodyModalOveraly);
 });
 
-// 4. task Button
+// 4. Task Button
 taskButton.addEventListener("click", () => {
   showModal(bodyModalOveraly);
 });
 
-// delete
+// Delete
+cards.addEventListener("click", (e) => {
+  const target = e.target as Element;
+  if (target.tagName !== "BUTTON") return;
+  cards.removeChild(target.parentNode as HTMLLIElement);
+});
