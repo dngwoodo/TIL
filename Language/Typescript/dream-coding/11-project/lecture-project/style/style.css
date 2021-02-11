@@ -76,7 +76,7 @@ body {
   text-align: center;
   user-select: none; /* 텍스트를 선택하지 못하도록 막는다.*/
   padding: 1em 3em;
-  text-transform: uppercase;
+  text-transform: uppercase; /* 대문자로 변경*/
   font-weight: 600;
   font-size: 0.8rem;
   color: white;
