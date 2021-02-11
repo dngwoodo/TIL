@@ -49,3 +49,23 @@ nice to have
 <div>
    <img src="https://user-images.githubusercontent.com/77663233/107606291-03787280-6c79-11eb-99d8-ead05e39df2f.png" width="400px" height="200px">
 </div>
+
+#### DOM(Document Object Model)
+
+HTML은 브라우저가 받아서 Javascript object(DOM)로 변환시켜서 메모리에 저장하여 사용한다. 변환 된 태그는 Node라고 부른다. 
+<div>
+   <img src="https://user-images.githubusercontent.com/77663233/107638368-d47ef280-6cb2-11eb-9c47-c247501f92d6.png" width="400px" height="200px">
+</div>
+
+Node의 상속을 그림으로 알아보면 아래와 같다.
+<div>
+   <img src="https://user-images.githubusercontent.com/77663233/107638597-24f65000-6cb3-11eb-9696-522297d34bdf.png" width="400px" height="200px">
+</div>
+
+DOM Tree를 도식화하면 아래와 같다.
+<div>
+   <img src="https://user-images.githubusercontent.com/77663233/107712602-0cb31f00-6d0d-11eb-8953-37fa6d64bdd3.png" width="400px" height="200px">
+</div>
+<div>
+   <img src="https://user-images.githubusercontent.com/77663233/107714201-2e61d580-6d10-11eb-9241-bb52ccc43283.png" width="400px" height="200px">
+</div>
