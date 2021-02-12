@@ -1,4 +1,5 @@
 import { ImageComponent } from "./components/page/item/image.js";
+import { noteComponent } from "./components/page/item/note.js";
 import { videoComponent } from "./components/page/item/video.js";
 import { PageComponent } from "./components/page/page.js";
 
@@ -20,6 +21,9 @@ class App {
       "https://www.youtube.com/embed/nhAR2-WIM-I"
     );
     video.attachTo(appRoot, "beforeend");
+
+    const note = new noteComponent("Note Title", "Note Content");
+    note.attachTo(appRoot, "beforeend");
   }
 }
 
