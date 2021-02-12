@@ -1,9 +1,7 @@
-import { baseComponent } from "./base/base.js";
+import { baseComponent } from "./component.js";
 
-export class PageComponent extends baseComponent {
+export class PageComponent extends baseComponent<HTMLUListElement> {
   constructor() {
-    super(document.createElement("ul"));
-    this.element.setAttribute("class", "page");
-    this.element.textContent = "This is PageComponent";
+    super(`<ul class='page'>This is PageComponent</ul>`);
   }
 }
