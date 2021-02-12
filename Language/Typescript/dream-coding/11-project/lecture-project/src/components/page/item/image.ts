@@ -9,10 +9,8 @@ export class ImageComponent extends baseComponent<HTMLElement> {
     // template.content는 <section></section> 이다.
     super(`  
     <section class="image">
-      <div class="image__holder">
-        <img class="image__thumbnail" />
-        <p class="image__title"></p>
-      </div>
+      <img class="image__thumbnail" />
+      <h3 class="image__title"></h3>
     </section>`);
 
     const imageElement = this.element.querySelector(
@@ -23,7 +21,7 @@ export class ImageComponent extends baseComponent<HTMLElement> {
 
     const titleElement = this.element.querySelector(
       ".image__title"
-    )! as HTMLParagraphElement;
+    )! as HTMLHeadingElement;
     titleElement.textContent = title;
   }
 }

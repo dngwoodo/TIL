@@ -4,16 +4,14 @@ export class todoComponent extends baseComponent<HTMLElement> {
   constructor(title: string, todos: string) {
     super(`
       <section>
-        <div class="todo__holder">
-          <h2 class="todo__title"></h2>
-          <ul class="todo__list"></ul>
-        </div>
+        <h2 class="todo__title"></h2>s
+        <ul class="todo__list"></ul>
       </section>
     `);
 
     const titleElement = this.element.querySelector(
       ".todo__title"
-    )! as HTMLHeadElement;
+    )! as HTMLHeadingElement;
     titleElement.textContent = title;
 
     const listElement = this.element.querySelector(

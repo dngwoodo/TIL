@@ -4,10 +4,8 @@ export class videoComponent extends baseComponent<HTMLElement> {
   constructor(title: string, url: string) {
     super(`
     <section>
-      <div class="video__holder">
-        <iframe class="video"></iframe>
-        <p class="video__title"></p>
-      </div>
+      <iframe class="video"></iframe>
+      <h3 class="video__title"></h3>
     </section>
     `);
 
@@ -18,7 +16,7 @@ export class videoComponent extends baseComponent<HTMLElement> {
 
     const titleElement = this.element.querySelector(
       ".video__title"
-    )! as HTMLParagraphElement;
+    )! as HTMLHeadingElement;
     titleElement.textContent = title;
   }
 }
