@@ -1,5 +1,5 @@
 export class PageComponent {
-  readonly element: HTMLUListElement;
+  private readonly element: HTMLUListElement;
   constructor() {
     this.element = document.createElement("ul");
     this.element.setAttribute("class", "page");

@@ -16,6 +16,7 @@ module.exports = {
   ignorePatterns: [".eslintrc.js", "node_modules/"],
   plugins: ["@typescript-eslint"],
   rules: {
-    "no-non-null-assertion": 0
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off"
   },
 };
