@@ -16,12 +16,18 @@ export class PageComponent
     const item = new PageItemComponent();
     item.addChild(section);
     item.attachTo(this.element, "beforeend");
+    item.setOnCloseListener(() => {
+      item.removeFrom(this.element);
+    });
   }
 }
+
+type OnCloseListener = () => void;
 
 export class PageItemComponent
   extends baseComponent<HTMLUListElement>
   implements Composable {
+  private closeListenr?: OnCloseListener;
   constructor() {
     super(`
       <li class="page-item">
@@ -35,11 +41,9 @@ export class PageItemComponent
     const closeButton = this.element.querySelector(
       ".close"
     )! as HTMLButtonElement;
-    closeButton.addEventListener("click", () => {
-      (this.element.parentElement! as HTMLUListElement).removeChild(
-        this.element
-      );
-    });
+    closeButton.onclick = () => {
+      this.closeListenr && this.closeListenr();
+    };
   }
 
   addChild(child: Component) {
@@ -47,5 +51,9 @@ export class PageItemComponent
       ".page-item__body"
     )! as HTMLElement;
     child.attachTo(container);
+  }
+
+  setOnCloseListener(listener: OnCloseListener) {
+    this.closeListenr = listener;
   }
 }
