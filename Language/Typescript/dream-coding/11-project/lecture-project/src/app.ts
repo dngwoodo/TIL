@@ -3,14 +3,18 @@ import { noteComponent } from "./components/page/item/note.js";
 import { todoComponent } from "./components/page/item/todo.js";
 import { videoComponent } from "./components/page/item/video.js";
 // import { ItemComponent } from "./components/page/item.js";
-import { Composable, PageComponent } from "./components/page/list/page.js";
+import {
+  Composable,
+  PageComponent,
+  PageItemComponent,
+} from "./components/page/list/page.js";
 import { Component } from "./components/page/common/component.js";
 
 class App {
   private readonly page: Component & Composable;
 
   constructor(appRoot: HTMLElement) {
-    this.page = new PageComponent(); // 원래는 이렇게 new를 써서 인스턴스를 만드는 것 보다 의존성 주입을 통해 넣는 것이 좋다.
+    this.page = new PageComponent(PageItemComponent); // 원래는 이렇게 new를 써서 인스턴스를 만드는 것 보다 의존성 주입을 통해 넣는 것이 좋다.
     this.page.attachTo(appRoot);
 
     // image

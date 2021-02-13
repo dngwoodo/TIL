@@ -5,17 +5,24 @@ export interface Composable {
   addChild(child: Component): void;
 }
 
+interface SectionContainer extends Component, Composable {
+  setOnCloseListener(listener: OnCloseListener): void;
+}
+
+type SectionContainerConstructor = {
+  new (): SectionContainer; // constructor signature, 이제 SectionContainer를 따르는 클래스들은 다 사용 가능
+};
 export class PageComponent
   extends baseComponent<HTMLUListElement>
   implements Composable {
-  constructor() {
+  constructor(private pageItemConstructor: SectionContainerConstructor) {
     super(`<ul class='page'></ul>`);
   }
 
   addChild(section: Component) {
     // PageItemComponent가 만약에 darkMode, animation 등 다른 형태의 item이라면 이것은 문제가 된다.
     // 그러므로 의존성 주입을 통해 디커플링하게 만들어줘야 한다.
-    const item = new PageItemComponent();
+    const item = new this.pageItemConstructor();
     item.addChild(section);
     item.attachTo(this.element, "beforeend");
     item.setOnCloseListener(() => {
@@ -28,7 +35,7 @@ type OnCloseListener = () => void;
 
 export class PageItemComponent
   extends baseComponent<HTMLUListElement>
-  implements Composable {
+  implements SectionContainer {
   private closeListenr?: OnCloseListener;
   constructor() {
     super(`
