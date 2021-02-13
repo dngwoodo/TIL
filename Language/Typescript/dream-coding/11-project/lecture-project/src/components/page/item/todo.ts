@@ -4,7 +4,7 @@ export class todoComponent extends baseComponent<HTMLElement> {
   constructor(title: string, todos: string) {
     super(`
       <section>
-        <h2 class="todo__title"></h2>s
+        <h2 class="todo__title"></h2>
         <ul class="todo__list"></ul>
       </section>
     `);
