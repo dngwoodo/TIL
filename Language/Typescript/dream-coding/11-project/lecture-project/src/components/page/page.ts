@@ -31,7 +31,17 @@ export class PageItemComponent
         </div>
       </li>
     `);
+
+    const closeButton = this.element.querySelector(
+      ".close"
+    )! as HTMLButtonElement;
+    closeButton.addEventListener("click", () => {
+      (this.element.parentElement! as HTMLUListElement).removeChild(
+        this.element
+      );
+    });
   }
+
   addChild(child: Component) {
     const container = this.element.querySelector(
       ".page-item__body"

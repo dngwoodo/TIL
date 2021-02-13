@@ -30,6 +30,7 @@ class App {
     // note
     const note = new noteComponent("Note Title", "Note Content");
     this.page.addChild(note);
+
     // todo
     const todo = new todoComponent("Todo Title", "씻기\n공부하기\n밥먹기");
     this.page.addChild(todo);
