@@ -1,4 +1,4 @@
-import { baseComponent, Component } from "./component.js";
+import { baseComponent, Component } from "../common/component.js";
 
 // Composable이란 다른 요소들을 함께 조립해서 묶을 수 있는 것
 export interface Composable {
