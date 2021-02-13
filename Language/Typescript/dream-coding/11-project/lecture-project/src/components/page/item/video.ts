@@ -12,11 +12,24 @@ export class videoComponent extends baseComponent<HTMLElement> {
     const videoElement = this.element.querySelector(
       ".video"
     )! as HTMLIFrameElement;
-    videoElement.src = url;
+
+    const parsingUrl = this.parseQueryString(url).v
+      ? `https://www.youtube.com/embed/${this.parseQueryString(url).v}`
+      : url;
+    videoElement.src = parsingUrl;
 
     const titleElement = this.element.querySelector(
       ".video__title"
     )! as HTMLHeadingElement;
     titleElement.textContent = title;
+  }
+
+  private parseQueryString(url: string): any {
+    const query = url.split("?")[1];
+    if (!query) return {};
+    return query.split("&").reduce((acc, e) => {
+      const [key, value] = e.split("=");
+      return { ...acc, [key as string]: value };
+    }, {});
   }
 }
