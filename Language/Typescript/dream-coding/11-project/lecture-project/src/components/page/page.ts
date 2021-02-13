@@ -41,8 +41,9 @@ export class PageItemComponent
     const closeButton = this.element.querySelector(
       ".close"
     )! as HTMLButtonElement;
+    // PageItemComponent는 어디에 자신이 속해 있는지 모르기 때문에 함수를 받아서 사용한다.
     closeButton.onclick = () => {
-      this.closeListenr && this.closeListenr();
+      this.closeListenr && this.closeListenr(); // parent.removeChild(...);
     };
   }
 
