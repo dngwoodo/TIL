@@ -13,6 +13,8 @@ export class PageComponent
   }
 
   addChild(section: Component) {
+    // PageItemComponent가 만약에 darkMode, animation 등 다른 형태의 item이라면 이것은 문제가 된다.
+    // 그러므로 의존성 주입을 통해 디커플링하게 만들어줘야 한다.
     const item = new PageItemComponent();
     item.addChild(section);
     item.attachTo(this.element, "beforeend");
