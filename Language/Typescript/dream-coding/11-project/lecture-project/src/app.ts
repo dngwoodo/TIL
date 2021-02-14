@@ -8,7 +8,10 @@ import {
   PageComponent,
   PageItemComponent,
 } from "./components/page/list/page.js";
-import { Component } from "./components/page/common/component.js";
+import {
+  baseComponent,
+  Component,
+} from "./components/page/common/component.js";
 
 class App {
   private readonly page: Component & Composable;
@@ -38,6 +41,21 @@ class App {
     // todo
     const todo = new todoComponent("Todo Title", "씻기\n공부하기\n밥먹기");
     this.page.addChild(todo);
+
+    const button = document.querySelector(
+      ".create-button"
+    )! as HTMLButtonElement;
+
+    button.addEventListener("click", () => {
+      const dialog = new baseComponent(`
+        <div>
+          <button>&time;</button>
+          <button>Add</button>
+        </div>
+      `);
+
+      dialog.attachTo(appRoot);
+    });
   }
 }
 

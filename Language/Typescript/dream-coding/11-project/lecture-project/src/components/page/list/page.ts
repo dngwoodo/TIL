@@ -26,7 +26,7 @@ export class PageComponent
     item.addChild(section);
     item.attachTo(this.element, "beforeend");
     item.setOnCloseListener(() => {
-      item.removeFrom(this.element);
+      item.removeFrom(this.element); // 여기서 this.element란 ul을 의미하고 removeFromUl 이라고 생각하자.
     });
   }
 }
@@ -52,8 +52,8 @@ export class PageItemComponent
     )! as HTMLButtonElement;
     // PageItemComponent는 어디에 자신이 속해 있는지 모르기 때문에 함수를 받아서 사용한다.
     closeButton.onclick = () => {
-      this.closeListenr && this.closeListenr(); // parent.removeChild(...);
-    };
+      this.closeListenr && this.closeListenr();
+    }; // parent.removeChild(...);
   }
 
   addChild(child: Component) {
