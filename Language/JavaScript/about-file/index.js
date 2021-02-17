@@ -26,6 +26,11 @@ httpRequest.onreadystatechange = function () {
       console.log(httpRequest);
       console.log(httpRequest.status);
       console.log(httpRequest.response);
+
+      // * 4단계 – 추가 예제 1 (XML response)
+      const xmldoc = httpRequest.responseXML;
+      const root_node = xmldoc.getElementsByTagName("root").item(0);
+      alert(root_node.firstChild.data); // I'm a test
     }
   } catch (error) {
     console.error(error);
@@ -35,17 +40,11 @@ httpRequest.onreadystatechange = function () {
 // 서버에 요청 하는 법
 
 // 데이터 요청 (method: 대문자, url, true: 비동기 or false: 동기)
-httpRequest.open("POST", "https://jsonplaceholder.typicode.com/posts", true);
+httpRequest.open("GET", "test.xml", true);
 
 // 헤더 설정 - POST 형식으로 데이터를 보내기 전에 MIME type을 먼저 설정해줘야 한다.(content-type 사용)
 httpRequest.setRequestHeader("Accept", "application/json"); // 서버에 json형태로 달라고 말하는 헤더
 httpRequest.setRequestHeader("Content-Type", "application/json"); // 보내는 데이터 형태가 json이라고 말하는 헤더
 
 // method가 POST 일때 send 파라미터에 데이터를 넣어준다
-httpRequest.send(
-  JSON.stringify({
-    title: "foo",
-    body: "bar",
-    userId: 1,
-  })
-);
+httpRequest.send(null);
