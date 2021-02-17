@@ -14,6 +14,18 @@ if (window.XMLHttpRequest) {
 
 httpRequest.onreadystatechange = function () {
   // 요청에 대한 상태가 변할 때 이 함수의 로직이 실행된다.
+  // * 2단계 - 서버 응답에 대한 처리
+  if(httpRequest.readyState === XMLHttpRequest.DONE) {
+    // ! readyState의 값의 의미
+    // 0 (uninitialized) - (request가 초기화되지 않음)
+    // 1 (loading) - (서버와의 연결이 성사됨)
+    // 2 (loaded) - (서버가 request를 받음)
+    // 3 (interactive) - (request(요청)을 처리하는 중)
+    // 4 (complete) - (request에 대한 처리가 끝났으며 응답할 준비가 완료됨) <- 즉 httpRequest.readyState === 4 로 해도 무방
+    console.log(httpRequest)
+    console.log(httpRequest.status)
+    console.log(httpRequest.response)
+  }
 };
 
 // 서버에 요청 하는 법
