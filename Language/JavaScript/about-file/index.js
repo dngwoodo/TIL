@@ -12,26 +12,30 @@ if (window.XMLHttpRequest) {
   httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
 }
 
-// httpRequest.onreadystatechange = function () {
-//   // 요청에 대한 상태가 변할 때 이 함수의 로직이 실행된다.
-//   // * 2단계 - 서버 응답에 대한 처리
-//   if(httpRequest.readyState === XMLHttpRequest.DONE) {
-//     // ! readyState의 값의 의미
-//     // 0 (uninitialized) - (request가 초기화되지 않음)
-//     // 1 (loading) - (서버와의 연결이 성사됨)
-//     // 2 (loaded) - (서버가 request를 받음)
-//     // 3 (interactive) - (request(요청)을 처리하는 중)
-//     // 4 (complete) - (request에 대한 처리가 끝났으며 응답할 준비가 완료됨) <- 즉 httpRequest.readyState === 4 로 해도 무방
-//     console.log(httpRequest)
-//     console.log(httpRequest.status)
-//     console.log(httpRequest.response)
-//   }
-// };
+httpRequest.onreadystatechange = function () {
+  // 요청에 대한 상태가 변할 때 이 함수의 로직이 실행된다.
+  // * 2단계 - 서버 응답에 대한 처리
+  try {
+    if (httpRequest.readyState === XMLHttpRequest.DONE) {
+      // ! readyState의 값의 의미
+      // 0 (uninitialized) - (request가 초기화되지 않음)
+      // 1 (loading) - (서버와의 연결이 성사됨)
+      // 2 (loaded) - (서버가 request를 받음)
+      // 3 (interactive) - (request(요청)을 처리하는 중)
+      // 4 (complete) - (request에 대한 처리가 끝났으며 응답할 준비가 완료됨) <- 즉 httpRequest.readyState === 4 로 해도 무방
+      console.log(httpRequest);
+      console.log(httpRequest.status);
+      console.log(httpRequest.response);
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 // 서버에 요청 하는 법
 
 // 데이터 요청 (method: 대문자, url, true: 비동기 or false: 동기)
-httpRequest.open("POST", "https://jsonplaceholder.typicode.com/posts", false);
+httpRequest.open("POST", "https://jsonplaceholder.typicode.com/posts", true);
 
 // 헤더 설정 - POST 형식으로 데이터를 보내기 전에 MIME type을 먼저 설정해줘야 한다.(content-type 사용)
 httpRequest.setRequestHeader("Accept", "application/json"); // 서버에 json형태로 달라고 말하는 헤더
@@ -45,6 +49,3 @@ httpRequest.send(
     userId: 1,
   })
 );
-
-console.log(httpRequest.response) // 동기식이기 때문에 데이터를 받아올 때 까지 기다린다.
-console.log(1) // 데이터가 다 받아와지면 로직이 실행된다.
