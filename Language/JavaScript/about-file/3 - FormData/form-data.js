@@ -13,10 +13,10 @@ console.log(formData.getAll("item")); // ["orange", "melon"]
 
 const keys = formData.keys();
 console.log(keys); // Iterator {}
-console.log(keys.next()); // {done: false, vlaue: "name"}
-console.log(keys.next()); // {done: false, vlaue: "name"}
-console.log(keys.next()); // {done: false, vlaue: "name"}
-console.log(keys.next()); // {done: true, vlaue: undefined}
+console.log(keys.next()); // {done: false, value: "name"}
+console.log(keys.next()); // {done: false, value: "name"}
+console.log(keys.next()); // {done: false, value: "name"}
+console.log(keys.next()); // {done: true, value: undefined}
 
 const values = formData.values();
 console.log(values.next()); // { done: false, value: "dongwoo" }
