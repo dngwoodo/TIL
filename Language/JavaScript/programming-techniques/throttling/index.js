@@ -9,6 +9,8 @@
   <div class="item color-4">Block 4</div>
 `;
 
+  let timer;
+
   const handleScroll = () => {
     // 브라우저마다 스크롤이 없을 때 scrollHeight가 다른 값보다 작을 수 있기 때문에 가장 큰 스크롤 높이를 구하기 위해 이렇게 넣어준다.
     // scrollHeight = 전체 스크롤 높이
@@ -28,7 +30,13 @@
       scrollHeight - 300
     ) {
       // https://javascript.info/template-element <- template 태그에 관한 설명
-      document.body.append(template.content.cloneNode(true));
+      // 여기에 원래 ajax 로직이 들어가게 되는데 scroll은 순식간에 엄청나게 많은 이벤트가 발생되기 때문에 한번 호출 된 후에 일정 시간 뒤에 요청을 해줄 필요가 있다.
+      if (!timer) {
+        timer = setTimeout(function () {
+          timer = null;
+          document.body.append(template.content.cloneNode(true));
+        }, 1000);
+      }
     }
   };
 
