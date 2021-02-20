@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background: #444444;
+        color: white;
+        font: 15px/1.51 system, -apple-system, ".SFNSText-Regular",
+          "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue",
+          "Lucida Grande", sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      .item {
+        border: 4px solid white;
+        height: 120px;
+        width: 300px;
+        margin-bottom: 50px;
+        background: #333;
+        padding: 20px;
+      }
+
+      .color-1 {
+        border-color: #9bffbb;
+      }
+      .color-2 {
+        border-color: #b9c6ff;
+      }
+      .color-3 {
+        border-color: #ffa3d8;
+      }
+      .color-4 {
+        border-color: #ff8e9b;
+      }
+    </style>
+    <script src="index.js" defer></script>
+  </head>
+  <body>
+    <h1>Infinite scrolling throttled</h1>
+    <div class="item color-1">Block 1</div>
+    <div class="item color-2">Block 2</div>
+    <div class="item color-3">Block 3</div>
+    <div class="item color-4">Block 4</div>
+    <div class="item color-1">Block 1</div>
+    <div class="item color-2">Block 2</div>
+    <div class="item color-3">Block 3</div>
+    <div class="item color-4">Block 4</div>
+  </body>
+</html>
