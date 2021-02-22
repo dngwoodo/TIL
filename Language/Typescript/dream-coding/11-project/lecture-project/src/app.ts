@@ -2,16 +2,13 @@ import { ImageComponent } from "./components/page/item/image.js";
 import { noteComponent } from "./components/page/item/note.js";
 import { todoComponent } from "./components/page/item/todo.js";
 import { videoComponent } from "./components/page/item/video.js";
-// import { ItemComponent } from "./components/page/item.js";
 import {
   Composable,
   PageComponent,
   PageItemComponent,
 } from "./components/page/list/page.js";
-import {
-  baseComponent,
-  Component,
-} from "./components/page/common/component.js";
+import { Component } from "./components/page/common/component.js";
+import { InputDialog } from "./components/dialog/dialog.js";
 
 class App {
   private readonly page: Component & Composable;
@@ -26,6 +23,20 @@ class App {
       "https://picsum.photos/600/300"
     );
     this.page.addChild(image);
+    const imageBtn = document.querySelector("#new-image")! as HTMLButtonElement;
+    imageBtn.addEventListener("click", () => {
+      const dialog = new InputDialog();
+
+      dialog.setOnCloseListener(() => {
+        dialog.removeFrom(document.body);
+      });
+      dialog.setOnSubmitListener(() => {
+        // 섹션을 만들어서 페이지에 추가 해준다
+        dialog.removeFrom(document.body);
+      });
+
+      dialog.attachTo(document.body);
+    });
 
     // video
     const video = new videoComponent(
@@ -41,21 +52,6 @@ class App {
     // todo
     const todo = new todoComponent("Todo Title", "씻기\n공부하기\n밥먹기");
     this.page.addChild(todo);
-
-    const button = document.querySelector(
-      ".create-button"
-    )! as HTMLButtonElement;
-
-    button.addEventListener("click", () => {
-      const dialog = new baseComponent(`
-        <div>
-          <button>&time;</button>
-          <button>Add</button>
-        </div>
-      `);
-
-      dialog.attachTo(appRoot);
-    });
   }
 }
 
