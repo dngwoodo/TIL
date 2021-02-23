@@ -17,6 +17,25 @@ export class PageComponent
   implements Composable {
   constructor(private pageItemConstructor: SectionContainerConstructor) {
     super(`<ul class='page'></ul>`);
+
+    this.element.addEventListener("dragover", (event: DragEvent) => {
+      this.onDragOver(event);
+    });
+    this.element.addEventListener("drop", (event: DragEvent) => {
+      this.onDrop(event);
+    });
+  }
+
+  // 드래그를 한 뒤 붕떠 있는 상태일 때 계속 발생된다.
+  onDragOver(event: DragEvent) {
+    event.preventDefault(); // 이 아이들은 필수로 사용해야 한다. touch event나 pointer event에서 안좋은 상황이 나올 수 있기 때문이다. - MDN
+    console.log("onDragOver");
+  }
+
+  // 드래그를 드랍했을 때 발생된다.
+  onDrop(event: DragEvent) {
+    event.preventDefault(); // 이 아이들은 필수로 사용해야 한다. touch event나 pointer event에서 안좋은 상황이 나올 수 있기 때문이다. - MDN
+    console.log("onDrop");
   }
 
   addChild(section: Component) {
@@ -39,7 +58,7 @@ export class PageItemComponent
   private closeListenr?: OnCloseListener;
   constructor() {
     super(`
-      <li class="page-item">
+      <li draggable="true" class="page-item">
         <section class="page-item__body"></section>
         <div class="page-item__controls">
           <button class="close">&times;</button>
@@ -54,6 +73,22 @@ export class PageItemComponent
     closeButton.onclick = () => {
       this.closeListenr && this.closeListenr();
     }; // parent.removeChild(...);
+
+    this.element.addEventListener("dragstart", (event: DragEvent) => {
+      this.onDragStart(event);
+    });
+    this.element.addEventListener("dragend", (event: DragEvent) => {
+      this.onDragEnd(event);
+    });
+  }
+  // 드래그가 시작될 때 실행된다.
+  onDragStart(event: DragEvent) {
+    console.log("dragstart", event);
+  }
+
+  // 드래그가 끝났을 때 실행된다.
+  onDragEnd(event: DragEvent) {
+    console.log("dragend", event);
   }
 
   addChild(child: Component) {
