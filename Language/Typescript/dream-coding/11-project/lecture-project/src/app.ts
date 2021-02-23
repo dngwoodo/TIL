@@ -8,13 +8,16 @@ import {
   PageItemComponent,
 } from "./components/page/list/page.js";
 import { Component } from "./components/page/common/component.js";
-import { InputDialog } from "./components/dialog/dialog.js";
+import {
+  InputDialog,
+  MediaData,
+  TextData,
+} from "./components/dialog/dialog.js";
 import { MediaSectionInput } from "./components/dialog/input/media-input.js";
 import { TextSectionInput } from "./components/dialog/input/text-input.js";
 
-type InputComponentConstructor<
-  T extends MediaSectionInput | TextSectionInput
-> = {
+// 디커플링을 위해 클래스를 넣지말고 최대한 규격사항(인터페이스)만 넣어주는 것이 좋다.
+type InputComponentConstructor<T extends (MediaData | TextData) & Component> = {
   new (): T;
 };
 class App {
@@ -51,7 +54,7 @@ class App {
 
   // 내부에서만 사용
   // 변수명은 element를 dialog에 연결해준다라는 의미
-  private bindElementToDialog<T extends MediaSectionInput | TextSectionInput>(
+  private bindElementToDialog<T extends (MediaData | TextData) & Component>( // 디커플링을 위해 클래스를 넣지말고 최대한 규격사항(인터페이스)만 넣어주는 것이 좋다.
     selector: string,
     InputComponent: InputComponentConstructor<T>,
     makeSection: (input: T) => Component // Component는 ImageComponent, VideoComponent... 등을 의미한다.
