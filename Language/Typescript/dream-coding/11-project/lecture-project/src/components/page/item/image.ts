@@ -10,7 +10,7 @@ export class ImageComponent extends baseComponent<HTMLElement> {
     super(`  
     <section class="image">
       <img class="image__thumbnail" />
-      <h3 class="image__title"></h3>
+      <h3 class="page-item__title image__title"></h3>
     </section>`);
 
     const imageElement = this.element.querySelector(

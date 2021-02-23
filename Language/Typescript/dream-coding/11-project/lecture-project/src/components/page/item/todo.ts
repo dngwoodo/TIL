@@ -1,33 +1,23 @@
 import { baseComponent } from "../common/component.js";
 
 export class TodoComponent extends baseComponent<HTMLElement> {
-  constructor(title: string, todos: string) {
+  constructor(title: string, todo: string) {
     super(`
       <section>
-        <h2 class="todo__title"></h2>
-        <ul class="todo__list"></ul>
+        <h2 class="page-item__title todo__title"></h2>  
+        <input type="checkbox" id="todo-checkbox"/>
+        <label for="todo-checkbox" class="todo-label"></label>
       </section>
     `);
 
     const titleElement = this.element.querySelector(
       ".todo__title"
-    )! as HTMLHeadingElement;
+    )! as HTMLHeadElement;
     titleElement.textContent = title;
 
-    const listElement = this.element.querySelector(
-      ".todo__list"
-    )! as HTMLUListElement;
-    todos.split("\n").forEach((todo) => {
-      const li = document.createElement("li");
-      li.setAttribute("class", "todo__item");
-      const input = document.createElement("input");
-      input.setAttribute("type", "checkbox");
-      const label = document.createElement("label");
-      label.textContent = todo;
-
-      li.appendChild(input);
-      li.appendChild(label);
-      listElement.appendChild(li);
-    });
+    const todoElement = this.element.querySelector(
+      ".todo-label"
+    )! as HTMLLabelElement;
+    todoElement.textContent = todo;
   }
 }
