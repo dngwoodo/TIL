@@ -29,13 +29,13 @@ export class PageComponent
   // 드래그를 한 뒤 붕떠 있는 상태일 때 계속 발생된다.
   onDragOver(event: DragEvent) {
     event.preventDefault(); // 이 아이들은 필수로 사용해야 한다. touch event나 pointer event에서 안좋은 상황이 나올 수 있기 때문이다. - MDN
-    console.log("onDragOver");
+    // console.log("onDragOver");
   }
 
   // 드래그를 드랍했을 때 발생된다.
   onDrop(event: DragEvent) {
     event.preventDefault(); // 이 아이들은 필수로 사용해야 한다. touch event나 pointer event에서 안좋은 상황이 나올 수 있기 때문이다. - MDN
-    console.log("onDrop");
+    // console.log("onDrop");
   }
 
   addChild(section: Component) {
@@ -51,11 +51,17 @@ export class PageComponent
 }
 
 type OnCloseListener = () => void;
+type DragState = "start" | "stop" | "enter" | "leave";
+type OnDragStateListener<T extends Component> = (
+  target: T,
+  state: DragState
+) => void;
 
 export class PageItemComponent
   extends baseComponent<HTMLUListElement>
   implements SectionContainer {
-  private closeListenr?: OnCloseListener;
+  private closeListener?: OnCloseListener;
+  private dragStateListener?: OnDragStateListener<PageItemComponent>;
   constructor() {
     super(`
       <li draggable="true" class="page-item">
@@ -71,24 +77,46 @@ export class PageItemComponent
     )! as HTMLButtonElement;
     // PageItemComponent는 어디에 자신이 속해 있는지 모르기 때문에 함수를 받아서 사용한다.
     closeButton.onclick = () => {
-      this.closeListenr && this.closeListenr();
+      this.closeListener && this.closeListener();
     }; // parent.removeChild(...);
 
     this.element.addEventListener("dragstart", (event: DragEvent) => {
       this.onDragStart(event);
+      console.log("dragstart");
     });
     this.element.addEventListener("dragend", (event: DragEvent) => {
       this.onDragEnd(event);
+      console.log("dragend");
+    });
+    this.element.addEventListener("dragenter", (event: DragEvent) => {
+      this.onDragEnter(event);
+      console.log("dragenter");
+    });
+    this.element.addEventListener("dragleave", (event: DragEvent) => {
+      this.onDragLeave(event);
+      console.log("dragleave");
     });
   }
   // 드래그가 시작될 때 실행된다.
-  onDragStart(event: DragEvent) {
-    console.log("dragstart", event);
+  onDragStart(_: DragEvent) {
+    this.notifyDragObservers("start"); // 나를 관찰하는 아이에게 알려주기 위해 사용
+  }
+  // 드래그가 끝났을 때 실행된다.
+  onDragEnd(_: DragEvent) {
+    this.notifyDragObservers("stop"); // 나를 관찰하는 아이에게 알려주기 위해 사용
+  }
+  // 드래그가 들어올 때 실행된다. 즉 드래그 되고 있는 컴포넌트가 내 위에 있다면 실행
+  onDragEnter(_: DragEvent) {
+    this.notifyDragObservers("enter"); // 나를 관찰하는 아이에게 알려주기 위해 사용
+  }
+  // 드래그가 나갈 때 실행된다. 즉 드래그 되고 있는 컴포넌트가 내 위에서 벗어났을때 실행
+  onDragLeave(_: DragEvent) {
+    this.notifyDragObservers("leave"); // 나를 관찰하는 아이에게 알려주기 위해 사용
   }
 
-  // 드래그가 끝났을 때 실행된다.
-  onDragEnd(event: DragEvent) {
-    console.log("dragend", event);
+  // 변경사항을 한곳에서만 하기 위해서 함수로 만듬
+  notifyDragObservers(state: DragState) {
+    this.dragStateListener && this.dragStateListener(this, state);
   }
 
   addChild(child: Component) {
@@ -99,6 +127,11 @@ export class PageItemComponent
   }
 
   setOnCloseListener(listener: OnCloseListener) {
-    this.closeListenr = listener;
+    this.closeListener = listener;
+  }
+
+  // 드래그 발생 시 마다 호출되는 함수
+  setOnDragStateListener(listener: OnDragStateListener<PageItemComponent>) {
+    this.dragStateListener = listener;
   }
 }
