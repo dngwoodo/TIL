@@ -9,50 +9,91 @@ import {
 } from "./components/page/list/page.js";
 import { Component } from "./components/page/common/component.js";
 import { InputDialog } from "./components/dialog/dialog.js";
+import { MediaSectionInput } from "./components/dialog/input/media-input.js";
+import { TextSectionInput } from "./components/dialog/input/text-input.js";
 
 class App {
   private readonly page: Component & Composable;
 
-  constructor(appRoot: HTMLElement) {
+  constructor(appRoot: HTMLElement, dialogRoot: HTMLElement) {
     this.page = new PageComponent(PageItemComponent); // 원래는 이렇게 new를 써서 인스턴스를 만드는 것 보다 의존성 주입을 통해 넣는 것이 좋다.
     this.page.attachTo(appRoot);
 
-    // image
-    const image = new ImageComponent(
-      "Image Title",
-      "https://picsum.photos/600/300"
-    );
-    this.page.addChild(image);
     const imageBtn = document.querySelector("#new-image")! as HTMLButtonElement;
+    const videoBtn = document.querySelector("#new-video")! as HTMLButtonElement;
+    const noteBtn = document.querySelector("#new-note")! as HTMLButtonElement;
+    const todoBtn = document.querySelector("#new-todo")! as HTMLButtonElement;
+
     imageBtn.addEventListener("click", () => {
       const dialog = new InputDialog();
+      const inputSection = new MediaSectionInput();
+      dialog.addChild(inputSection); // dialog안에 inputSection을 추가한다.
+      dialog.attachTo(dialogRoot);
 
       dialog.setOnCloseListener(() => {
-        dialog.removeFrom(document.body);
+        dialog.removeFrom(dialogRoot);
       });
       dialog.setOnSubmitListener(() => {
-        // 섹션을 만들어서 페이지에 추가 해준다
-        dialog.removeFrom(document.body);
+        // image
+        const image = new ImageComponent(inputSection.title, inputSection.url);
+        this.page.addChild(image);
+        // image 섹션을 추가해준 다음 다이얼로그창을 없앤다.
+        dialog.removeFrom(dialogRoot);
       });
+    });
+    videoBtn.addEventListener("click", () => {
+      const dialog = new InputDialog();
+      const inputSection = new MediaSectionInput();
+      dialog.addChild(inputSection); // dialog안에 inputSection을 추가한다.
+      dialog.attachTo(dialogRoot);
 
-      dialog.attachTo(document.body);
+      dialog.setOnCloseListener(() => {
+        dialog.removeFrom(dialogRoot);
+      });
+      dialog.setOnSubmitListener(() => {
+        // video
+        const video = new videoComponent(inputSection.title, inputSection.url);
+        this.page.addChild(video);
+        // video 섹션을 추가해준 다음 다이얼로그창을 없앤다.
+        dialog.removeFrom(dialogRoot);
+      });
     });
 
-    // video
-    const video = new videoComponent(
-      "Video Title",
-      "https://www.youtube.com/watch?v=nhAR2-WIM-I"
-    );
-    this.page.addChild(video);
+    noteBtn.addEventListener("click", () => {
+      const dialog = new InputDialog();
+      const inputSection = new TextSectionInput();
+      dialog.addChild(inputSection); // dialog안에 inputSection을 추가한다.
+      dialog.attachTo(dialogRoot);
 
-    // note
-    const note = new noteComponent("Note Title", "Note Content");
-    this.page.addChild(note);
+      dialog.setOnCloseListener(() => {
+        dialog.removeFrom(dialogRoot);
+      });
+      dialog.setOnSubmitListener(() => {
+        // note
+        const note = new noteComponent(inputSection.title, inputSection.body);
+        this.page.addChild(note);
+        // note 섹션을 추가해준 다음 다이얼로그창을 없앤다.
+        dialog.removeFrom(dialogRoot);
+      });
+    });
+    todoBtn.addEventListener("click", () => {
+      const dialog = new InputDialog();
+      const inputSection = new TextSectionInput();
+      dialog.addChild(inputSection); // dialog안에 inputSection을 추가한다.
+      dialog.attachTo(dialogRoot);
 
-    // todo
-    const todo = new todoComponent("Todo Title", "씻기\n공부하기\n밥먹기");
-    this.page.addChild(todo);
+      dialog.setOnCloseListener(() => {
+        dialog.removeFrom(dialogRoot);
+      });
+      dialog.setOnSubmitListener(() => {
+        // todo
+        const todo = new todoComponent(inputSection.title, inputSection.body);
+        this.page.addChild(todo);
+        // todo 섹션을 추가해준 다음 다이얼로그창을 없앤다.
+        dialog.removeFrom(dialogRoot);
+      });
+    });
   }
 }
 
-new App(document.querySelector(".document")! as HTMLElement);
+new App(document.querySelector(".document")! as HTMLElement, document.body);
