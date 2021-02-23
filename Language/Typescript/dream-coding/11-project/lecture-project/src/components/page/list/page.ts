@@ -7,6 +7,7 @@ export interface Composable {
 
 interface SectionContainer extends Component, Composable {
   setOnCloseListener(listener: OnCloseListener): void;
+  setOnDragStateListener(listener: OnDragStateListener<SectionContainer>): void;
 }
 
 type SectionContainerConstructor = {
@@ -47,6 +48,11 @@ export class PageComponent
     item.setOnCloseListener(() => {
       item.removeFrom(this.element); // 여기서 this.element란 ul을 의미하고 removeFromUl 이라고 생각하자.
     });
+    item.setOnDragStateListener(
+      (target: SectionContainer, state: DragState) => {
+        console.log(target, state);
+      }
+    );
   }
 }
 
@@ -82,19 +88,15 @@ export class PageItemComponent
 
     this.element.addEventListener("dragstart", (event: DragEvent) => {
       this.onDragStart(event);
-      console.log("dragstart");
     });
     this.element.addEventListener("dragend", (event: DragEvent) => {
       this.onDragEnd(event);
-      console.log("dragend");
     });
     this.element.addEventListener("dragenter", (event: DragEvent) => {
       this.onDragEnter(event);
-      console.log("dragenter");
     });
     this.element.addEventListener("dragleave", (event: DragEvent) => {
       this.onDragLeave(event);
-      console.log("dragleave");
     });
   }
   // 드래그가 시작될 때 실행된다.
