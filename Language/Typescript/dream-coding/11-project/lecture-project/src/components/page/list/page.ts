@@ -8,6 +8,7 @@ export interface Composable {
 interface SectionContainer extends Component, Composable {
   setOnCloseListener(listener: OnCloseListener): void;
   setOnDragStateListener(listener: OnDragStateListener<SectionContainer>): void;
+  muteChildren(state: "mute" | "unmute"): void;
 }
 
 type SectionContainerConstructor = {
@@ -16,6 +17,9 @@ type SectionContainerConstructor = {
 export class PageComponent
   extends baseComponent<HTMLUListElement>
   implements Composable {
+  private children = new Set<SectionContainer>();
+  private dropTarget?: SectionContainer;
+  private dragTarget?: SectionContainer;
   constructor(private pageItemConstructor: SectionContainerConstructor) {
     super(`<ul class='page'></ul>`);
 
@@ -30,13 +34,21 @@ export class PageComponent
   // 드래그를 한 뒤 붕떠 있는 상태일 때 계속 발생된다.
   onDragOver(event: DragEvent) {
     event.preventDefault(); // 이 아이들은 필수로 사용해야 한다. touch event나 pointer event에서 안좋은 상황이 나올 수 있기 때문이다. - MDN
-    // console.log("onDragOver");
+    console.log("onDragOver");
   }
 
   // 드래그를 드랍했을 때 발생된다.
   onDrop(event: DragEvent) {
     event.preventDefault(); // 이 아이들은 필수로 사용해야 한다. touch event나 pointer event에서 안좋은 상황이 나올 수 있기 때문이다. - MDN
-    // console.log("onDrop");
+    console.log("onDrop");
+    // 여기에서 컴포넌트 위치를 바꿔주는 로직이 들어간다.
+    if (!this.dropTarget) {
+      return;
+    }
+    if (this.dragTarget && this.dragTarget !== this.dropTarget) {
+      this.dragTarget.removeFrom(this.element);
+      this.dropTarget.attach(this.dragTarget, "beforebegin");
+    }
   }
 
   addChild(section: Component) {
@@ -47,12 +59,37 @@ export class PageComponent
     item.attachTo(this.element, "beforeend");
     item.setOnCloseListener(() => {
       item.removeFrom(this.element); // 여기서 this.element란 ul을 의미하고 removeFromUl 이라고 생각하자.
+      this.children.delete(item);
     });
+    this.children.add(item);
     item.setOnDragStateListener(
       (target: SectionContainer, state: DragState) => {
-        console.log(target, state);
+        switch (state) {
+          case "start":
+            this.dragTarget = target;
+            this.updateSections("mute");
+            break;
+          case "stop":
+            this.dragTarget = undefined;
+            this.updateSections("unmute");
+            break;
+          case "enter":
+            this.dropTarget = target;
+            break;
+          case "leave":
+            this.dropTarget = undefined;
+            break;
+          default:
+            throw Error("unsupported state: ${state}");
+        }
       }
     );
+  }
+
+  private updateSections(state: "mute" | "unmute") {
+    this.children.forEach((section: SectionContainer) => {
+      section.muteChildren(state);
+    });
   }
 }
 
@@ -135,5 +172,13 @@ export class PageItemComponent
   // 드래그 발생 시 마다 호출되는 함수
   setOnDragStateListener(listener: OnDragStateListener<PageItemComponent>) {
     this.dragStateListener = listener;
+  }
+
+  muteChildren(state: "mute" | "unmute") {
+    if (state === "mute") {
+      this.element.classList.add("mute-children");
+    } else {
+      this.element.classList.remove("mute-children");
+    }
   }
 }
