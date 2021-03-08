@@ -1,17 +1,19 @@
 #### Goal 🔥
+
 - 매일 하루 2시간 공부
 - 기업 코딩 테스트 합격을 목표로 하기 때문에 매주 1회 코딩 테스트 쳐보기
 - 기본적인 개념은 Section 별로 README.md에 작성한다.
 - 공부는 강의 하나로 정리하고 다른 것들은 보지 않는다.
 
 #### Language ✨
+
 - JavaScript
 
-
 #### Sections ✅
+
 - Section1 - 기본문제 풀이
-  - [ ] 1. 세 수 중 최솟값
-  - [ ] 2. 삼각형 판별하기
+  - [x] 1. 세 수 중 최솟값
+  - [x] 2. 삼각형 판별하기
   - [ ] 3. 연필개수
   - [ ] 4. 1부터 N까지의 합
   - [ ] 5. 최솟값 구하기
@@ -39,4 +41,5 @@
 - Section10 - Dynamic programming(동적계획법 )
 
 #### Resources
+
 [자바스크립트 알고리즘 문제풀이(코딩테스트 대비)](https://www.inflearn.com/course/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-%EB%AC%B8%EC%A0%9C%ED%92%80%EC%9D%B4/dashboard)
