@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>History API</title>
+</head>
+<body>
+<div id="state"></div>
+<button id="pushState">pushState</button>
+<button id="replaceState">replaceState</button>
+<script>
+  // https://www.zerocho.com/category/HTML&DOM/post/599d2fb635814200189fe1a7 참고
+  document.querySelector('#pushState').addEventListener('click', function () {
+    // pushState는 주소목록에 새로운 주소를 추가하는 역할을 한다.
+    // 첫번째 인자 : 바뀐 주소와 함께 저장할 데이터 객체, history.state로 확인 가능
+    // 두번째 인자 : 바꿀 제목 <- 브라우저에서 아직 구현 X
+    // 세번째 인자 : 바꿀 주소 <- 절대경로, 상대경로 중 골라서 넣을 수 있음
+    history.pushState({ data: 'push' }, '', '/push') // pushState로 data를 넣음으로서 페이지는 새로 갱신되지 않았는데 주소만 바뀐 효과를 낼 수 있다.
+    console.log(history.length) // 2 <- 라이브 서버 키고 처음 눌렀을 경우
+  });
+  
+  document.querySelector('#replaceState').addEventListener('click', function () {
+    // replaceState는 현재 주소만 변경한다. 이제 더 이상 /book/history.html로 접근할 수 없고 /replace로 접근해야 한다.
+    history.replaceState({ data: 'replace' }, '', '/replace');
+    console.log(history.length) // 1 <- 라이브 서버 키고 처음 눌렀을 경우
+  });
+
+  // back, forward 버튼을 눌렀을 때 발생하는 이벤트
+  window.addEventListener('popstate', function () {
+    console.log('popstate', history.state); // history.state에서 데이터 접근가능
+    document.querySelector('#state').innerHTML = JSON.stringify(history.state);
+  });
+</script>
+</body>
+</html>
