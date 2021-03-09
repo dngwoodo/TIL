@@ -6,3 +6,11 @@ exports.max = (numbers) => {
 exports.min = (numbers) => {
   return Math.min(...numbers);
 };
+
+exports.average = (numbers) => {
+  return (
+    numbers.reduce((acc, currentValue) => {
+      return acc + currentValue;
+    }, 0) / numbers.length
+  );
+};

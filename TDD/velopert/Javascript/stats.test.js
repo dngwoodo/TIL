@@ -9,4 +9,8 @@ describe("stats", () => {
   it("gets minimum value", () => {
     expect(stats.min([1, 2, 3, 4])).toBe(1);
   });
+
+  it("gets average value", () => {
+    expect(stats.average([1, 2, 3, 4])).toBe(2.5);
+  });
 });
