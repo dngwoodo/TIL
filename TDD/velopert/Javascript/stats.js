@@ -8,9 +8,7 @@ exports.min = (numbers) => {
 };
 
 exports.average = (numbers) => {
-  return (
-    numbers.reduce((acc, currentValue) => {
-      return acc + currentValue;
-    }, 0) / numbers.length
-  );
+  return numbers.reduce((acc, current, index, { length }) => {
+    return acc + current / length;
+  }, 0);
 };
