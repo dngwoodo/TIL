@@ -30,4 +30,22 @@ describe("stats", () => {
       expect(stats.median([1, 2, 3, 4, 5, 6])).toBe(3.5);
     });
   });
+
+  // 최빈값 구하기
+  describe("mode", () => {
+    it("has one mode", () => {
+      // 최빈값이 한개 있을 떄
+      expect(stats.mode([1, 2, 2, 2, 3])).toBe(2);
+    });
+
+    it("has no mode", () => {
+      // 모든 값이 최빈값일 때
+      expect(stats.mode([1, 2, 3])).toBe(null);
+    });
+
+    it("has many mode", () => {
+      // 최빈값이 여러개 있을 때
+      expect(stats.mode([1, 2, 2, 3, 3, 4])).toEqual([2, 3]);
+    });
+  });
 });
