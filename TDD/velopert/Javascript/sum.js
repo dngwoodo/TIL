@@ -2,12 +2,13 @@ function sum(a, b) {
   return a + b;
 }
 
+/**
+ * @param {Array} numbers
+ */
 function sumOf(numbers) {
-  let result = 0;
-  numbers.forEach((n) => {
-    result += n;
-  });
-  return result;
+  return numbers.reduce((arr, currentValue) => {
+    return arr + currentValue;
+  }, 0);
 }
 
 exports.sum = sum;
