@@ -4,11 +4,5 @@ exports.max = (numbers) => {
 };
 
 exports.min = (numbers) => {
-  let result = numbers[0];
-  numbers.forEach((number) => {
-    if (number < result) {
-      result = number;
-    }
-  });
-  return result;
+  return Math.min(...numbers);
 };
