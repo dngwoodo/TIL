@@ -43,6 +43,7 @@
 #### Async Utilities
 
 - waitFor
+  - wait, waitForDomChange, waitForElement는 waitFor로 합쳐짐
   ```ts
   function waitFor<T>(
     callback: () => T | Promise<T>,
