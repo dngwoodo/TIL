@@ -35,5 +35,25 @@ describe("<UserProfile />", () => {
     render(<UserProfile id={1} />);
     await screen.findByText("로딩중.."); // 로딩중.. 문구 보여줘야함
     await screen.findByText("Bret"); // Bret (username) 을 보여줘야함
+    // screen.debug();
   });
 });
+
+// axios-mock-adapter 활용방법
+
+// 1. 한번만 mocking 하기 - replyOnce
+// mock.onGet('/users').replyOnce(200, users)
+
+// 2. replyOnce 를 연달아서 사용하기
+// mock
+//   .onGet('/users')
+//   .replyOnce(200, users) // 첫번째 요청
+//   .onGet('/users')
+//   .replyOnce(500); // 두번째 요청
+
+// 3. 아무 요청이나 mocking 하기 - onAny()
+// mock.onAny('/foo').reply(200); // POST, GET 이런것을 신경 쓰지 않음.
+
+// 4. reset 과 restore
+// mock.reset(); // reset 은 mock 인스턴스에 등록된 모든 mock 핸들러를 제거, 만약에 테스트 케이스별로 다른 mock 설정을 하고 싶다면 이 함수를 사용
+// mock.restore(); // axios 에서 mocking 기능을 완전히 제거, 만약에 실제 테스트를 하다가 요청이 실제로 날라가게 하고 싶다면 이 함수를 사용
