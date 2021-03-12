@@ -38,10 +38,22 @@ const TodoApp = () => {
     [todos]
   );
 
+  // 토클 기능 구현하기, done을 true -> false, false -> true로 만듬
+  const onToggle = useCallback(
+    (id) => {
+      setTodos(
+        todos.map((todo) =>
+          todo.id === id ? { ...todo, done: !todo.done } : todo
+        )
+      );
+    },
+    [todos]
+  );
+
   return (
     <>
       <TodoForm onInsert={onInsert} />
-      <TodoList todos={todos} />
+      <TodoList todos={todos} onToggle={onToggle} />
     </>
   );
 };
