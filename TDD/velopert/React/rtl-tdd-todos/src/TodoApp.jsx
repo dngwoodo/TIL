@@ -1,12 +1,14 @@
 import React from "react";
-import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
+import TodoForm from "./TodoForm";
 
-const TodoApp = () => (
-  <div>
-    <TodoForm></TodoForm>
-    <TodoList></TodoList>
-  </div>
-);
+const TodoApp = () => {
+  return (
+    <>
+      <TodoForm data-testid="helloworld" />
+      <TodoList todos={[]} />
+    </>
+  );
+};
 
 export default TodoApp;
