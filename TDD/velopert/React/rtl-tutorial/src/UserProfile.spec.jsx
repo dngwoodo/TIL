@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "react-testing-library";
+import { render, screen } from "@testing-library/react";
 import UserProfile from "./UserProfile";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter"; // axios를 사용했을 때 요청이 발생하지 않지만 발생한 것처럼 작동하게 하기위해 사용하는 라이브러리이다.
@@ -31,7 +31,9 @@ describe("<UserProfile />", () => {
       bs: "harness real-time e-markets",
     },
   });
-  it("loads userData properly", () => {
-    // TODO
+  it("calls getUser API loads userData properly", async () => {
+    render(<UserProfile id={1} />);
+    await screen.findByText("로딩중.."); // 로딩중.. 문구 보여줘야함
+    await screen.findByText("Bret"); // Bret (username) 을 보여줘야함
   });
 });
