@@ -42,4 +42,16 @@ describe("<TodoApp />", () => {
     fireEvent.click(todoText);
     expect(todoText).toHaveStyle("text-decoration: line-through;");
   });
+
+  // 삭제 기능 구현하기
+  it("removes todo", () => {
+    const { getByText } = render(<TodoApp />);
+    const todoText = getByText("TDD 배우기");
+    const removeButton = todoText.nextSibling;
+    fireEvent.click(removeButton);
+    expect(todoText).not.toBeInTheDocument(); // 페이지에서 사라졌음을 의미함
+    // 이렇게 사용할 수 도 있다.
+    // const removedText = queryByText('TDD 배우기');
+    // expect(removedText).toBeNull();
+  });
 });
