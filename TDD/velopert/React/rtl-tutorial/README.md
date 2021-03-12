@@ -38,6 +38,24 @@
 1. getByRole
 1. getByTestId
 
+#### getBy, queryBy, findBy 차이점
+
+#### Async Utilities
+
+- waitFor
+  ```ts
+  function waitFor<T>(
+    callback: () => T | Promise<T>,
+    options?: {
+      container?: HTMLElement;
+      timeout?: number;
+      interval?: number;
+      onTimeout?: (error: Error) => Error;
+      mutationObserverOptions?: MutationObserverInit;
+    }
+  ): Promise<T>;
+  ```
+
 #### Resource
 
 [react-testing-library 를 사용한 리액트 컴포넌트 테스트](https://velog.io/@velopert/react-testing-library)
