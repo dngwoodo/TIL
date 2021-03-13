@@ -1,7 +1,8 @@
 import Product from "../../models/Product";
+import "regenerator-runtime/runtime";
 
-export const createProduct = (req, res, next) => {
-  const createdProduct = Product.create(req.body); // 이 아이의 리턴값을 newProduct으로 테스팅에서 지정
+export const createProduct = async (req, res, next) => {
+  const createdProduct = await Product.create(req.body); // 이 아이의 리턴값을 newProduct으로 테스팅에서 지정
   res.status(201).json(createdProduct); // 그래서 여기서 넣은 json값을 테스팅에서 res._getJSONData()로 뽑아볼 수 있음.
 };
 
