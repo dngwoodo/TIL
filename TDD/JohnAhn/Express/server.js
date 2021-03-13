@@ -21,3 +21,5 @@ app.use("/", router);
 app.listen(PORT, HOST, () => {
   console.log(`Running on http://${HOST}:${PORT}`);
 }); // 해당 포트와 호스트에서 HTTP 서버를 시작
+
+export default app;
