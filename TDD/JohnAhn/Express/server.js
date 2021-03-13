@@ -1,6 +1,7 @@
 // * module
 import express from "express";
 import router from "./routers/index.js";
+import "./db.js";
 
 // * variable
 const PORT = 5000;
