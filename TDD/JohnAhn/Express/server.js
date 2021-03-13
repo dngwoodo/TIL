@@ -1,5 +1,6 @@
 // * module
 import express from "express";
+import router from "./routers/index.js";
 
 // * variable
 const PORT = 5000;
@@ -13,9 +14,7 @@ const app = express();
 app.use(express.json()); // axios로 넘어오는 값들을 json형태로 변형시켜줌.
 
 // * router
-app.get("/", (req, res) => {
-  res.send("Hello World");
-});
+app.use("/", router);
 
 // * server open
 app.listen(PORT, HOST, () => {
