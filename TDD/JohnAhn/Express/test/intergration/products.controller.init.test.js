@@ -16,4 +16,10 @@ it("should return 500 on POST /api/product", async () => {
     .send({ name: "phone" });
 
   expect(response.statusCode).toBe(500);
+
+  // console.log("response.body", response.body); // 오류 메시지를 다 알순 없으므로 이렇게 뽑아서 확인하고 넣어준다.
+  expect(response.body).toStrictEqual({
+    message:
+      "Product validation failed: description: Path `description` is required.",
+  });
 });

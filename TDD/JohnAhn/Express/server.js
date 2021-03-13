@@ -16,6 +16,13 @@ app.use(express.json()); // axios로 넘어오는 값들을 json형태로 변형
 
 // * router
 app.use("/", router);
+app.use((error, req, res, next) => {
+  // 에러 라우터
+  // 익스프레스에서는 비동기 작업이 오류가나면 서버가 망가지게 된다.
+  // 그래서 비동기작업이 오류가 날 경우 반드시 next(errorMessage) 이렇게 해주어야 이 미들웨어로 안전하게 오게 된다.
+  // 중간에 있는 미들웨어는 전부 무시하고 바로 이쪽으로 온다.
+  res.status(500).json({ message: error.message });
+});
 
 // * server open
 app.listen(PORT, HOST, () => {
