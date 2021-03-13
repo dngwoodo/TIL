@@ -10,7 +10,7 @@ let req, res, next;
 beforeEach(() => {
   req = httpMocks.createRequest();
   res = httpMocks.createResponse();
-  next = null;
+  next = jest.fn();
 });
 
 describe("Product Controller Create", () => {
@@ -36,5 +36,15 @@ describe("Product Controller Create", () => {
     Product.create.mockReturnValue(newProduct); // 리턴 값 지정
     await createProduct(req, res, next);
     expect(res._getJSONData()).toStrictEqual(newProduct);
+  });
+
+  it("should handle errors", async () => {
+    const errorMessage = { message: "description property missing" }; // 몽고 디비에서 보내주는 에러가 아니라 에러메시지를 임의로 만든다.
+    const rejectedPromise = Promise.reject(errorMessage); // 비동기이기 때문에 반환값이 Promise이여야 하므로 이렇게 넣어준다.
+    Product.create.mockReturnValue(rejectedPromise); // 리턴에 에러 값 넣기
+    await createProduct(req, res, next);
+    // express는 비동기요청이 실패하면 서버가 망가져버림. 동기는 알아서 처리해준다.
+    // 그래서 next를 통해서 에러를 처리하는 미들웨어로 보내줘야 한다.
+    expect(next).toBeCalledWith(errorMessage); // next가 errorMessage와 함께 호출되어졌는 지
   });
 });
