@@ -25,4 +25,10 @@ describe("Product Controller Create", () => {
     createProduct(req, res, next);
     expect(Product.create).toBeCalledWith(newProduct);
   });
+
+  it("should return 201 response code", () => {
+    createProduct(req, res, next);
+    expect(res.statusCode).toBe(201); // status 코드가 아무것도 지정해주지 않으면 200번임. 그래서 product.controller.js에 res.status(201)을 따로 해준다.
+    expect(res._isEndCalled()).toBeTruthy(); // send가 있는지 확인
+  });
 });
