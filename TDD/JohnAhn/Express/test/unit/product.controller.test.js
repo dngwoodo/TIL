@@ -23,7 +23,7 @@ describe("Product Controller Create", () => {
 
   it("should call ProductModel.create", async () => {
     await createProduct(req, res, next);
-    expect(Product.create).toBeCalledWith(newProduct);
+    expect(Product.create).toBeCalledWith(newProduct); // req.body가 지금 newProduct임.
   });
 
   it("should return 201 response code", async () => {
