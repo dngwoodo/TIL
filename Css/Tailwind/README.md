@@ -34,12 +34,18 @@
   - text-xs, sm, base, lg, xl: 12px , 14px, 16px, 18px, 20px(2px씩 증가)
   - xl, 2xl, 3xl... : 20px, 24px, 30px ... (2씩 누적 되서 올라감)
 
-- rounded(border-radius)
+- border-radius
 
   - border-{direction}-{size}: border-l-2xl, border-bl-xl
   - rounded-none, sm, '', md, lg, xl: 0px, 2px, 4px, 8px, 12px(2px씩 증가)
   - rounded-xl, 2xl, 3xl: 12px, 16px, 24px
   - rounded-full: 9999px
+
+- line-height
+
+  - leading-none: (line-height:1)
+  - line-height는 행간을 의미하고 보통 1.2로 되어있다. 즉 font-size가 30px이면 줄높이가 36px이 된다.
+  - [line-height 설명](https://www.codingfactory.net/10639)
 
 - Responsive Design
 

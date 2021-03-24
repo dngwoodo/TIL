@@ -20,9 +20,12 @@
             alt="logo"
           />
         </div>
-        <div>
-          <button>❌</button>
-        </div>
+        <button type="button" class="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+          <span class="sr-only">Open main menu</span>
+          <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
       </div>
 
       <div class="wrapper">
@@ -65,31 +68,44 @@
           </li>
         </ul>
         <div class="px-2 pt-5 pb-3">
-          <div>
-            <div>
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
               <img
-                class="rounded-full w-12 h-12"
+                class="rounded-full w-10 h-10"
                 src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                 alt=""
               />
             </div>
-            <div>
-              <div>Tom Cook</div>
-              <div>tom@example.com</div>
+            <div class="ml-3">
+              <div class="text-white font-medium text-base leading-none">Tom Cook</div>
+              <div class="text-white opacity-50 text-sm text-sm leading-none">tom@example.com</div>
             </div>
-            <div>
-              <svg></svg>
-            </div>
+            <button class="ml-auto bg-gray-800 flex-shrink-0 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+              <svg
+              class="h-6 w-6"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+              />
+            </button>
           </div>
-          <ul>
+          <ul class="space-y-1 mt-3">
             <li>
-              <a href="#">Your Profile</a>
+              <a href="#" class="block px-3 py-2 text-white font-medium bg-gray-900 rounded-md">Your Profile</a>
             </li>
             <li>
-              <a href="#">Settings</a>
+              <a href="#" class="block px-3 py-2 text-white font-medium bg-gray-900 rounded-md">Settings</a>
             </li>
             <li>
-              <a href="#">Sign up</a>
+              <a href="#" class="block px-3 py-2 text-white font-medium bg-gray-900 rounded-md">Sign up</a>
             </li>
           </ul>
         </div>
