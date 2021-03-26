@@ -99,6 +99,34 @@ a:after {}
 ```
 
 #### display
+- block(무언가를 담을 때 사용)
+  - 한줄을 가득 쓴다. 안쓰는 곳은 마진으로 채움
+  - height는 요소안의 내용만큼 차지
+  
+- inline(텍스트처럼 동작)
+  - inline은 해당 마크업하고 있는 컨텐츠 크기 만큼만 공간을 차지함.(width, height 무시)
+  - margin, padding 좌우 간격은 반영 되지만, 상하 간격은 반영되지 않음
+  - 위아래 padding은 시각적으로 보이긴하지만 공간을 차지하진 않는다.(그래서 백그라운드 컬러가 있을 시 겹쳐보일 수 있다.)
+
+- inline-block(무언가를 담을때 사용)
+  - inline + block
+  - inline과 배치는 똑같음(즉, 텍스트 형식으로 나열됨)
+  - width, height 적용 가능
+  - margin, padding 상하좌우 전부 적용가능
+  - img 태그는 inline으로 되어있지만 기본적으로 inline-block 처럼 동작함(닫는 태그가 없는 특수태그)
+
+- 공간 없애는 법 
+  - inline 혹은 inline-block끼리 만나게 되면 html정렬을 위해 들여쓰기를 하는 바람에 사이에 공간이 생기게 된다. 그것을 없애주는 방법은 아래와 같다
+    ```html
+    <!-- 공백도 텍스트이기 때문에 font-size를 없애주면 된다. -->
+    <div style="font-size:0;">
+      <!-- 자식들은 font-size를 다시 회복시켜주자 -->
+      <span style="font-size: 1rem">123</span>
+      <span style="font-size: 1rem">123</span>
+    </div>
+    ``` 
+
+#### box model
 #### position
 #### 우선순위
 #### z-index
