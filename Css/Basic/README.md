@@ -125,6 +125,32 @@ a:after {}
       <span style="font-size: 1rem">123</span>
     </div>
     ``` 
+#### vertical-align, line-height
+- vertical-align
+  - inline, inline-block에서만 사용가능
+  - line-height와 매우 밀접한 관계에 있다
+  - [예제](https://codesandbox.io/s/thirsty-framework-bwc76?file=/index.html)
+  - [예제2](https://codesandbox.io/s/vertical-align-example2-yygxp?file=/index.html&resolutionWidth=320&resolutionHeight=675)
+    <div>
+      <img width="400" height="200" alt="스크린샷 2021-03-26 오전 11 40 28" src="https://user-images.githubusercontent.com/77663233/112569735-1198e180-8e28-11eb-9f6d-db7f5c76c322.png">
+    </div>
+
+
+- line-height
+  - number: font-size * number을 의미
+  - half-leading: line-height크기에 따라 가지게 되는 여백
+  - font 자체가 가지는 여백: 이 아이는 css로 건들일 수 없다. 그래서 없앤 효과를 내고 싶다면 line-height를 1보다 아래로 잡아보자
+    <div>
+      <img width="400" height="200" alt="스크린샷 2021-03-26 오전 11 24 52" src="https://user-images.githubusercontent.com/77663233/112571173-dea41d00-8e2a-11eb-9848-9a0044339299.png">
+    </div>
+
+- 텍스트가 없을 경우의 inline, inline-block 요소
+  - [예제](https://codesandbox.io/s/trusting-firefly-23xii?file=/index.html)
+  - 예제를 보기전 알아둬야 될 것: decender이다. 영어권에서 기준선 밑으로 내려가는 글자들을 위해 약간의 공간을 baseline 밑에 만듬
+    <div>
+      <img width="400" height="200" alt="스크린샷 2021-03-26 오전 11 58 52" src="https://user-images.githubusercontent.com/77663233/112571086-a56bad00-8e2a-11eb-827b-436916709d1a.png">
+    </div>
+
 
 #### box model
 #### position
@@ -137,3 +163,5 @@ a:after {}
 #### Resource
 [zerocho](https://www.zerocho.com/category/CSS/post/5825b14baff5c7001827997b)</br>
 [CSS:선택자(Selector)이해](https://www.nextree.co.kr/p8468/)</br>
+[image요소 하단의 알 수 없는 갭 현상](https://velog.io/@ursr0706/image%EC%9A%94%EC%86%8C-%ED%95%98%EB%8B%A8%EC%9D%98-%EC%95%8C-%EC%88%98-%EC%97%86%EB%8A%94-%EA%B0%AD-%ED%98%84%EC%83%81)</br>
+[vertical-align 속성과 Inline-block레벨 요소의 baseline](https://velog.io/@ursr0706/vertical-align)</br>
