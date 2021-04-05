@@ -15,20 +15,39 @@
 // 출력
 // 첫째 줄에 입력에서 주어진 채점 결과에 대하여 가산점을 고려한 총 점수를 출력한다.
 
-function solution(arr) {
-  let answer = 0,
-    cnt = 0;
+// 내 풀의: 2중 포문 사용. 잘못 됐음
+// function solution(arr) {
+//   let answer = 0,
+//     cnt = 0;
 
-  for (let j = 0; j < arr.length; j++) {
-    for (let i = j; i >= 0; i--) {
-      // j-1을 하면 된다.
-      if (arr[i] === 1) cnt++;
-      else break;
+//   for (let j = 0; j < arr.length; j++) {
+//     for (let i = j; i >= 0; i--) {
+//       // j-1을 하면 된다.
+//       if (arr[i] === 1) cnt++;
+//       else break;
+//     }
+//   }
+
+//   answer = cnt;
+
+//   return answer;
+// }
+
+// let arr = [1, 0, 1, 1, 1, 0, 0, 1, 1, 0];
+// console.log(solution(arr));
+
+// 강의 풀이: 한번의 포문으로 해결 가능
+function solution(arr) {
+  let answer = 0;
+  let current = 0;
+  for(const x of arr) {
+    if(x === 1){
+      current++;
+      answer += current;
+    } else {
+      current = 0;
     }
   }
-
-  answer = cnt;
-
   return answer;
 }
 
