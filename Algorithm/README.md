@@ -66,9 +66,9 @@
 
 |    날짜     | [dongwoo](./README.md) | [uriyang](https://github.com/uriyang/Algorithm) | [ildang100](https://github.com/ildang100/team_study_algorithm) |
 | :---------: | :--------------------: | :---------------------------------------------: | -------------------------------------------------------------- |
-| 20201-04-05 |       Section2-7       |                  Section 2- 5                   | Section 3-2                                                    |
-| 20201-04-06 |       Section3-3       |                                                 |
-| 20201-04-07 |       Section4-1       |                                                 |
+| 20201-04-05 |     Section2-7 ✅      |                 Section 2- 5 ✅                 | Section 3-2 ✅                                                 |
+| 20201-04-06 |       Section3-3       |                  Section 2- 6                   | Section 3-4                                                    |
+| 20201-04-07 |       Section4-1       |                  Section 2- 7                   |
 | 20201-04-08 |       Section4-4       |                                                 |
 
 #### Resources
