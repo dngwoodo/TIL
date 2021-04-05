@@ -15,7 +15,7 @@
 // 출력
 // 첫째 줄에 입력에서 주어진 채점 결과에 대하여 가산점을 고려한 총 점수를 출력한다.
 
-// 내 풀의: 2중 포문 사용. 잘못 됐음
+// 내 풀이: 2중 포문 사용. 잘못 됐음
 // function solution(arr) {
 //   let answer = 0,
 //     cnt = 0;
@@ -40,8 +40,8 @@
 function solution(arr) {
   let answer = 0;
   let current = 0;
-  for(const x of arr) {
-    if(x === 1){
+  for (const x of arr) {
+    if (x === 1) {
       current++;
       answer += current;
     } else {
