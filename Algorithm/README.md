@@ -71,7 +71,7 @@
 | 20201-04-05 |     Section2-7 ✅      |                 Section 2- 5 ✅                 | Section 3-2 ✅                                                 |
 | 20201-04-06 |     Section3-3 ✅      |                 Section 2- 6 ✅                 | Section 3-4 ✅                                                 |
 | 20201-04-07 |     Section3-5 ✅      |                 Section 2- 7 ✅                 | Section 4-2 ✅                                                 |
-| 20201-04-08 |       Section4-1       |                   Section 3-2                   | Section 4-4                                                    |
+| 20201-04-08 |     Section4-2 ✅      |                   Section 3-2                   | Section 4-4 ✅                                                 |
 
 #### Resources
 
