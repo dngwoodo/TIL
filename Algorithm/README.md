@@ -11,6 +11,8 @@
 
 #### Sections 🎞
 
+> 💊 표시가 있는 문제는 반드시 다시 풀어보자는 의미
+
 <details>
 <summary>
 Section1 - 기본문제 풀이
