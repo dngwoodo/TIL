@@ -11,55 +11,106 @@
 
 #### Sections 🎞
 
-- Section1 - 기본문제 풀이
+<details>
+<summary>
+Section1 - 기본문제 풀이
+</summary>
 
-  - [x] 1. 세 수 중 최솟값
-  - [x] 2. 삼각형 판별하기
-  - [x] 3. 연필개수
-  - [x] 4. 1부터 N까지의 합
-  - [x] 5. 최솟값 구하기
-  - [ ] [보충] 내장함수로 최솟값, 최댓값 구하기
-  - [x] 6. 홀수
-  - [x] 7. 10부제
-  - [x] 8. 일곱난쟁이
-  - [x] 9. A를 #으로
-  - [x] 10. 문자 찾기
-  - [x] 11. 대문자 찾기
-  - [x] 12. 대문자로 통일
-  - [x] 13. 대소문자변환
-  - [x] 14. 가장 긴 문자열
-  - [x] 15. 가운데 문자 출력(substring, substr(얘는 쓰면 안됨))
-  - [x] 16. 중복문자제거(indexOf)
-  - [x] 17. 중복단어제거
+- [x] 1. 세 수 중 최솟값
+- [x] 2. 삼각형 판별하기
+- [x] 3. 연필개수
+- [x] 4. 1부터 N까지의 합
+- [x] 5. 최솟값 구하기
+- [ ] [보충] 내장함수로 최솟값, 최댓값 구하기
+- [x] 6. 홀수
+- [x] 7. 10부제
+- [x] 8. 일곱난쟁이
+- [x] 9. A를 #으로
+- [x] 10. 문자 찾기
+- [x] 11. 대문자 찾기
+- [x] 12. 대문자로 통일
+- [x] 13. 대소문자변환
+- [x] 14. 가장 긴 문자열
+- [x] 15. 가운데 문자 출력(substring, substr(얘는 쓰면 안됨))
+- [x] 16. 중복문자제거(indexOf)
+- [x] 17. 중복단어제거
 
-- Section2 - 1, 2차원 배열 탐색
+</details>
 
-  - [x] 1. 큰 수 출력하기
-  - [x] 2. 보이는 학생
-  - [x] 3. 가위바위보
-  - [x] 4. 점수 계산
-  - [x] 5. 등수구하기
-  - [x] 6. 격자판 최대합
-  - [x] 7. 봉우리
+<details>
+<summary>
+Section2 - 1, 2차원 배열 탐색
+</summary>
 
-- Section3 - 문자열 탐색
+- [x] 1. 큰 수 출력하기
+- [x] 2. 보이는 학생
+- [x] 3. 가위바위보
+- [x] 4. 점수 계산
+- [x] 5. 등수구하기
+- [x] 6. 격자판 최대합
+- [x] 7. 봉우리
 
-  - [x] 1. 회문문자열
-  - [x] 2. 유효한 팰린드롬
-  - [x] 3. 숫자만 추출
-  - [x] 4. 가장 짧은 문자거리
-  - [x] 5. 문자열 압축
+</details>
 
-- Section4 - 완전탐색(블루투포스)
-  - [x] 1. 자릿수의 합
-  - [x] 2. 뒤집은 소수
-  - [x] 3. 멘토링 💊
-- Section5 - 효율성(투포인터 알고리즘, 슬라이딩윈도우, 해쉬)
-- Section6 - 자료구조(스택, 큐)
-- Section7 - 정렬과 그리디, 결정알고리즘(이분검색)
-- Section8 - 재귀함수와 완전탐색(DFS:깊이우선탐색)
-- Section9 - 그래프와 탐색(DFS, BFS:넓이우선탐색)
-- Section10 - Dynamic programming(동적계획법 )
+<details>
+<summary>
+Section3 - 문자열 탐색
+</summary>
+
+- [x] 1. 회문문자열
+- [x] 2. 유효한 팰린드롬
+- [x] 3. 숫자만 추출
+- [x] 4. 가장 짧은 문자거리
+- [x] 5. 문자열 압축
+
+</details>
+
+<details>
+<summary>
+Section4 - 완전탐색(블루투포스)
+</summary>
+
+- [x] 1. 자릿수의 합
+- [x] 2. 뒤집은 소수
+- [x] 3. 멘토링 💊
+
+</details>
+
+<details>
+<summary>
+Section5 - 효율성(투포인터 알고리즘, 슬라이딩윈도우, 해쉬)
+</summary>
+</details>
+
+<details>
+<summary>
+Section6 - 자료구조(스택, 큐)
+</summary>
+</details>
+
+<details>
+<summary>
+Section7 - 정렬과 그리디, 결정알고리즘(이분검색)
+</summary>
+</details>
+
+<details>
+<summary>
+Section8 - 재귀함수와 완전탐색(DFS:깊이우선탐색)
+</summary>
+</details>
+
+<details>
+<summary>
+Section9 - 그래프와 탐색(DFS, BFS:넓이우선탐색)
+</summary>
+</details>
+
+<details>
+<summary>
+Section10 - Dynamic programming(동적계획법 )
+</summary>
+</details>
 
 #### Quotas Check ✅
 
