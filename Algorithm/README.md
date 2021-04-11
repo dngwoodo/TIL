@@ -84,6 +84,10 @@ Section4 - 완전탐색(블루투포스)
 <summary>
 Section5 - 효율성(투포인터 알고리즘, 슬라이딩윈도우, 해쉬)
 </summary>
+
+- [ ] 1. 두 배열 합치기
+- [ ] 2. 공통원소 구하기
+
 </details>
 
 <details>
