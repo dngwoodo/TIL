@@ -129,15 +129,16 @@ Section10 - Dynamic programming(동적계획법 )
 - 할당량을 채우지 못해도 매일 하는 것이 중요하기 때문에 최대한 매일 풀 수 있도록 하는것이 목표
 
 |    날짜     | [dongwoo](./README.md) | [uriyang](https://github.com/uriyang/Algorithm) | [ildang100](https://github.com/ildang100/team_study_algorithm) |
-| :---------: | :--------------------: | :---------------------------------------------: | -------------------------------------------------------------- |
-| 20201-04-05 |     Section2-7 ✅      |                 Section 2-5 ✅                  | Section 3-2 ✅                                                 |
-| 20201-04-06 |     Section3-3 ✅      |                 Section 2-6 ✅                  | Section 3-4 ✅                                                 |
-| 20201-04-07 |     Section3-5 ✅      |                 Section 2-7 ✅                  | Section 4-2 ✅                                                 |
-| 20201-04-08 |     Section4-2 ✅      |                 Section 3-2 ✅                  | Section 4-4 ✅                                                 |
-| 20201-04-09 |     Section4-3 ✅      |                 Section 3-3 ✅                  | Section 4-5 ✅                                                 |
-| 20201-04-10 |     Section4-5 ✅      |                      휴식                       | Section 5-2 ✅                                                 |
-| 20201-04-11 |     Section5-2 ✅      |                      휴식                       | Section 5-4 ✅                                                 |
-| 20201-04-12 |       Section5-4       |                   Section 3-4                   | Section 5-6                                                    |
+| :---------: | :--------------------: | :---------------------------------------------: | :------------------------------------------------------------: |
+| 20201-04-05 |     Section2-7 ✅      |                 Section 2-5 ✅                  |                         Section 3-2 ✅                         |
+| 20201-04-06 |     Section3-3 ✅      |                 Section 2-6 ✅                  |                         Section 3-4 ✅                         |
+| 20201-04-07 |     Section3-5 ✅      |                 Section 2-7 ✅                  |                         Section 4-2 ✅                         |
+| 20201-04-08 |     Section4-2 ✅      |                 Section 3-2 ✅                  |                         Section 4-4 ✅                         |
+| 20201-04-09 |     Section4-3 ✅      |                 Section 3-3 ✅                  |                         Section 4-5 ✅                         |
+| 20201-04-10 |     Section4-5 ✅      |                      휴식                       |                         Section 5-2 ✅                         |
+| 20201-04-11 |     Section5-2 ✅      |                      휴식                       |                         Section 5-4 ✅                         |
+| 20201-04-12 |     Section5-4 ✅      |                 Section 3-4 ✅                  |                           과제 준비                            |
+| 20201-04-13 |       Section5-6       |                   Section 3-5                   |                           과제 준비                            |
 
 #### Resources
 
