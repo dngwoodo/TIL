@@ -138,7 +138,8 @@ Section10 - Dynamic programming(동적계획법 )
 | 20201-04-10 |     Section4-5 ✅      |                      휴식                       |                         Section 5-2 ✅                         |
 | 20201-04-11 |     Section5-2 ✅      |                      휴식                       |                         Section 5-4 ✅                         |
 | 20201-04-12 |     Section5-4 ✅      |                 Section 3-4 ✅                  |                           과제 준비                            |
-| 20201-04-13 |       Section5-6       |                   Section 3-5                   |                           과제 준비                            |
+| 20201-04-13 |        야근 ❌         |                 Section 3-5 ✅                  |                           과제 준비                            |
+| 20201-04-13 |       Section5-6       |                   Section 4-1                   |                           과제 준비                            |
 
 #### Resources
 
