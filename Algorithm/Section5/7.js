@@ -24,9 +24,48 @@
 // ▣ 출력예제 2
 // NO
 
+// 푼 시간: 25분
+
+// 내 풀이: for문을 3개를 썻는데 조금만 더 생각하면 2개로 줄일 수 있었음
+// function solution(str1, str2) {
+//   let answer = "YES";
+//   const stringHash = new Map();
+
+//   for (const x of str1) {
+//     if (!stringHash.has(x)) stringHash.set(x, 1);
+//     else stringHash.set(x, stringHash.get(x) + 1);
+//   }
+
+//   for (const x of str2) {
+//     if (!stringHash.has(x)) return "NO";
+//     else stringHash.set(x, stringHash.get(x) - 1);
+//   }
+
+//   for (const [_, value] of stringHash) {
+//     if (value !== 0) return "NO";
+//   }
+
+//   return answer;
+// }
+
+// let a = "abaCC"; // a2 b1 C2
+// let b = "Caaab"; // a3 b1 C1
+// console.log(solution(a, b));
+
+// 강의 풀이
 function solution(str1, str2) {
   let answer = "YES";
-
+  let sH = new Map();
+  for (let x of str1) {
+    if (sH.has(x)) sH.set(x, sH.get(x) + 1);
+    else sH.set(x, 1);
+  }
+  for (let x of str2) {
+    // NOTE: 이 부분이 for문 하나를 줄 일수 있는 부분
+    // NOTE: for문이 도는데 sH.get(x) === 0 이라면 -1이 되므로 무조건 NO 출력
+    if (!sH.has(x) || sH.get(x) == 0) return "NO";
+    sH.set(x, sH.get(x) - 1);
+  }
   return answer;
 }
 
