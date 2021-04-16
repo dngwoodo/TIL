@@ -100,6 +100,10 @@ Section5 - 효율성(투포인터 알고리즘, 슬라이딩윈도우, 해쉬)
 <summary>
 Section6 - 자료구조(스택, 큐)
 </summary>
+
+- [ ] 1. 올바른 괄호
+- [ ] 2. 괄호문자제거
+
 </details>
 
 <details>
