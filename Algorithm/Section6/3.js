@@ -1,8 +1,25 @@
 // 크레인 인형뽑기(카카오 기출)
 // 문제: pdf 참조
 
+// 푼 시간: 40분
 function solution(board, moves){
-  let answer=0;    
+  let answer=0;
+  let stack=[];
+  moves.forEach(pos => {
+      for(let i=0; i<board.length; i++){
+          if(board[i][pos-1]!==0){
+              let tmp=board[i][pos-1];
+              board[i][pos-1]=0;
+              if(tmp===stack[stack.length-1]){
+                  stack.pop();
+                  answer+=2;
+              }
+              else stack.push(tmp);
+              break;
+          }
+      }
+  });
+                  
   return answer;
 }
 
