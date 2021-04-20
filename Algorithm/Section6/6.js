@@ -17,14 +17,20 @@
 // 첫 줄에 마지막 남은 왕자의 번호를 출력합니다.
 
 // ▣ 입력예제 1
-// 83
+// 8 3
 
 // ▣ 출력예제 1
 // 7
 
+// 푼 시간: 40분, GG
 function solution(n, k) {
   let answer;
-
+  let queue = Array.from({ length: n }, (v, i) => i + 1); // Generate a sequence of numbers(몰랐던 부분)
+  while (queue.length) {
+    for (let i = 1; i < k; i++) queue.push(queue.shift()); // 앞에 부분 제거하고 뒤에 다시 푸쉬(즉, 차례가 지나면 뒤로 보냄)
+    queue.shift(); // 앞에꺼 제거 (k을 부른 아이 제거)
+    if (queue.length === 1) answer = queue.shift(); // length가 1이라면 공주를 구하러 갈 수 있으므로 answer에 추가
+  }
   return answer;
 }
 
