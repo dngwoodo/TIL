@@ -114,8 +114,10 @@ Section6 - 자료구조(스택, 큐)
 <details>
 <summary>
 Section7 - 정렬과 그리디, 결정알고리즘(이분검색)
-- [ ] 1. 선택 정렬 
 </summary>
+
+- [ ] 1. 선택 정렬 
+
 </details>
 
 <details>
