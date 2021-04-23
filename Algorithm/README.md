@@ -107,12 +107,14 @@ Section6 - 자료구조(스택, 큐)
 - [x] 4. 후위식 연산(postfix)
 - [x] 5. 쇠막대기 💊
 - [x] 6. 공주 구하기 💊
+- [ ] 7. 교육과정 설계
 
 </details>
 
 <details>
 <summary>
 Section7 - 정렬과 그리디, 결정알고리즘(이분검색)
+- [ ] 1. 선택 정렬 
 </summary>
 </details>
 
@@ -158,7 +160,7 @@ Section10 - Dynamic programming(동적계획법 )
 | 20201-04-18 |     Section6-4 ✅      |                      휴식                       |                         Section 6-2 ✅                         |
 | 20201-04-19 |     Section6-5 ✅      |                 Section 4-4 ✅                  |                         Section 6-4 ✅                         |
 | 20201-04-20 |     Section6-6 ✅      |                 Section 5-1 ✅                  |                         Section 6-5 ❌                         |
-| 20201-04-21 |       Section6-7       |                   Section 5-3                   |                          Section 6-5                           |
+| 20201-04-21 |     Section6-7 ✅      |                 Section 5-3 ✅                  |                         Section 6-5 ✅                         |
 
 #### Resources
 
