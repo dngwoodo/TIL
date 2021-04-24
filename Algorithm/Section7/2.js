@@ -14,11 +14,22 @@
 // ▣ 출력예제 1
 // 5 7 11 13 15 23
 
+// 푼 시간 : 10분
+
+// 내 풀이: 버블정렬이 무엇인지 부터 알아보고 풀이 시작.
+// 버블 정렬: 서로 인접한 두 원소를 검사하여 정렬하는 알고리즘
+// 인접한 2개의 레코드를 비교하여 크기가 순서대로 되어 있지 않으면 서로 교환한다.
+// 이렇게 비교하다보면 가장 크거나 작은 데이터는 마지막으로 밀려나게 된다(즉, 마지막 데이터들은 비교할필요없음)
+// 참고 사이트: https://gmlwjd9405.github.io/2018/05/06/algorithm-bubble-sort.html
+
 function solution(arr) {
   let answer = arr;
-
+  for (let i = 0; i < arr.length - 1; i++) {
+    for (let j = 0; j < arr.length - i - 1; j++) {
+      if (arr[j] > arr[j + 1]) {
+        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+      }
+    }
+  }
   return answer;
 }
-
-let arr = [13, 5, 11, 7, 23, 15];
-console.log(solution(arr));
