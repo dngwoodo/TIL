@@ -15,19 +15,52 @@
 // ▣ 출력설명
 // 수업설계가 잘된 것이면 “YES", 잘못된 것이면 ”NO“를 출력합니다.
 
-// ▣ 입력예제 1 
+// ▣ 입력예제 1
 // CBA
 // CBDAGE
 
-// ▣ 출력예제 1 
+// ▣ 출력예제 1
 // YES
 
-function solution(need, plan){
-  let answer="YES";
-  
+// 내 풀이: 큐를 사용하지 않음
+// function solution(need, plan) {
+//   let answer = "YES";
+//   let index = 0;
+//   for (let i = 0; i < need.length; i++) {
+//     const currentIndex = plan.split("").findIndex((v) => v === need[i]);
+//     if (index > currentIndex || currentIndex === "undefined") {
+//       answer = "NO";
+//       break;
+//     }
+//     index = currentIndex;
+//   }
+//   return answer;
+// }
+
+// let a = "CBA";
+// let b = "CBDGAE";
+// console.log(solution(a, b));
+
+// 강의 풀이
+function solution(need, plan) {
+  let answer = "YES";
+
+  // NOTE: ["C", "B", "A"]
+  let queue = need.split("");
+
+  // NOTE: plan의 값이 큐안에 있다면 큐를 shift하면서 차례를 맞게 수강했는지 체크하는 로직
+  for (let x of plan) {
+    if (queue.includes(x)) {
+      // NOTE: 큐에서 뺀 값이 x랑 맞지 않을경우 NO
+      if (x !== queue.shift()) return "NO";
+    }
+  }
+
+  // NOTE: 큐에 데이터가 남아있다면 NO
+  if (queue.length > 0) return "NO";
   return answer;
 }
 
-let a="CBA";
-let b="CBDAGE";
+let a = "CBA";
+let b = "CBDAGE";
 console.log(solution(a, b));
