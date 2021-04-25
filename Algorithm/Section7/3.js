@@ -16,9 +16,57 @@
 // ▣ 출력예제 1
 // -3 -2 -6 1 2 3 5 6
 
+// 푼 시간: 10분
+
+// 내 풀이
+// function solution(arr) {
+//   let answer = [];
+
+//   for (let i = 0; i < arr.length; i++) {
+//     if (arr[i] < 0) answer.unshift(arr[i]);
+//     else answer.push(arr[i]);
+//   }
+//   return answer;
+// }
+
+// let arr = [1, 2, 3, -3, -2, 5, 6, -6];
+// console.log(solution(arr));
+
+// 강의 풀이 1
 function solution(arr) {
+  let answer = arr;
+  // NOTE: 버블 정렬 사용
+  for (let i = 0; i < arr.length - 1; i++) {
+    for (let j = 0; j < arr.length - i - 1; j++) {
+      // NOTE: arr[j]가 양수이고 arr[j+1]이 음수 일 경우에만 자리 체인지
+      // NOTE: 정렬을 할때 여기 조건문만 잘 조절하면 버블 정렬로 대부분 할 수 있을 듯
+      if (arr[j] > 0 && arr[j + 1] < 0) {
+        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+      }
+      console.log(arr);
+    }
+  }
   return answer;
 }
 
 let arr = [1, 2, 3, -3, -2, 5, 6, -6];
 console.log(solution(arr));
+
+// 강의 풀이 2
+// function solution(arr) {
+//   let answer = [];
+
+//   // NOTE: 양수인 아이들을 먼저 대입한다
+//   for (let x of arr) {
+//     if (x < 0) answer.push(x);
+//   }
+
+//   // NOTE: 음수인 아이들은 나중에 대입한다
+//   for (let x of arr) {
+//     if (x > 0) answer.push(x);
+//   }
+//   return answer;
+// }
+
+// let arr = [1, 2, 3, -3, -2, 5, 6, -6];
+// console.log(solution(arr));
