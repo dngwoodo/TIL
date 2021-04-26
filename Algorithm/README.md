@@ -119,7 +119,7 @@ Section7 - 정렬과 그리디, 결정알고리즘(이분검색)
 - [x] 1. 선택 정렬
 - [x] 2. 버블 정렬
 - [x] 3. 구글 인터뷰(Special Sort)
-- [ ] 4. 삽입 정렬
+- [x] 4. 삽입 정렬
 - [ ] 5. Least Recently Used(카카오 캐시 문제 변형)
 
 </details>
