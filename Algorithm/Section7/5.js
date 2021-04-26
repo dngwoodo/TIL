@@ -27,8 +27,50 @@
 // ▣ 출력예제 1
 // 75326
 
+// 푼 시간: 40분
+
+// 내 풀이
+// function solution(size, arr) {
+//   let answer = Array.from({ length: size }, () => 0); // [0, 0, 0, 0, 0] 생성
+//   for (let i = 0; i < arr.length; i++) {
+//     // NOTE: 처음 들어온 아이는 무조건 제일 앞에 넣는다.
+//     if (!answer.includes(arr[i])) {
+//       answer.unshift(arr[i]);
+//       if (answer.length > 5) answer.pop();
+//     } else {
+//       // NOTE: 배열에 있는 아이가 들어오면 제일 첫번째로 넣고 한칸씩 밀리게 된다.
+//       for (let j = answer.indexOf(arr[i]); j > 0; j--)
+//         [answer[j], answer[j - 1]] = [answer[j - 1], answer[j]];
+//     }
+//     console.log(answer);
+//   }
+
+//   return answer;
+// }
+
+// let arr = [1, 2, 3, 2, 6, 2, 3, 5, 7];
+// console.log(solution(5, arr));
+
+// 강의 풀이
 function solution(size, arr) {
   let answer = Array.from({ length: size }, () => 0);
+  arr.forEach((x) => {
+    let pos = -1;
+    for (let i = 0; i < size; i++) if (x === answer[i]) pos = i;
+
+    // NOTE: Cache missing(같은 값이 없을 떄)
+    if (pos === -1) {
+      for (let i = size - 1; i >= 1; i--) {
+        answer[i] = answer[i - 1];
+      }
+    } else {
+      // NOTE: Cache Hit(같은 값이 있을 때)
+      for (let i = pos; i >= 1; i--) {
+        answer[i] = answer[i - 1];
+      }
+    }
+    answer[0] = x;
+  });
 
   return answer;
 }
