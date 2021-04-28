@@ -121,6 +121,7 @@ Section7 - 정렬과 그리디, 결정알고리즘(이분검색)
 - [x] 3. 구글 인터뷰(Special Sort)
 - [x] 4. 삽입 정렬
 - [x] 5. Least Recently Used(카카오 캐시 문제 변형) 💊
+- [ ] 6. 장난꾸러기 현수
 
 </details>
 
