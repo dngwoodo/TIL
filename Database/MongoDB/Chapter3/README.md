@@ -1,8 +1,8 @@
-## Chapter3 도큐먼트 생성, 갱신 삭제
+## Chapter3 도큐먼트 생성, 갱신, 삭제
 
-- [3.1 도큐먼트 삽입](#3.1-도큐먼트-삽입)
-- [3.2 도큐먼트 삭제](#3.2-도큐먼트-삭제)
-- [3.3 도큐먼트 갱신](#3.3-도큐먼트-갱신)
+- [3.1 도큐먼트 삽입](#31-도큐먼트-삽입)
+- [3.2 도큐먼트 삭제](#32-도큐먼트-삭제)
+- [3.3 도큐먼트 갱신](#33-도큐먼트-갱신)
 - [추가](#추가)
 
 #### 3.1 도큐먼트 삽입
@@ -93,157 +93,204 @@ db.movies.drop();
 
 - 부분 갱신
 
-```js
-// 부분 갱신에는 갱신 연산자(update operator) 사용
-// NOTE: 갱신 연산자란 키를 변경, 추가, 제거하고, 심지어 배열과 내장 도큐먼트를 조작하는 복잡한 갱신 연산을 지정하는 데 사용하는 특수키이다
+  ```js
+  // 부분 갱신에는 갱신 연산자(update operator) 사용
+  // NOTE: 갱신 연산자란 키를 변경, 추가, 제거하고, 심지어 배열과 내장 도큐먼트를 조작하는 복잡한 갱신 연산을 지정하는 데 사용하는 특수키이다
 
-// NOTE: $set 제한자(modifier)
-// NOTE: 도큐먼트 필드 값 변경 및 생성 가능
-// NOTE: 도큐먼트 필드 값의 데이터형 변경 가능
-// NOTE: 서브 도큐먼트의 데이터도 변경 가능
-db.users.insertOne({ name: "joe", sex: "male" });
-db.users.updateOne({ name: "joe" }, { $set: { "favorite book": "없음" } }); // favorite book 키는 없으므로 추가 됨
-db.users.updateOne({ name: "joe" }, { $set: { "favorite book": "진짜 없음" } }); // 필드 값 변경
-db.users.updateOne(
-  { name: "joe" },
-  { $set: { "favorite book": ["없음", "진짜 없음"] } }
-); // 필드 값 데이터형 변경
+  // NOTE: $set 제한자(modifier)
+  // NOTE: 도큐먼트 필드 값 변경 및 생성 가능
+  // NOTE: 도큐먼트 필드 값의 데이터형 변경 가능
+  // NOTE: 서브 도큐먼트의 데이터도 변경 가능
+  db.users.insertOne({ name: "joe", sex: "male" });
+  db.users.updateOne({ name: "joe" }, { $set: { "favorite book": "없음" } }); // favorite book 키는 없으므로 추가 됨
+  db.users.updateOne(
+    { name: "joe" },
+    { $set: { "favorite book": "진짜 없음" } }
+  ); // 필드 값 변경
+  db.users.updateOne(
+    { name: "joe" },
+    { $set: { "favorite book": ["없음", "진짜 없음"] } }
+  ); // 필드 값 데이터형 변경
 
-// NOTE: $unset 제한자(modifier)
-// NOTE: 필드 값 제거
-// NOTE: 1이라는 값은 그냥 몽고디비에서 json/bson 오브젝트를 구별하기 위해 사용된다. 아무 값이나 넣어줘도 된다
-// https://stackoverflow.com/questions/7652990/what-does-1-mean-in-unset-field-1 참조
-db.users.updateOne({ name: "joe" }, { $unset: { "favorite book": 1 } });
+  // NOTE: $unset 제한자(modifier)
+  // NOTE: 필드 값 제거
+  // NOTE: 1이라는 값은 그냥 몽고디비에서 json/bson 오브젝트를 구별하기 위해 사용된다. 아무 값이나 넣어줘도 된다
+  // https://stackoverflow.com/questions/7652990/what-does-1-mean-in-unset-field-1 참조
+  db.users.updateOne({ name: "joe" }, { $unset: { "favorite book": 1 } });
 
-// NOTE: $inc 제한자(modifier)
-// NOTE: 이미 존재하는 키의 값을 변경하거나 새 키를 생성하는 데 사용($set과 비슷)
-// NOTE: $set과 다른 점은 $inc는 숫자를 증감하기 위해 사용
-// NOTE: int, long, double, decimal 타입 값에만 사용가능
-db.users.updateOne({ name: "joe" }, { $inc: { age: 1 } }); // age 필드 생성
-db.users.updateOne({ name: "joe" }, { $inc: { age: 1 } }); // age값 1증가(age: 2)
+  // NOTE: $inc 제한자(modifier)
+  // NOTE: 이미 존재하는 키의 값을 변경하거나 새 키를 생성하는 데 사용($set과 비슷)
+  // NOTE: $set과 다른 점은 $inc는 숫자를 증감하기 위해 사용
+  // NOTE: int, long, double, decimal 타입 값에만 사용가능
+  db.users.updateOne({ name: "joe" }, { $inc: { age: 1 } }); // age 필드 생성
+  db.users.updateOne({ name: "joe" }, { $inc: { age: 1 } }); // age값 1증가(age: 2)
 
-// 배열 연산자(array operator) 시용
-// NOTE: 배열에 데이터를 생성하고 추가 가능
+  // 배열 연산자(array operator) 시용
+  // NOTE: 배열에 데이터를 생성하고 추가 가능
 
-// NOTE: $push 연산자
-// NOTE: 배열이 없으면 만들어서 추가
-// NOTE: 배열이 있으면 거기에 추가
-// NOTE: $each, $slice, $sort와 같이 사용가능
-db.users.insertOne({ name: "joe", sex: "male" });
-db.users.updateOne(
-  { name: "joe" },
-  { $set: { "favorite book": ["진짜 없음", "없음"] } }
-);
-db.users.updateOne(
-  { name: "joe" },
-  { $push: { "favorite book": "진짜 진짜 진짜 없음" } }
-); // 배열 값추가
-// db.users.updateOne({ name: "joe" }, { $push: { "favorite book": [1, 2, 3] } }); // NOTE: 이렇게 넣으면 배열안에 배열이 들어감
-db.users.updateOne(
-  { name: "joe" },
-  { $push: { "favorite book": { $each: [11, 12, 13] } } }
-); // $each를 사용해서 각각의 값을 배열 안에 넣는다
+  // NOTE: $push 연산자
+  // NOTE: 배열이 없으면 만들어서 추가
+  // NOTE: 배열이 있으면 거기에 추가
+  // NOTE: $each, $slice, $sort와 같이 사용가능
+  db.users.insertOne({ name: "joe", sex: "male" });
+  db.users.updateOne(
+    { name: "joe" },
+    { $set: { "favorite book": ["진짜 없음", "없음"] } }
+  );
+  db.users.updateOne(
+    { name: "joe" },
+    { $push: { "favorite book": "진짜 진짜 진짜 없음" } }
+  ); // 배열 값추가
+  // db.users.updateOne({ name: "joe" }, { $push: { "favorite book": [1, 2, 3] } }); // NOTE: 이렇게 넣으면 배열안에 배열이 들어감
+  db.users.updateOne(
+    { name: "joe" },
+    { $push: { "favorite book": { $each: [11, 12, 13] } } }
+  ); // $each를 사용해서 각각의 값을 배열 안에 넣는다
 
-db.users.updateOne(
-  { name: "joe" },
-  {
-    $push: {
-      "favorite book": {
-        $each: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-        $slice: -10,
+  db.users.updateOne(
+    { name: "joe" },
+    {
+      $push: {
+        "favorite book": {
+          $each: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+          $slice: -10,
+        },
       },
-    },
-  }
-); // $slice를 사용해서 배열 갯수를 제한한다(양수면 앞에부터, 음수면 뒤에서부터 적용)
+    }
+  ); // $slice를 사용해서 배열 갯수를 제한한다(양수면 앞에부터, 음수면 뒤에서부터 적용)
 
-db.users.updateOne(
-  { name: "joe" },
-  {
-    $push: {
-      "favorite book": {
-        $each: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-        $slice: -10,
-        $sort: 1,
+  db.users.updateOne(
+    { name: "joe" },
+    {
+      $push: {
+        "favorite book": {
+          $each: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+          $slice: -10,
+          $sort: 1,
+        },
       },
-    },
-  }
-); // 오름차순 정렬 이후 앞에 부분은 삭제하고 뒤에 부분을 넣게 된다
+    }
+  ); // 오름차순 정렬 이후 앞에 부분은 삭제하고 뒤에 부분을 넣게 된다
 
-// NOTE: $addToSet 연산자
-// NOTE: 중복을 피해서 넣을 수 있다
-db.users.updateOne(
-  { name: "joe" },
-  {
-    $addToSet: {
-      "favorite book": {
-        $each: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+  // NOTE: $addToSet 연산자
+  // NOTE: 중복을 피해서 넣을 수 있다
+  db.users.updateOne(
+    { name: "joe" },
+    {
+      $addToSet: {
+        "favorite book": {
+          $each: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+        },
       },
-    },
-  }
-); // 중복은 피해서 들어가게 된다
+    }
+  ); // 중복은 피해서 들어가게 된다
 
-// NOTE: $pop 연산자
-db.users.updateOne(
-  { name: "joe" },
-  {
-    $pop: {
-      // NOTE: 양수 일 시 배열의 마지막부터 요소를 제거
-      // NOTE: 음수 일 시 처음부터 요소를 제거
-      "favorite book": 1,
-    },
-  }
-);
+  // NOTE: $pop 연산자
+  db.users.updateOne(
+    { name: "joe" },
+    {
+      $pop: {
+        // NOTE: 양수 일 시 배열의 마지막부터 요소를 제거
+        // NOTE: 음수 일 시 처음부터 요소를 제거
+        "favorite book": 1,
+      },
+    }
+  );
 
-// NOTE: $pull 연산자
-// NOTE: 조건에 맞는 모든 도큐먼트들을 삭제
-db.users.updateOne(
-  { name: "joe" },
-  {
-    $pull: {
-      // NOTE: 조건에 맞는 도큐먼트를 제거(3이라는 값을 가진 도큐먼트를 삭제)
-      "favorite book": 3,
-    },
-  }
-);
+  // NOTE: $pull 연산자
+  // NOTE: 조건에 맞는 모든 도큐먼트들을 삭제
+  db.users.updateOne(
+    { name: "joe" },
+    {
+      $pull: {
+        // NOTE: 조건에 맞는 도큐먼트를 제거(3이라는 값을 가진 도큐먼트를 삭제)
+        "favorite book": 3,
+      },
+    }
+  );
 
-// NOTE: 위치 연산자($)
-// NOTE: 첫번째 인자로 찾은 값의 위치를 기억했다가 두번째 인자에서 사용가능
-db.users.updateOne(
-  { name: "joe" },
-  {
-    $inc: {
-      "favorite book.0": 1, // NOTE: 0번째 인덱스의 배열 요소값을 1증가
-    },
-  }
-);
+  // NOTE: 위치 연산자($)
+  // NOTE: 첫번째 인자로 찾은 값의 위치를 기억했다가 두번째 인자에서 사용가능
+  db.users.updateOne(
+    { name: "joe" },
+    {
+      $inc: {
+        "favorite book.0": 1, // NOTE: 0번째 인덱스의 배열 요소값을 1증가
+      },
+    }
+  );
 
-db.users.updateOne(
-  { "favorite book": 4 },
-  {
-    $set: {
-      "favorite book.$": 10, // NOTE: 10으로 변경, "favorite book": 4라는 같은 값이 있다면 제일 첫번째 껏만 변경함
-    },
-  }
-);
+  db.users.updateOne(
+    { "favorite book": 4 },
+    {
+      $set: {
+        "favorite book.$": 10, // NOTE: 10으로 변경, "favorite book": 4라는 같은 값이 있다면 제일 첫번째 껏만 변경함
+      },
+    }
+  );
 
-// NOTE: arrayFilter 연산자
-// NOTE: elem이라는 식별자를 사용
-// NOTE: 반대표가 5표 이상인 댓글을 숨겨보자(책 p83 페이지 예제 참조)
-db.blog.updateOne(
-  { post: "post_id" },
-  { $set: { "comments.$[elem].hidden": true } }, // NOTE: 2. -5표 이하인 아이들의 요소에 hidden필드, true필드값 추가
-  {
-    arrayFilter: [{ "elem.votes": { $lte: -5 } }], // NOTE: 1. -5표 이하인 아이들을 찾음
-  }
-);
-```
+  // NOTE: arrayFilter 연산자
+  // NOTE: elem이라는 식별자를 사용
+  // NOTE: 반대표가 5표 이상인 댓글을 숨겨보자(책 p83 페이지 예제 참조)
+  db.blog.updateOne(
+    { post: "post_id" },
+    { $set: { "comments.$[elem].hidden": true } }, // NOTE: 2. -5표 이하인 아이들의 요소에 hidden필드, true필드값 추가
+    {
+      arrayFilter: [{ "elem.votes": { $lte: -5 } }], // NOTE: 1. -5표 이하인 아이들을 찾음
+    }
+  );
+  ```
 
 - 갱신 입력
 
-```js
+  ```js
+  // NOTE: upsert 옵션 (update + insert의 합성어)
+  // NOTE: 세번째 인자에 넣음
+  // NOTE: 수정 할 대상이 없는 경우 insert 동작을 수행할 수 있게 하는 옵션(새로운 도큐먼트 생성)
 
-```
+  // NOTE: $setnInsert 연산자
+  // NOTE: upsert 옵션을 이용했을 경우 insert 될 때의 필드를 설정한다
+  db.test.updateOne(
+    { author: "Park" },
+    {
+      $set: { title: "Example4" },
+      $setOnInsert: { price: 100 }, // NOTE: 만약 Insert 되는 상황이라면 이 필드도 추가한다
+    },
+    { upsert: true }
+  );
+
+  // NOTE: multi 옵션(updateMany 메소드를 사용하는 것과 같음)
+  // NOTE: 세번째 인자에 넣음
+  // NOTE: 여러개를 동시에 수정할 때 사용하는 옵션
+  db.test.insert([
+    { ttle: "Example1", author: "Lee", price: 200 },
+    { ttle: "Example2", author: "Lee", price: 300 },
+    { ttle: "Example3", author: "Lee", price: 400 },
+  ]);
+
+  db.test.update({}, { $rename: { ttle: "title" } }, { multi: true });
+
+  // NOTE: save(저장 셸 보조자, upsert 메소드)
+  // NOTE: save의 인자에 _id값을 주지 않으면 insert하고, _id값을 준다면 값을 갱신입력(upsert)을 실행한다
+  // NOTE: save가 없었다면 replaceOne을 사용했어야 한다.
+
+  // NOTE: findOneAndUpdate
+  // NOTE: 한번에 값을 찾고 바로 변경이 가능한 메소드이다.
+  // NOTE: 하지만 값을 반환할 때 변경전 값을 반환하므로 세번째 인자에 returnNewDocument 옵션을 사용한다
+
+  // NOTE: findOneAndReplace
+  // NOTE: 한번에 값을 찾고 바로 변경이 가능한 메소드이다.
+  // NOTE: 하지만 값을 반환할 때 변경전 값을 반환하므로 세번째 인자에 returnNewDocument 옵션을 사용한다
+
+  // NOTE: findOneAndDelete
+  // NOTE: 한번에 값을 찾고 바로 삭제가 가능한 메소드이다.
+  // NOTE: 삭제 된 도큐먼트를 반환한다
+  ```
 
 #### 추가
 
 - 현재 CRUD API의 목표는 모든 CRUD 작업의 의미론을 드라이버와 셸 전체에 걸쳐 일관되고 명확하게 하는 일이다. 즉 예전에 사용된 API들 보단 MongoDB 3.2 버전 이후로 나온 CRUD API를 사용하는 것이 좋다
+
+#### Resource
+
+[MongoDB Shell method를 사용한 CRUD의 기본](https://poiemaweb.com/mongdb-basics-shell-crud)

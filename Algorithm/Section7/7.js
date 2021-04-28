@@ -23,6 +23,7 @@
 // 2 7
 // 3 6
 
+// 푼 시간: 30초
 function solution(arr) {
   let answer = arr;
   arr.sort((a, b) => {
