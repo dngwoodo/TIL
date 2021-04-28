@@ -19,21 +19,35 @@
 // 9
 // 120 125 152 130 135 135 143 127 160
 
-// ▣ 출력예제 1 38
+// ▣ 출력예제 1
+// 3 8
 // 출력해설 : 키 정보 152가 현수이고, 127이 현수 짝꿍입니다.
 
 // ▣ 입력예제 2
-// 6s
+// 6
 // 120 130 150 150 130 150
 
 // ▣ 출력예제 2
-// 35
+// 3 5
 
+// 푼 시간: 40분, GG(너무 어렵게 생각해서 못품..)
+
+// 강의 풀이
 function solution(arr) {
   let answer = [];
+  // NOTE: 새로운 배열 생성
+  let sortArr = arr.slice();
 
+  // NOTE: 오름차순 정렬
+  sortArr.sort((a, b) => a - b);
+
+  // NOTE: 오름차순한 새로운 배열과 원래 배열 비교
+  for (let i = 0; i < arr.length; i++) {
+    // NOTE: 순번은 1번부터 시작하므로 +1을 시켜서 answer에 넣는다
+    if (arr[i] !== sortArr[i]) answer.push(i + 1);
+  }
   return answer;
 }
 
-let arr = [120, 125, 152, 130, 135, 135, 143, 127, 160];
+let arr = [120, 130, 150, 150, 130, 150];
 console.log(solution(arr));
