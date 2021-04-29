@@ -176,7 +176,8 @@ Section10 - Dynamic programming(동적계획법 )
 | 20201-04-25 |     Section7-3 ✅      |                      휴식                       |                         Section 7-2 ✅                         |
 | 20201-04-26 |     Section7-5 ✅      |                 Section 5-7 ✅                  |                         Section 7-4 ✅                         |
 | 20201-04-27 |     Section7-6 ✅      |                 Section 5-8 ✅                  |                         Section 7-5 ✅                         |
-| 20201-04-28 |       Section7-8       |                   Section 6-1                   |                          Section 7-6                           |
+| 20201-04-28 |     Section7-8 ✅      |                 Section 6-1 ✅                  |                         Section 7-6 ✅                         |
+| 20201-04-29 |      Section7-10       |                   Section 6-2                   |                          Section 7-8                           |
 
 #### Resources
 
