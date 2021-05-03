@@ -126,6 +126,7 @@ Section7 - 정렬과 그리디, 결정알고리즘(이분검색)
 - [x] 8. 회의실 배정
 - [x] 9. 결혼식
 - [x] 10. 이분검색
+- [ ] 11. 뮤직비디오(결정 알고리즘)
 
 </details>
 
@@ -182,9 +183,8 @@ Section10 - Dynamic programming(동적계획법 )
 | 20201-04-29 |     Section7-10 ✅     |                      휴식                       |                         Section 7-8 ✅                         |
 | 20201-04-30 |     Section7-11 ❌     |                 Section 6-2 ❌                  |                              휴식                              |
 | 20201-05-01 |     Section7-11 ❌     |                      휴식                       |                        Section 7-10 ❌                         |
-| 20201-05-02 |      Section7-11 ❌       |                   Section 6-2 ✅                  |                          Section 7-10 ✅                          |
+| 20201-05-02 |     Section7-11 ❌     |                 Section 6-2 ✅                  |                        Section 7-10 ✅                         |
 | 20201-05-03 |      Section7-11       |                   Section 6-3                   |                          Section 7-11                          |
-
 
 #### Resources
 
