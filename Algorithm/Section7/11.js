@@ -5,7 +5,7 @@
 // 즉, 1번 노래와 5번 노래를 같은 DVD에 녹화하기 위해서는 1번과 5번 사이의 모든 노래도 같은 DVD에 녹화해야 한다.
 // 또한 한 노래를 쪼개서 두 개의 DVD에 녹화하면 안된다.
 // 지니레코드 입장에서는 이 DVD가 팔릴 것인지 확신할 수 없기 때문에 이 사업에 낭비되는 DVD를 가급적 줄이려고 한다.
-// 고민 끝에 지니레코드는 M개의 DVD에 모든 동영상을 녹화하기 로 하였다. 이 때 DVD의 크기(녹화 가능한 길이)를 최소로 하려고 한다.
+// 고민 끝에 지니레코드는 M개의 DVD에 모든 동영상을 녹화하기로 하였다. 이 때 DVD의 크기(녹화 가능한 길이)를 최소로 하려고 한다.
 // 그리고 M개의 DVD는 모두 같은 크기여야 제조원가가 적게 들기 때문에 꼭 같은 크기로 해야 한다.
 
 // ▣ 입력설명
@@ -25,8 +25,42 @@
 // 설명 : 3개의 DVD용량이 17분짜리이면 (1, 2, 3, 4, 5) (6, 7), (8, 9) 이렇게 3개의 DVD로 녹음을 할 수 있다.
 // 17분 용량보다 작은 용량으로는 3개의 DVD에 모든 영상을 녹화할 수 없다.
 
+function count(songs, capacity) {
+  let cnt = 1;
+  let sum = 0;
+  for (let x of songs) {
+    // NOTE: capacity(DVD 용량) 체크를 해서 용량을 넘어가면 cnt++(DVD 생성)
+    // NOTE: capacity(DVD 용량) 체크를 해서 용량을 넘어가지 않으면 DVD 용량 계속 합산
+    if (sum + x > capacity) {
+      cnt++; // NOTE: DVD 생성
+      sum = x; // NOTE: 얘부터 다음아이 시작
+    } else sum += x; // NOTE: DVD 시간을 구하기 위해 계속 더해줌
+  }
+  return cnt; // NOTE: DVD 갯수 반환
+}
 function solution(m, songs) {
   let answer;
+  let lt = Math.max(...songs); // NOTE: 노래 길이 중 가장 긴 아이
+  let rt = songs.reduce((acc, cur) => acc + cur); // NOTE: 노래 길이를 전부 합친 수. 이분검색에서는 이 값은 커도 상관은 없음
+
+  // NOTE: 이분검색 로직은 외우자. lt가 rt보다 커질때 까지, 즉 이분 검색이 끝날때 까지 반복한다(결정 알고리즘 + 이분검색)
+  // NOTE: 최솟값을 구해야 되므로 처음에
+  // NOTE: 9 ~ 45에서 mid값 27 <- 2개(123456, 789)
+  // NOTE: 9 ~ 26에서 mid값 17 <- 3개(12345, 67, 89)
+  // NOTE: 9 ~ 16에서 mid값 12 <- 5개(1234, 56, 7, 8, 9)
+  // NOTE: 13 ~ 16에서 mid값 14 <- 5개(1234, 56, 7, 8, 9)
+  // NOTE: 15 ~ 16에서 mid값 15 <- 4개(12345, 67, 8, 9)
+  // NOTE: 17 ~ 16 이므로 종료
+  while (lt <= rt) {
+    let mid = parseInt((lt + rt) / 2);
+
+    // NOTE: DVD 갯수가 m 보다 작다면 answer에 mid를 넣고 rt를 mid - 1로 이동 (9 ~ 45, 27), (9 ~ 26, 17)
+    // NOTE: DVD 갯수가 m 보다 크다면 lt를 mid + 1로 이동(9 ~ 16, 12)
+    if (count(songs, mid) <= m) {
+      answer = mid;
+      rt = mid - 1;
+    } else lt = mid + 1;
+  }
 
   return answer;
 }
