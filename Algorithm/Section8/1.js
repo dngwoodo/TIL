@@ -14,6 +14,24 @@
 // ▣ 출력예제 1
 // 123
 
-function solution(n) {}
+// 푼 시간: 10분
+
+// 문제는 내가 풀었지만 함수이름과 매개변수 이름은 강의 풀이로 변경
+function solution(n) {
+  // NOTE: DFS란 깊이 우선 탐색이다.
+  // NOTE: 재귀 함수는 스택이란 곳에 스택 프레임이란것으로 쌓이게 된다.
+  // NOTE: 스택 프레임안에는 매개변수(L = 3), 지역변수, 복귀 주소를 가지고 있다.
+  // NOTE: DFS(L - 1)까지 실행되고 새로운 스택 프레임이 쌓이게 된다.
+  // NOTE: 그리고 if(L === 0) return을 만나서 함수가 종료되면 스택프레임이 pop된다
+  // NOTE: 이제 이전 스택 프레임으로 가서 마저 실행하고 함수가 종료되면 pop 된다. 계속 반복.
+  function DFS(L) {
+    if (L === 0) return;
+    else {
+      DFS(L - 1);
+      console.log(L);
+    }
+  }
+  DFS(n);
+}
 
 solution(3);
