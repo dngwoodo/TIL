@@ -135,7 +135,9 @@ Section7 - 정렬과 그리디, 결정알고리즘(이분검색)
 <summary>
 Section8 - 재귀함수와 완전탐색(DFS:깊이우선탐색)
 </summary>
-</details>
+
+- [ ] 1. 재귀 함수
+  </details>
 
 <details>
 <summary>
