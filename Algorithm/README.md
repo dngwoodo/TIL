@@ -169,7 +169,7 @@ Section10 - Dynamic programming(동적계획법 )
 | 20201-04-10 |     Section4-5 ✅      |                      휴식                       |                         Section 5-2 ✅                         |
 | 20201-04-11 |     Section5-2 ✅      |                      휴식                       |                         Section 5-4 ✅                         |
 | 20201-04-12 |     Section5-4 ✅      |                 Section 3-4 ✅                  |                           과제 준비                            |
-| 20201-04-13 |        야근 ❌         |                 Section 3-5 ✅                  |                           과제 준비                            |
+| 20201-04-13 |          야근          |                 Section 3-5 ✅                  |                           과제 준비                            |
 | 20201-04-14 |     Section5-6 ✅      |                 Section 4-1 ✅                  |                           과제 준비                            |
 | 20201-04-15 |     Section5-8 ✅      |                 Section 4-2 ✅                  |                           과제 준비                            |
 | 20201-04-16 |     Section6-2 ✅      |                 Section 4-3 ✅                  |                         Section 5-6 ✅                         |
@@ -191,7 +191,8 @@ Section10 - Dynamic programming(동적계획법 )
 | 20201-05-02 |     Section7-11 ❌     |                 Section 6-2 ✅                  |                        Section 7-10 ✅                         |
 | 20201-05-03 |     Section7-11 ✅     |                 Section 6-3 ❌                  |                        Section 7-11 ❌                         |
 | 20201-05-04 |     Section7-12 ✅     |                 Section 6-3 ✅                  |                        Section 7-11 ✅                         |
-| 20201-05-05 |       Section8-1       |                   Section 6-4                   |                              야근                              |
+| 20201-05-05 |     Section8-1 ✅      |                 Section 6-4 ✅                  |                              야근                              |
+| 20201-05-06 |       Section8-3       |                   Section 6-5                   |                              야근                              |
 
 #### Resources
 
