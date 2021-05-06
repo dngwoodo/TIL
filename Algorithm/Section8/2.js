@@ -13,10 +13,40 @@
 // ▣ 출력예제 1
 // 1011
 
+// 푼 시간: 25분
+// function solution(n) {
+//   let answer = "";
+//   function DFS(L) {
+//     if (L / 2 === 0) {
+//       if (L % 2 === 0) return;
+//       else {
+//         answer += L % 2;
+//         return;
+//       }
+//     }
+//     DFS(parseInt(L / 2));
+//     answer += L % 2;
+//   }
+
+//   DFS(n);
+//   return answer;
+// }
+
+// console.log(solution(8));
+
+// 강의 풀이: 코드가 훨씬 깔끔함
 function solution(n) {
   let answer = "";
+  function DFS(L) {
+    if (L === 0) return;
+    else {
+      DFS(parseInt(L / 2));
+      answer += L % 2;
+    }
+  }
 
+  DFS(n);
   return answer;
 }
 
-console.log(solution(11));
+console.log(solution(8));
