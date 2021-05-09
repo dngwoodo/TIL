@@ -194,7 +194,10 @@ Section10 - Dynamic programming(동적계획법 )
 | 20201-05-04 |     Section7-12 ✅     |                 Section 6-3 ✅                  |                        Section 7-11 ✅                         |
 | 20201-05-05 |     Section8-1 ✅      |                 Section 6-4 ✅                  |                              야근                              |
 | 20201-05-06 |     Section8-3 ✅      |                 Section 6-5 ✅                  |                              야근                              |
-| 20201-05-07 |       Section8-4       |                   Section 6-7                   |                              야근                              |
+| 20201-05-07 |     Section8-4 ✅      |                 Section 6-7 ✅                  |                        Section 7-12 ❌                         |
+| 20201-05-08 |          코테          |                      휴식                       |                              코테                              |
+| 20201-05-09 |          휴식          |                      휴식                       |                              휴식                              |
+| 20201-05-10 |       Section8-6       |                   Section7-2                    |                          Section 7-12                          |
 
 #### Resources
 
