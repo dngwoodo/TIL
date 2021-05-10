@@ -20,8 +20,24 @@
 // YES
 
 function solution(arr) {
-  let answer = "NO",
+  let answer = "NO";
+  let total = arr.reduce((arr, cur) => arr + cur, 0);
+  let n = arr.length;
 
+  function DFS(L, sum) {
+    if (flag) return;
+    if (L === n) {
+      if (total - sum === sum) {
+        answer = "YES";
+        flag = 1; // NOTE: 재귀를 계속 돌지 않도록 하는 플래그 변수
+      }
+    } else {
+      DFS(L + 1, sum + arr[L]);
+      DFS(L + 1, sum);
+    }
+  }
+
+  DFS(0, 0);
   return answer;
 }
 
