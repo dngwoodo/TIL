@@ -142,7 +142,7 @@ Section8 - 재귀함수와 완전탐색(DFS:깊이우선탐색)
 - [x] 4. 부분집합 구하기(DFS)
 - [x] 5. 합이 같은 부분집합(DFS : 아마존 인터뷰)
 - [x] 6. 바둑이 승차(DFS)
-- [x] 7. 바둑이 승차(DFS)
+- [ ] 7. 최대 점수 구하기
   </details>
 
 <details>
@@ -205,7 +205,8 @@ Section10 - Dynamic programming(동적계획법 )
 | 20201-05-12 |          휴가          |                      야근                       |                         Section 8-4 ✅                         |
 | 20201-05-13 |     Section8-7 ❌      |                  Section7-5 ✅                  |                         Section 8-5 ❌                         |
 | 20201-05-14 |          출장          |                  Section7-6 ❌                  |                         Section 8-6 ✅                         |
-| 20201-05-15 |       Section8-7       |                      휴식                       |                          Section 8-7                           |
+| 20201-05-15 |          휴식          |                      휴식                       |                         Section 8-7 ✅                         |
+| 20201-05-16 |       Section8-7       |                      휴식                       |                          Section 8-8                           |
 
 #### Resources
 
