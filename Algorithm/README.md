@@ -143,7 +143,9 @@ Section8 - 재귀함수와 완전탐색(DFS:깊이우선탐색)
 - [x] 5. 합이 같은 부분집합(DFS : 아마존 인터뷰)
 - [x] 6. 바둑이 승차(DFS)
 - [x] 7. 최대 점수 구하기
-  </details>
+- [ ] 8. 중복순열 구하기
+
+</details>
 
 <details>
 <summary>
