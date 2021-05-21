@@ -22,9 +22,23 @@
 // 3 3
 // 9
 
+// 푼 시간: 25분, GG
+// for문을 사용지 않는 이유는 m만큼 다중 포문이 계속 생기기 때문
 function solution(n, m) {
   let answer = [];
-
+  let tmp = Array.from({length: m}, () => 0);
+  function DFS(L) {
+    if(L === m){
+      answer.push(tmp.slice());
+    }
+    else{
+      for(let i = 1; i <= n; i++) {
+        tmp[L] = i;
+        DFS(L+1)
+      }
+    }
+    
+  }
   DFS(0);
   return answer;
 }
