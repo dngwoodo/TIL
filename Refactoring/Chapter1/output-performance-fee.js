@@ -1,6 +1,30 @@
 const invoices = require("./invoices.json");
 const plays = require("./plays.json");
 
+function amountFor(perf, play) {
+  let thisAmount = 0;
+
+  switch (play.type) {
+    case "tragedy":
+      thisAmount = 40000;
+      if (perf.audience > 30) {
+        thisAmount += 1000 * (perf.audience - 30);
+      }
+      break;
+    case "comedy":
+      thisAmount = 30000;
+      if (perf.audience > 20) {
+        thisAmount += 10000 + 500 * (perf.audience - 20);
+      }
+      thisAmount += 300 * perf.audience;
+      break;
+    default:
+      throw new Error(`알 수 없는 장르: ${play.type}`);
+  }
+
+  return thisAmount;
+}
+
 function statement(invoice, plays) {
   let totalAmount = 0; // 전체 공연료
   let volumeCredits = 0; // 포인트
@@ -13,25 +37,8 @@ function statement(invoice, plays) {
 
   for (let perf of invoice.performances) {
     const play = plays[perf.playID]; // e.g) { "name": "Hamlet", "type": "tragedy" }
-    let thisAmount = 0; // 공연료
 
-    switch (play.type) {
-      case "tragedy":
-        thisAmount = 40000;
-        if (perf.audience > 30) {
-          thisAmount += 1000 * (perf.audience - 30);
-        }
-        break;
-      case "comedy":
-        thisAmount = 30000;
-        if (perf.audience > 20) {
-          thisAmount += 10000 + 500 * (perf.audience - 20);
-        }
-        thisAmount += 300 * perf.audience;
-        break;
-      default:
-        throw new Error(`알 수 없는 장르: ${play.type}`);
-    }
+    let thisAmount = amountFor(perf, play);
 
     // 포인트를 적립한다.
     volumeCredits += Math.max(perf.audience - 30, 0);
