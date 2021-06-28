@@ -5,11 +5,6 @@ function statement(invoice, plays) {
   let totalAmount = 0; // 전체 공연료
   let volumeCredits = 0; // 포인트
   let result = `Statement for ${invoice.customer}\n`;
-  const format = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    minimumFactionDigits: 2,
-  }).format;
 
   function playFor(aPerformance) {
     return plays[aPerformance.playID];
@@ -50,6 +45,14 @@ function statement(invoice, plays) {
       result += Math.floor(aPerformance.audience / 5);
 
     return result;
+  }
+
+  function format(aNumber) {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      minimumFactionDigits: 2,
+    }).format(aNumber);
   }
 
   for (let perf of invoice.performances) {
