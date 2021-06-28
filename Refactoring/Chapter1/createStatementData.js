@@ -59,7 +59,7 @@ module.exports = function createStatementData(invoice, plays) {
     );
     const result = Object.assign({}, aPerformance); // 얕은 복사
 
-    result.play = playFor(result);
+    result.play = calculator.play;
     result.amount = calculator.amount;
     result.volumeCredits = calculator.volumeCredits;
 
