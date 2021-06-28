@@ -1,6 +1,10 @@
 const invoices = require("./invoices.json");
 const plays = require("./plays.json");
 
+function playFor(aPerformance) {
+  return plays[aPerformance.playID];
+}
+
 function amountFor(aPerformance, play) {
   let result = 0;
 
@@ -36,7 +40,7 @@ function statement(invoice, plays) {
   }).format;
 
   for (let perf of invoice.performances) {
-    const play = plays[perf.playID]; // e.g) { "name": "Hamlet", "type": "tragedy" }
+    const play = playFor(perf);
 
     let thisAmount = amountFor(perf, play);
 
