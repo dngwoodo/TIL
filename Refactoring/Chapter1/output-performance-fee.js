@@ -3,7 +3,6 @@ const plays = require("./plays.json");
 
 function statement(invoice, plays) {
   let totalAmount = 0; // 전체 공연료
-  let volumeCredits = 0; // 포인트
   let result = `Statement for ${invoice.customer}\n`;
 
   function playFor(aPerformance) {
@@ -63,6 +62,7 @@ function statement(invoice, plays) {
     totalAmount += amountFor(perf);
   }
 
+  let volumeCredits = 0; // 포인트
   for (let perf of invoice.performances) {
     volumeCredits += volumeCreditsFor(perf);
   }
