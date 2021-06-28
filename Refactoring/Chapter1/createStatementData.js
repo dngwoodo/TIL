@@ -1,6 +1,7 @@
 class PerformanceCalculator {
-  constructor(aPerformance) {
+  constructor(aPerformance, aPlay) {
     this.performances = aPerformance;
+    this.play = aPlay;
   }
 }
 
@@ -15,7 +16,10 @@ module.exports = function createStatementData(invoice, plays) {
   return statementData;
 
   function enrichPerformance(aPerformance) {
-    const calculator = new PerformanceCalculator(aPerformance);
+    const calculator = new PerformanceCalculator(
+      aPerformance,
+      playFor(aPerformance)
+    );
     const result = Object.assign({}, aPerformance); // 얕은 복사
 
     result.play = playFor(result);
