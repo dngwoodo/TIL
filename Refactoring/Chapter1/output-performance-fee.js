@@ -13,7 +13,7 @@ function statement(invoice, plays) {
     const result = Object.assign({}, aPerformance); // 얕은 복사
     result.play = playFor(result);
     result.amount = amountFor(result);
-    result.volume = volumeCreditsFor(result);
+    result.volumeCredits = volumeCreditsFor(result);
     return result;
   }
 
@@ -59,23 +59,11 @@ function statement(invoice, plays) {
   }
 
   function totalVolumeCredits(data) {
-    let result = 0;
-
-    for (let perf of data.performances) {
-      result += perf.volume;
-    }
-
-    return result;
+    return data.performances.reduce((total, p) => total + p.volumeCredits, 0);
   }
 
   function totalAmount(data) {
-    let result = 0;
-
-    for (let perf of data.performances) {
-      result += perf.amount;
-    }
-
-    return result;
+    return data.performances.reduce((total, p) => total + p.amount, 0);
   }
 }
 
