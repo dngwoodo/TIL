@@ -2,13 +2,16 @@ const invoices = require("./invoices.json");
 const plays = require("./plays.json");
 
 function statement(invoice, plays) {
-  return renderPlainText(invoice, plays);
+  const statementData = {};
+  statementData.customer = invoice.customer;
+  statementData.performances = invoice.performances;
+  return renderPlainText(statementData, plays);
 }
 
-function renderPlainText(invoice, plays) {
-  let result = `Statement for ${invoice.customer}\n`;
+function renderPlainText(data, plays) {
+  let result = `Statement for ${data.customer}\n`;
 
-  for (let perf of invoice.performances) {
+  for (let perf of data.performances) {
     // 청구 내역을 출력한다
     result += ` ${playFor(perf).name}: ${usd(amountFor(perf))} (${
       perf.audience
@@ -23,7 +26,7 @@ function renderPlainText(invoice, plays) {
   function totalAmount() {
     let result = 0;
 
-    for (let perf of invoice.performances) {
+    for (let perf of data.performances) {
       result += amountFor(perf);
     }
 
@@ -33,7 +36,7 @@ function renderPlainText(invoice, plays) {
   function totalVolumeCredits() {
     let result = 0;
 
-    for (let perf of invoice.performances) {
+    for (let perf of data.performances) {
       result += volumeCreditsFor(perf);
     }
 
