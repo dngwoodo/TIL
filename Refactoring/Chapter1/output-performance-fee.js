@@ -4,8 +4,13 @@ const plays = require("./plays.json");
 function statement(invoice, plays) {
   const statementData = {};
   statementData.customer = invoice.customer;
-  statementData.performances = invoice.performances;
+  statementData.performances = invoice.performances.map(enrichPerformance); // 저자는 최대한 데이터를 불변으로 사용
   return renderPlainText(statementData, plays);
+
+  function enrichPerformance(aPerformance) {
+    const result = Object.assign({}, aPerformance); // 얕은 복사
+    return result;
+  }
 }
 
 function renderPlainText(data, plays) {
