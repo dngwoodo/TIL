@@ -1,21 +1,18 @@
 # 리팩터링 2판 학습
 
-- [ ]  1주차
-    - [ ] Chapter1
-    - [ ] Chapter2
-    - [ ] Chapter3
-    - [ ] Chapter4
-    - [ ] Chapter5
-<br />
+- [ ] 1주차
+  - [ ] Chapter1
+  - [ ] Chapter2
+  - [ ] Chapter3
+  - [ ] Chapter4
+  - [ ] Chapter5
 - [ ] 2주차
   - [ ] Chapter6
   - [ ] Chapter7
-<br />
 - [ ] 3주차
   - [ ] Chapter8
   - [ ] Chapter9
   - [ ] Chapter10
-<br />
 - [ ] 4주차
   - [ ] Chapter11
   - [ ] Chapter12
