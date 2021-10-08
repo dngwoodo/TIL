@@ -25,7 +25,7 @@ function statement(invoice, plays) {
     result += ` ${playFor(performance).name}: ${format(amountFor(performance, playFor(performance)) / 100)} (${
       performance.audience
     }석)\n`;
-    totalAmount += amountFor(performance, playFor(performance));
+    totalAmount += amountFor(performance);
   }
 
   result += `총액: ${format(totalAmount / 100)}\n`;
