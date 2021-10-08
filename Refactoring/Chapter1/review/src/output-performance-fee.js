@@ -5,6 +5,7 @@
 
 const amountFor = require('./amountFor.test');
 const playFor = require('./playFor.test');
+const volumeCreditsFor = require('./volumeCreditsFor.test');
 
 function statement(invoice, plays) {
   let totalAmount = 0; // 전체 공연료
@@ -18,10 +19,7 @@ function statement(invoice, plays) {
 
   for (const performance of invoice.performances) {
     // 포인트를 적립한다.
-    volumeCredits += Math.max(performance.audience - 30, 0);
-
-    // 희극 관객 5명마다 추가 포인트를 제공한다.
-    if (playFor(performance).type === 'comedy') volumeCredits += Math.floor(performance.audience / 5);
+    volumeCredits += volumeCreditsFor(performance);
 
     // 청구 내역을 출력한다
     result += ` ${playFor(performance).name}: ${format(amountFor(performance, playFor(performance)) / 100)} (${
