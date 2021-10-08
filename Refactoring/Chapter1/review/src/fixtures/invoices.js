@@ -3,15 +3,15 @@ module.exports = [
     customer: 'BigCo',
     performances: [
       {
-        playID: 'hamlet',
+        playId: 'hamlet',
         audience: 55,
       },
       {
-        playID: 'as-like',
+        playId: 'as-like',
         audience: 35,
       },
       {
-        playID: 'othello',
+        playId: 'othello',
         audience: 40,
       },
     ],
