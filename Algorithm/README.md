@@ -145,6 +145,7 @@ Section8 - 재귀함수와 완전탐색(DFS:깊이우선탐색)
 - [x] 7. 최대 점수 구하기
 - [x] 8. 중복순열 구하기
 - [x] 9. 동전교환
+- [x] 10. 순열 구하기
 
 </details>
 
@@ -225,7 +226,7 @@ Section10 - Dynamic programming(동적계획법 )
 | 20201-05-29 |          휴가          |                      휴식                       |                         Section9-5 ✅                          |
 | 20201-05-30 |          휴가          |                      휴식                       |                         Section 9-6 ❌                         |
 | 20201-05-31 |     Section8-9 ❌      |                  Section8-4 ❌                  |                         Section 9-6 ❌                         |
-| 20201-10-12 |      Section8-10       |                                                 |                                                                |
+| 20201-10-12 |     Section8-10 ✅     |                                                 |                                                                |
 
 #### Resources
 
