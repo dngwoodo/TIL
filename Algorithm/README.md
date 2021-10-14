@@ -169,67 +169,68 @@ Section10 - Dynamic programming(동적계획법 )
 - 각자 푼 문제들은 깃헙에 정리
 - 할당량을 채우지 못해도 매일 하는 것이 중요하기 때문에 최대한 매일 풀 수 있도록 하는것이 목표
 
-|    날짜     | [dongwoo](./README.md) | [uriyang](https://github.com/uriyang/Algorithm) | [ildang100](https://github.com/ildang100/team_study_algorithm) |
-| :---------: | :--------------------: | :---------------------------------------------: | :------------------------------------------------------------: |
-| 20201-04-05 |     Section2-7 ✅      |                 Section 2-5 ✅                  |                         Section 3-2 ✅                         |
-| 20201-04-06 |     Section3-3 ✅      |                 Section 2-6 ✅                  |                         Section 3-4 ✅                         |
-| 20201-04-07 |     Section3-5 ✅      |                 Section 2-7 ✅                  |                         Section 4-2 ✅                         |
-| 20201-04-08 |     Section4-2 ✅      |                 Section 3-2 ✅                  |                         Section 4-4 ✅                         |
-| 20201-04-09 |     Section4-3 ✅      |                 Section 3-3 ✅                  |                         Section 4-5 ✅                         |
-| 20201-04-10 |     Section4-5 ✅      |                      휴식                       |                         Section 5-2 ✅                         |
-| 20201-04-11 |     Section5-2 ✅      |                      휴식                       |                         Section 5-4 ✅                         |
-| 20201-04-12 |     Section5-4 ✅      |                 Section 3-4 ✅                  |                           과제 준비                            |
-| 20201-04-13 |          야근          |                 Section 3-5 ✅                  |                           과제 준비                            |
-| 20201-04-14 |     Section5-6 ✅      |                 Section 4-1 ✅                  |                           과제 준비                            |
-| 20201-04-15 |     Section5-8 ✅      |                 Section 4-2 ✅                  |                           과제 준비                            |
-| 20201-04-16 |     Section6-2 ✅      |                 Section 4-3 ✅                  |                         Section 5-6 ✅                         |
-| 20201-04-17 |     Section6-3 ✅      |                      휴식                       |                         Section 5-8 ✅                         |
-| 20201-04-18 |     Section6-4 ✅      |                      휴식                       |                         Section 6-2 ✅                         |
-| 20201-04-19 |     Section6-5 ✅      |                 Section 4-4 ✅                  |                         Section 6-4 ✅                         |
-| 20201-04-20 |     Section6-6 ✅      |                 Section 5-1 ✅                  |                         Section 6-5 ❌                         |
-| 20201-04-21 |     Section6-7 ✅      |                 Section 5-3 ✅                  |                         Section 6-5 ✅                         |
-| 20201-04-22 |     Section7-1 ✅      |                 Section 5-4 ✅                  |                         Section 6-6 ✅                         |
-| 20201-04-23 |     Section7-2 ✅      |                 Section 5-5 ❌                  |                         Section 7-2 ❌                         |
-| 20201-04-24 |          휴식          |                      휴식                       |                              휴식                              |
-| 20201-04-25 |     Section7-3 ✅      |                      휴식                       |                         Section 7-2 ✅                         |
-| 20201-04-26 |     Section7-5 ✅      |                 Section 5-7 ✅                  |                         Section 7-4 ✅                         |
-| 20201-04-27 |     Section7-6 ✅      |                 Section 5-8 ✅                  |                         Section 7-5 ✅                         |
-| 20201-04-28 |     Section7-8 ✅      |                 Section 6-1 ✅                  |                         Section 7-6 ✅                         |
-| 20201-04-29 |     Section7-10 ✅     |                      휴식                       |                         Section 7-8 ✅                         |
-| 20201-04-30 |     Section7-11 ❌     |                 Section 6-2 ❌                  |                              휴식                              |
-| 20201-05-01 |     Section7-11 ❌     |                      휴식                       |                        Section 7-10 ❌                         |
-| 20201-05-02 |     Section7-11 ❌     |                 Section 6-2 ✅                  |                        Section 7-10 ✅                         |
-| 20201-05-03 |     Section7-11 ✅     |                 Section 6-3 ❌                  |                        Section 7-11 ❌                         |
-| 20201-05-04 |     Section7-12 ✅     |                 Section 6-3 ✅                  |                        Section 7-11 ✅                         |
-| 20201-05-05 |     Section8-1 ✅      |                 Section 6-4 ✅                  |                              야근                              |
-| 20201-05-06 |     Section8-3 ✅      |                 Section 6-5 ✅                  |                              야근                              |
-| 20201-05-07 |     Section8-4 ✅      |                 Section 6-7 ✅                  |                        Section 7-12 ❌                         |
-| 20201-05-08 |          코테          |                      휴식                       |                              코테                              |
-| 20201-05-09 |          휴식          |                      휴식                       |                              휴식                              |
-| 20201-05-10 |     Section8-5 ✅      |                  Section7-2 ✅                  |                         Section 8-2 ✅                         |
-| 20201-05-11 |     Section8-6 ✅      |                  Section7-3 ✅                  |                         Section 8-4 ❌                         |
-| 20201-05-12 |          휴가          |                      야근                       |                         Section 8-4 ✅                         |
-| 20201-05-13 |     Section8-7 ❌      |                  Section7-5 ✅                  |                         Section 8-5 ❌                         |
-| 20201-05-14 |          출장          |                  Section7-6 ✅                  |                         Section 8-6 ✅                         |
-| 20201-05-15 |          휴식          |                      휴식                       |                         Section 8-7 ✅                         |
-| 20201-05-16 |     Section8-7 ✅      |                      휴식                       |                         Section 8-8 ✅                         |
-| 20201-05-17 |     Section8-8 ❌      |                  Section7-8 ✅                  |                         Section 8-9 ✅                         |
-| 20201-05-18 |     Section8-8 ❌      |                  Section7-9 ❌                  |                        Section 8-10 ✅                         |
-| 20201-05-19 |     Section8-8 ❌      |                  Section7-9 ✅                  |                        Section 8-11 ✅                         |
-| 20201-05-20 |     Section8-8 ✅      |                 Section7-10 ✅                  |                              휴가                              |
-| 20201-05-21 | Section8-6 ~ 8 정리 ✅ |                 Section7-11 ✅                  |                              휴가                              |
-| 20201-05-22 |          휴식          |                      휴식                       |                              휴식                              |
-| 20201-05-23 |          휴식          |                      휴식                       |                        Section 8-12 ✅                         |
-| 20201-05-24 |          휴가          |                   Section7-12                   |                        Section 8-14 ✅                         |
-| 20201-05-25 |          휴가          |                 Section7-12 ✅                  |                         Section8-15 ✅                         |
-| 20201-05-26 |          휴가          |                  Section8-1 ✅                  |                         Section9-2 ✅                          |
-| 20201-05-27 |          휴가          |                  Section8-2 ✅                  |                         Section9-3 ✅                          |
-| 20201-05-28 |          휴가          |                  Section8-4 ❌                  |                         Section9-4 ✅                          |
-| 20201-05-29 |          휴가          |                      휴식                       |                         Section9-5 ✅                          |
-| 20201-05-30 |          휴가          |                      휴식                       |                         Section 9-6 ❌                         |
-| 20201-05-31 |     Section8-9 ❌      |                  Section8-4 ❌                  |                         Section 9-6 ❌                         |
-| 20201-10-12 |     Section8-10 ✅     |                                                 |                                                                |
-| 20201-10-14 |     Section8-12 ✅     |                                                 |                                                                |
+|    날짜     |      [dongwoo](./README.md)      | [uriyang](https://github.com/uriyang/Algorithm) | [ildang100](https://github.com/ildang100/team_study_algorithm) |
+| :---------: | :------------------------------: | :---------------------------------------------: | :------------------------------------------------------------: |
+| 20201-04-05 |          Section2-7 ✅           |                 Section 2-5 ✅                  |                         Section 3-2 ✅                         |
+| 20201-04-06 |          Section3-3 ✅           |                 Section 2-6 ✅                  |                         Section 3-4 ✅                         |
+| 20201-04-07 |          Section3-5 ✅           |                 Section 2-7 ✅                  |                         Section 4-2 ✅                         |
+| 20201-04-08 |          Section4-2 ✅           |                 Section 3-2 ✅                  |                         Section 4-4 ✅                         |
+| 20201-04-09 |          Section4-3 ✅           |                 Section 3-3 ✅                  |                         Section 4-5 ✅                         |
+| 20201-04-10 |          Section4-5 ✅           |                      휴식                       |                         Section 5-2 ✅                         |
+| 20201-04-11 |          Section5-2 ✅           |                      휴식                       |                         Section 5-4 ✅                         |
+| 20201-04-12 |          Section5-4 ✅           |                 Section 3-4 ✅                  |                           과제 준비                            |
+| 20201-04-13 |               야근               |                 Section 3-5 ✅                  |                           과제 준비                            |
+| 20201-04-14 |          Section5-6 ✅           |                 Section 4-1 ✅                  |                           과제 준비                            |
+| 20201-04-15 |          Section5-8 ✅           |                 Section 4-2 ✅                  |                           과제 준비                            |
+| 20201-04-16 |          Section6-2 ✅           |                 Section 4-3 ✅                  |                         Section 5-6 ✅                         |
+| 20201-04-17 |          Section6-3 ✅           |                      휴식                       |                         Section 5-8 ✅                         |
+| 20201-04-18 |          Section6-4 ✅           |                      휴식                       |                         Section 6-2 ✅                         |
+| 20201-04-19 |          Section6-5 ✅           |                 Section 4-4 ✅                  |                         Section 6-4 ✅                         |
+| 20201-04-20 |          Section6-6 ✅           |                 Section 5-1 ✅                  |                         Section 6-5 ❌                         |
+| 20201-04-21 |          Section6-7 ✅           |                 Section 5-3 ✅                  |                         Section 6-5 ✅                         |
+| 20201-04-22 |          Section7-1 ✅           |                 Section 5-4 ✅                  |                         Section 6-6 ✅                         |
+| 20201-04-23 |          Section7-2 ✅           |                 Section 5-5 ❌                  |                         Section 7-2 ❌                         |
+| 20201-04-24 |               휴식               |                      휴식                       |                              휴식                              |
+| 20201-04-25 |          Section7-3 ✅           |                      휴식                       |                         Section 7-2 ✅                         |
+| 20201-04-26 |          Section7-5 ✅           |                 Section 5-7 ✅                  |                         Section 7-4 ✅                         |
+| 20201-04-27 |          Section7-6 ✅           |                 Section 5-8 ✅                  |                         Section 7-5 ✅                         |
+| 20201-04-28 |          Section7-8 ✅           |                 Section 6-1 ✅                  |                         Section 7-6 ✅                         |
+| 20201-04-29 |          Section7-10 ✅          |                      휴식                       |                         Section 7-8 ✅                         |
+| 20201-04-30 |          Section7-11 ❌          |                 Section 6-2 ❌                  |                              휴식                              |
+| 20201-05-01 |          Section7-11 ❌          |                      휴식                       |                        Section 7-10 ❌                         |
+| 20201-05-02 |          Section7-11 ❌          |                 Section 6-2 ✅                  |                        Section 7-10 ✅                         |
+| 20201-05-03 |          Section7-11 ✅          |                 Section 6-3 ❌                  |                        Section 7-11 ❌                         |
+| 20201-05-04 |          Section7-12 ✅          |                 Section 6-3 ✅                  |                        Section 7-11 ✅                         |
+| 20201-05-05 |          Section8-1 ✅           |                 Section 6-4 ✅                  |                              야근                              |
+| 20201-05-06 |          Section8-3 ✅           |                 Section 6-5 ✅                  |                              야근                              |
+| 20201-05-07 |          Section8-4 ✅           |                 Section 6-7 ✅                  |                        Section 7-12 ❌                         |
+| 20201-05-08 |               코테               |                      휴식                       |                              코테                              |
+| 20201-05-09 |               휴식               |                      휴식                       |                              휴식                              |
+| 20201-05-10 |          Section8-5 ✅           |                  Section7-2 ✅                  |                         Section 8-2 ✅                         |
+| 20201-05-11 |          Section8-6 ✅           |                  Section7-3 ✅                  |                         Section 8-4 ❌                         |
+| 20201-05-12 |               휴가               |                      야근                       |                         Section 8-4 ✅                         |
+| 20201-05-13 |          Section8-7 ❌           |                  Section7-5 ✅                  |                         Section 8-5 ❌                         |
+| 20201-05-14 |               출장               |                  Section7-6 ✅                  |                         Section 8-6 ✅                         |
+| 20201-05-15 |               휴식               |                      휴식                       |                         Section 8-7 ✅                         |
+| 20201-05-16 |          Section8-7 ✅           |                      휴식                       |                         Section 8-8 ✅                         |
+| 20201-05-17 |          Section8-8 ❌           |                  Section7-8 ✅                  |                         Section 8-9 ✅                         |
+| 20201-05-18 |          Section8-8 ❌           |                  Section7-9 ❌                  |                        Section 8-10 ✅                         |
+| 20201-05-19 |          Section8-8 ❌           |                  Section7-9 ✅                  |                        Section 8-11 ✅                         |
+| 20201-05-20 |          Section8-8 ✅           |                 Section7-10 ✅                  |                              휴가                              |
+| 20201-05-21 |      Section8-6 ~ 8 정리 ✅      |                 Section7-11 ✅                  |                              휴가                              |
+| 20201-05-22 |               휴식               |                      휴식                       |                              휴식                              |
+| 20201-05-23 |               휴식               |                      휴식                       |                        Section 8-12 ✅                         |
+| 20201-05-24 |               휴가               |                   Section7-12                   |                        Section 8-14 ✅                         |
+| 20201-05-25 |               휴가               |                 Section7-12 ✅                  |                         Section8-15 ✅                         |
+| 20201-05-26 |               휴가               |                  Section8-1 ✅                  |                         Section9-2 ✅                          |
+| 20201-05-27 |               휴가               |                  Section8-2 ✅                  |                         Section9-3 ✅                          |
+| 20201-05-28 |               휴가               |                  Section8-4 ❌                  |                         Section9-4 ✅                          |
+| 20201-05-29 |               휴가               |                      휴식                       |                         Section9-5 ✅                          |
+| 20201-05-30 |               휴가               |                      휴식                       |                         Section 9-6 ❌                         |
+| 20201-05-31 |          Section8-9 ❌           |                  Section8-4 ❌                  |                         Section 9-6 ❌                         |
+| 20201-10-12 |          Section8-10 ✅          |                                                 |                                                                |
+| 20201-10-14 |          Section8-12 ✅          |                                                 |                                                                |
+| 20201-10-15 | Section8-11, Section8-12 복습 ✅ |                                                 |                                                                |
 
 #### Resources
 

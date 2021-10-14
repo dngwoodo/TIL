@@ -42,3 +42,5 @@ function solution(n, r) {
 }
 
 console.log(solution(33, 19));
+
+// 조합에서 1C0은 1이다.
