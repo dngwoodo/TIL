@@ -9,10 +9,17 @@ import static org.junit.jupiter.api.Assertions.*;
 class AppTest {
     @Test void testMultiplication() {
         Dollar five = new Dollar(5);
-        Dollar product = five.times(2);
 
-        assertEquals(10, product.amount);
-        product = five.times(3);
-        assertEquals(15, product.amount);
+        // assertEquals(10, product.amount);
+        assertEquals(new Dollar(10), five.times(2));
+        assertEquals(new Dollar(15), five.times(3));
+    }
+
+    @Test void testEquality() {
+        // 두 객체의 값이 같으면, 같은 객체
+        // 삼각측량을 사용한 이유
+        // 리팩토링을 어떻게 해야될지 모를 때 사용.
+        assertEquals(new Dollar(5), new Dollar(5));
+        assertNotEquals(new Dollar(5), new Dollar(6));
     }
 }
