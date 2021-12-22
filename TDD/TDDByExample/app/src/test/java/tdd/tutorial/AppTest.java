@@ -21,5 +21,18 @@ class AppTest {
         // 리팩토링을 어떻게 해야될지 모를 때 사용.
         assertEquals(new Dollar(5), new Dollar(5));
         assertNotEquals(new Dollar(5), new Dollar(6));
+
+        assertEquals(new Franc(5), new Franc(5));
+        assertNotEquals(new Franc(5), new Franc(6));
+
+        assertNotEquals(new Dollar(5), new Franc(5));
+    }
+
+    @Test void testFrancMultiplication() {
+        Franc five = new Franc(5);
+
+        // assertEquals(10, product.amount);
+        assertEquals(new Franc(10), five.times(2));
+        assertEquals(new Franc(15), five.times(3));
     }
 }

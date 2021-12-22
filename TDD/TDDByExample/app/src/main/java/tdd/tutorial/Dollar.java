@@ -4,9 +4,11 @@ package tdd.tutorial;
 // ~~amount를 private으로 만들기~~
 // ~~Dollar 부작용?~~
 // ~~Money 반올림~~
-// equals
+// ~~equals~~
 // Equal null
 // Equal object
+// ~~equal 공통~~
+// times 공통
 
 // 기본적인 개념은 다 알고시작해야된다.
 // 그래야 다음 할일이 생각난다.
@@ -14,21 +16,12 @@ package tdd.tutorial;
 
 // 값 객체
 
-public class Dollar {
-    private int amount;
-
+public class Dollar extends Money{
     Dollar(int number){
         amount = number;
     }
 
     public Dollar times(int multiplier) {
         return new Dollar(amount * multiplier);
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        Dollar dollar = (Dollar) object;
-
-        return amount == dollar.amount;
     }
 }
