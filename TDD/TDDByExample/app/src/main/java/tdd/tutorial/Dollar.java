@@ -17,11 +17,15 @@ package tdd.tutorial;
 // 값 객체
 
 public class Dollar extends Money{
-    Dollar(int number){
-        amount = number;
+    Dollar(int number, String currency){
+        super(number, currency);
     }
 
     public Dollar times(int multiplier) {
         return new Dollar(amount * multiplier);
     }
+
+//        '' // character
+//        "" // string
+//        return 'C'; // 이 아이는 타입이 char이다. '' 여기에는 문자 1개만 들어갈 수 있다.
 }

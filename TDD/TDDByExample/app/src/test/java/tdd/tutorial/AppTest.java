@@ -35,4 +35,11 @@ class AppTest {
         assertEquals(new Franc(10), five.times(2));
         assertEquals(new Franc(15), five.times(3));
     }
+
+    // 통화 개념을 도입하기 위한 테스트 코드.
+    @Test void testCurrency() {
+        // Dollar, Franc의 생성자를 동일하게 만들자!.
+        assertEquals("USD", Money.dollar(1).currency());
+        assertEquals("CHF", Money.franc(1).currency());
+    }
 }
