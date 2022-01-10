@@ -17,8 +17,8 @@ public class Money {
     }
 
     // 팩토리 메소드
-    public static Franc franc(int number) {
-        return new Franc(number, "CHF");
+    public static Money franc(int number) {
+        return new Money(number, "CHF");
     }
 
     @Override
