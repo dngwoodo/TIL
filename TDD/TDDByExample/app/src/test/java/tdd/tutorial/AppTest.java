@@ -8,32 +8,32 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AppTest {
     @Test void testMultiplication() {
-        Dollar five = new Dollar(5);
+        Money five = new Money(5, "USD");
 
         // assertEquals(10, product.amount);
-        assertEquals(new Dollar(10), five.times(2));
-        assertEquals(new Dollar(15), five.times(3));
+        assertEquals(new Money(10, "USD"), five.times(2));
+        assertEquals(Money.dollar(15), five.times(3));
     }
 
     @Test void testEquality() {
         // 두 객체의 값이 같으면, 같은 객체
         // 삼각측량을 사용한 이유
         // 리팩토링을 어떻게 해야될지 모를 때 사용.
-        assertEquals(new Dollar(5), new Dollar(5));
-        assertNotEquals(new Dollar(5), new Dollar(6));
+        assertEquals(Money.dollar(5), Money.dollar(5));
+        assertNotEquals(Money.dollar(5), Money.dollar(6));
 
-        assertEquals(new Franc(5), new Franc(5));
-        assertNotEquals(new Franc(5), new Franc(6));
+        assertEquals(Money.franc(5), Money.franc(5));
+        assertNotEquals(Money.franc(5), Money.franc(6));
 
-        assertNotEquals(new Dollar(5), new Franc(5));
+        assertNotEquals(Money.dollar(5), Money.franc(5));
     }
 
     @Test void testFrancMultiplication() {
-        Franc five = new Franc(5);
+        Money five = Money.franc(5);
 
         // assertEquals(10, product.amount);
-        assertEquals(new Franc(10), five.times(2));
-        assertEquals(new Franc(15), five.times(3));
+        assertEquals(Money.franc(10), five.times(2));
+        assertEquals(Money.franc(15), five.times(3));
     }
 
     // 통화 개념을 도입하기 위한 테스트 코드.
@@ -43,9 +43,56 @@ class AppTest {
         assertEquals("CHF", Money.franc(1).currency());
     }
 
-    @Test void testDifferentClassEquality(){
-        assertTrue(
-            new Money(10, "CHF").equals(new Franc(10, "CHF"))
-        );
+    // @Test void testDifferentClassEquality(){
+    //     assertTrue(
+    //         new Money(10, "CHF").equals(new Franc(10, "CHF"))
+    //     );
+    // }
+
+    //    @Test void testPlus() {
+    //        // $5 + $5 = $10
+    //        assertEquals(new Money(5, "USD").plus(new Money(5, "USD")),  new Money(10, "USD"));
+    //    }
+
+    @Test void simpleAddition() {
+        Money five = new Money(5, "USD");
+        Expression sum = five.plus(five);
+        Bank bank = new Bank();
+        Money reduced = bank.reduce(sum, "USD"); // USD로 계산해서 값을 반환
+        assertEquals(Money.dollar(10), reduced);
+    }
+
+    @Test void simplePlusReturnsSum() {
+        Money five = Money.dollar(5);
+        Expression result = five.plus(five);
+        Sum sum = (Sum) result;
+        assertEquals(five, sum.augend);
+        assertEquals(five, sum.addend);
+    }
+
+    // 통화를 제한하고 생각을 함.
+    @Test public void testReduceSum() {
+        Expression sum = Money.dollar(5).plus(Money.dollar(6));
+        Bank bank = new Bank();
+        Money usd = bank.reduce(sum, "USD");
+        assertEquals(Money.dollar(11), usd);
+    }
+
+    @Test public void testReduceMoney() {
+        Bank bank = new Bank();
+        Money result = bank.reduce(Money.dollar(1), "USD");
+        assertEquals(Money.dollar(1), result);
+    }
+
+    @Test public void testReduceMoneyDifferenceCurrency() {
+        Bank bank = new Bank();
+        bank.addRate("CHF", "USD", 2);
+        Money result = bank.reduce(Money.franc(2), "USD");
+        assertEquals(result, Money.dollar(1));
+    }
+
+    @Test public void testSameCurrencyRate() {
+        Bank bank = new Bank();
+        assertEquals(1, bank.rate("USD", "USD"));
     }
 }

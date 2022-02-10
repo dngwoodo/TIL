@@ -1,6 +1,6 @@
 package tdd.tutorial;
 
-public class Money {
+public class Money implements Expression {
     protected int amount;
     String currency;
 
@@ -12,8 +12,8 @@ public class Money {
     // 외부에서 franc, dollar 생성자를 직접 사용하는 경우를 없애기 위해서.
     // 외부 참조를 없앴다라고 한다. 이렇게 하면 Money라는 곳에 공통적으로 묶기 쉬워진다.
     // 팩토리 메소드
-    public static Dollar dollar(int number) {
-        return new Dollar(number);
+    public static Money dollar(int number) {
+        return new Money(number, "USD");
     }
 
     // 팩토리 메소드
@@ -48,5 +48,12 @@ public class Money {
     public String currency() {
         return currency;
     }
-}
 
+    public Expression plus(Money addend) {
+        return new Sum(this, addend);
+    }
+
+    public Money reduce(Bank bank, String to) {
+        return new Money(amount / bank.rate(this.currency, to), to);
+    }
+}
