@@ -20,10 +20,11 @@ const Input = forwardRef<
     id: string;
     label: string;
     defaultValue: string;
+    ariaInvalid: boolean;
     required: boolean;
   } & ReturnType<UseFormRegister<IFormValues>>
   >(({
-    id, label, defaultValue, required,
+    id, label, defaultValue, required, ariaInvalid,
     name, onChange, onBlur,
   }, ref) => (
     <div>
@@ -36,6 +37,7 @@ const Input = forwardRef<
         onChange={onChange}
         onBlur={onBlur}
         ref={ref}
+        aria-invalid={ariaInvalid}
       />
     </div>
   ));
@@ -72,18 +74,20 @@ export default function Profile() {
         label="First Name"
         defaultValue={firstName}
         {...register('firstName', { required: true })}
+        ariaInvalid={!!errors.firstName}
         required
       />
-      <p>{errors.firstName && 'First Name is required'}</p>
+      <p role="alert">{errors.firstName && 'First Name is required'}</p>
 
       <Input
         id="last-name"
         label="Last Name"
         defaultValue={lastName}
         {...register('lastName', { required: true })}
+        ariaInvalid={!!errors.firstName}
         required={false}
       />
-      <p>{errors.lastName && 'Last Name is required'}</p>
+      <p role="alert">{errors.lastName && 'Last Name is required'}</p>
 
       <button type="submit">제출</button>
     </form>

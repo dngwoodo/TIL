@@ -16,4 +16,8 @@ yarn dev
 
 [UI 라이브러리와 통합하는 법](https://react-hook-form.com/get-started)
 
+[전역 상태관리와 같이 사용하는 법](https://github.com/dngwoodo/TIL/commit/b35d9022ed8608079792c74be2a905ac87f78954)
+
+[에러 핸들링 하는 법](https://github.com/dngwoodo/TIL/commit/6dda26c67fd1f6845183b9cb58e66d1572fa3887)
+
 
