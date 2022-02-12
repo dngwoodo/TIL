@@ -44,6 +44,7 @@ export default function Profile() {
   const {
     register,
     handleSubmit,
+    formState: { errors },
   } = useForm<IFormValues>();
   const {
     firstName,
@@ -51,6 +52,7 @@ export default function Profile() {
     handleChangeProfile,
   } = useContext(ProfileContext)!;
 
+  // errors가 있을 경우 onSubmit 함수는 실행되지 않는다.
   const onSubmit: SubmitHandler<IFormValues> = (data) => {
     // { name: 'example', onBlur: fn, onChange: fn, ref: fn }
     // console.log(register('example'));
@@ -58,9 +60,10 @@ export default function Profile() {
     _.forEach(data, (value, key) => {
       handleChangeProfile({ name: key, value });
     });
-
-    console.log(data);
   };
+
+  // { firstName: { message: '', ref: input, type: 'required'} }
+  // console.log(errors);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -68,16 +71,19 @@ export default function Profile() {
         id="first-name"
         label="First Name"
         defaultValue={firstName}
-        {...register('firstName')}
+        {...register('firstName', { required: true })}
         required
       />
+      <p>{errors.firstName && 'First Name is required'}</p>
+
       <Input
         id="last-name"
         label="Last Name"
         defaultValue={lastName}
-        {...register('lastName')}
-        required
+        {...register('lastName', { required: true })}
+        required={false}
       />
+      <p>{errors.lastName && 'Last Name is required'}</p>
 
       <button type="submit">제출</button>
     </form>

@@ -1,6 +1,8 @@
 import Profile from './components/Profile';
 import ProfileProvider from './context/profile/ProfileProvider';
 
+import './App.css';
+
 export default function App() {
   return (
     <ProfileProvider>
