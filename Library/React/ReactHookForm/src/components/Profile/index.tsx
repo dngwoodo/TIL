@@ -1,47 +1,42 @@
-import { forwardRef } from 'react';
+import { forwardRef, useContext } from 'react';
 
 import {
-  Path, SubmitHandler, useForm, UseFormRegister,
+  useForm,
+  SubmitHandler,
+  UseFormRegister,
 } from 'react-hook-form';
 
+import _ from 'lodash';
+import ProfileContext from '../../context/profile/ProfileContext';
+
 interface IFormValues {
-  'First Name': string;
-  Age: number;
+  firstName: string;
+  lastName: string;
 }
 
-type InputProps = {
-  id: string;
-  label: Path<IFormValues>;
-  register: UseFormRegister<IFormValues>;
-  required: boolean;
-}
-
-function Input({
-  id, label, register, required,
-}: InputProps) {
-  return (
-    <div>
-      <label htmlFor={id}>{label}</label>
-      <input id={id} {...register(label, { required })} />
-    </div>
-  );
-}
-
-const Select = forwardRef<
-  HTMLSelectElement,
+const Input = forwardRef<
+  HTMLInputElement,
   {
     id: string;
     label: string;
+    defaultValue: string;
+    required: boolean;
   } & ReturnType<UseFormRegister<IFormValues>>
   >(({
-    id, onChange, onBlur, name, label,
+    id, label, defaultValue, required,
+    name, onChange, onBlur,
   }, ref) => (
     <div>
       <label htmlFor={id}>{label}</label>
-      <select id={id} name={name} ref={ref} onChange={onChange} onBlur={onBlur}>
-        <option value="20">20</option>
-        <option value="30">30</option>
-      </select>
+      <input
+        id={id}
+        defaultValue={defaultValue}
+        required={required}
+        name={name}
+        onChange={onChange}
+        onBlur={onBlur}
+        ref={ref}
+      />
     </div>
   ));
 
@@ -50,21 +45,39 @@ export default function Profile() {
     register,
     handleSubmit,
   } = useForm<IFormValues>();
+  const {
+    firstName,
+    lastName,
+    handleChangeProfile,
+  } = useContext(ProfileContext)!;
 
   const onSubmit: SubmitHandler<IFormValues> = (data) => {
     // { name: 'example', onBlur: fn, onChange: fn, ref: fn }
     // console.log(register('example'));
+
+    _.forEach(data, (value, key) => {
+      handleChangeProfile({ name: key, value });
+    });
 
     console.log(data);
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      {/* 1. label 값을 name값으로 사용해서 자식에서 register를 실행시킨다. */}
-      <Input id="first-name" label="First Name" register={register} required />
-
-      {/* 2. forwardRef를 이용해서 register의 리턴값을 넘겨준다. */}
-      <Select id="age-select" label="Age" {...register('Age')} />
+      <Input
+        id="first-name"
+        label="First Name"
+        defaultValue={firstName}
+        {...register('firstName')}
+        required
+      />
+      <Input
+        id="last-name"
+        label="Last Name"
+        defaultValue={lastName}
+        {...register('lastName')}
+        required
+      />
 
       <button type="submit">제출</button>
     </form>
