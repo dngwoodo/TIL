@@ -62,6 +62,8 @@ export default function Profile() {
     _.forEach(data, (value, key) => {
       handleChangeProfile({ name: key, value });
     });
+
+    console.log(data);
   };
 
   // { firstName: { message: '', ref: input, type: 'required'} }
@@ -73,21 +75,21 @@ export default function Profile() {
         id="first-name"
         label="First Name"
         defaultValue={firstName}
-        {...register('firstName', { required: true })}
+        {...register('firstName', { required: { value: true, message: 'First Name is required' } })}
         ariaInvalid={!!errors.firstName}
         required
       />
-      <p role="alert">{errors.firstName && 'First Name is required'}</p>
+      <p role="alert">{errors?.firstName?.message}</p>
 
       <Input
         id="last-name"
         label="Last Name"
         defaultValue={lastName}
-        {...register('lastName', { required: true })}
+        {...register('lastName', { required: { value: true, message: 'Last Name is required' } })}
         ariaInvalid={!!errors.firstName}
         required={false}
       />
-      <p role="alert">{errors.lastName && 'Last Name is required'}</p>
+      <p role="alert">{_.get(errors, 'lastName.message')}</p>
 
       <button type="submit">제출</button>
     </form>
