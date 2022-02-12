@@ -1,15 +1,23 @@
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
+
+enum GenderEnum {
+  female = 'female',
+  male = 'male',
+  other = 'other'
+}
+
+type FormInput = {
+  firstName: String;
+  gender: GenderEnum;
+}
 
 export default function Profile() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm();
+  } = useForm<FormInput>();
 
-  const onSubmit = (
-    data: { [x: string]: any; },
-  ) => {
+  const onSubmit: SubmitHandler<FormInput> = (data) => {
     // { name: 'example', onBlur: fn, onChange: fn, ref: fn }
     // console.log(register('example'));
 
@@ -19,19 +27,19 @@ export default function Profile() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
-        {/* useForm이라는 훅에 input을 등록 */}
-        <input
-          defaultValue="test"
-          {...register('example')}
-        />
+        <label htmlFor="first-name">First Name</label>
+        <input id="first-name" {...register('firstName')} />
       </div>
-      <br />
+
       <div>
-        {/* required라는 검증을 포함 */}
-        <input {...register('exampleRequired', { required: true })} />
-        {errors.exampleRequired && <p style={{ color: 'red', margin: 0 }}>This field is required</p>}
+        <label htmlFor="gender-select">Gender Selection</label>
+        <select id="gender-select" {...register('gender')}>
+          <option value="female">female</option>
+          <option value="male">male</option>
+          <option value="other">other</option>
+        </select>
       </div>
-      <br />
+
       <button type="submit">제출</button>
     </form>
   );
