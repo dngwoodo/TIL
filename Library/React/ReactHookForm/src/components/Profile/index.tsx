@@ -1,17 +1,17 @@
-import { forwardRef, useContext } from 'react';
+import { forwardRef } from 'react';
 
 import {
   useForm,
   SubmitHandler,
-  UseFormRegister,
+  UseFormRegister, useFormContext, FormProvider,
 } from 'react-hook-form';
 
 import _ from 'lodash';
-import ProfileContext from '../../context/profile/ProfileContext';
 
 interface IFormValues {
   firstName: string;
   lastName: string;
+  phoneNumber: string;
 }
 
 const Input = forwardRef<
@@ -42,26 +42,33 @@ const Input = forwardRef<
     </div>
   ));
 
+function DeepNest() {
+  console.log('DeepNest rendering');
+  const { register, formState: { errors } } = useFormContext();
+
+  return (
+    <div>
+      <Input
+        id="phone-number"
+        label="휴대 전화"
+        ariaInvalid={!!errors.phoneNumber}
+        {...register('phoneNumber', { required: { value: true, message: '휴대 전화를 입력해주세요.' } })}
+        required={false}
+        defaultValue=""
+      />
+      <p role="alert">{errors?.phoneNumber?.message}</p>
+    </div>
+  );
+}
+
 export default function Profile() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<IFormValues>();
-  const {
-    firstName,
-    lastName,
-    handleChangeProfile,
-  } = useContext(ProfileContext)!;
+  console.log('Profile rendering');
+  const methods = useForm<IFormValues>();
 
   // errors가 있을 경우 onSubmit 함수는 실행되지 않는다.
   const onSubmit: SubmitHandler<IFormValues> = (data) => {
     // { name: 'example', onBlur: fn, onChange: fn, ref: fn }
     // console.log(register('example'));
-
-    _.forEach(data, (value, key) => {
-      handleChangeProfile({ name: key, value });
-    });
 
     console.log(data);
   };
@@ -69,29 +76,35 @@ export default function Profile() {
   // { firstName: { message: '', ref: input, type: 'required'} }
   // console.log(errors);
 
+  const { handleSubmit, formState: { errors }, register } = methods;
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <Input
-        id="first-name"
-        label="First Name"
-        defaultValue={firstName}
-        {...register('firstName', { required: { value: true, message: 'First Name is required' } })}
-        ariaInvalid={!!errors.firstName}
-        required
-      />
-      <p role="alert">{errors?.firstName?.message}</p>
+    <FormProvider {...methods}>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Input
+          id="first-name"
+          label="First Name"
+          defaultValue=""
+          {...register('firstName', { required: { value: true, message: 'First Name is required' } })}
+          ariaInvalid={!!errors.firstName}
+          required
+        />
+        <p role="alert">{errors?.firstName?.message}</p>
 
-      <Input
-        id="last-name"
-        label="Last Name"
-        defaultValue={lastName}
-        {...register('lastName', { required: { value: true, message: 'Last Name is required' } })}
-        ariaInvalid={!!errors.firstName}
-        required={false}
-      />
-      <p role="alert">{_.get(errors, 'lastName.message')}</p>
+        <Input
+          id="last-name"
+          label="Last Name"
+          defaultValue=""
+          {...register('lastName', { required: { value: true, message: 'Last Name is required' } })}
+          ariaInvalid={!!errors.firstName}
+          required={false}
+        />
+        <p role="alert">{_.get(errors, 'lastName.message')}</p>
 
-      <button type="submit">제출</button>
-    </form>
+        <DeepNest />
+
+        <button type="submit">제출</button>
+      </form>
+    </FormProvider>
   );
 }
