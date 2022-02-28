@@ -13,13 +13,15 @@ public class Sum implements Expression {
         this.addend = addend; // fran 10
     }
 
-    public Money exchangeRateCalculation(Bank bank, Expression money, String to) {
-        return money.reduce(bank, to);
-    }
+    public Money exchangeRateCalculation(Bank bank, Expression money, String to) { return money.reduce(bank, to); }
 
     public Money reduce(Bank bank, String to) {
         int amount = exchangeRateCalculation(bank, augend, to).amount  + exchangeRateCalculation(bank, addend, to).amount;
 
         return new Money(amount, to);
+    }
+
+    public Expression times(int multiplier) {
+        return new Sum(augend.times(multiplier), addend.times(multiplier));
     }
 }

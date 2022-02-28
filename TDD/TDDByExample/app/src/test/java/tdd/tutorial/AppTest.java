@@ -49,14 +49,6 @@ class AppTest {
         assertEquals(Money.dollar(10), reduced);
     }
 
-    @Test void simplePlusReturnsSum() {
-        Money five = Money.dollar(5);
-        Expression result = five.plus(five);
-        Sum sum = (Sum) result;
-        assertEquals(five, sum.augend);
-        assertEquals(five, sum.addend);
-    }
-
     // 통화를 제한하고 생각을 함.
     @Test public void testReduceSum() {
         Expression sum = Money.dollar(5).plus(Money.dollar(6));
