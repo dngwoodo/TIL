@@ -1,16 +1,25 @@
 package tdd.tutorial;
 
 public class Sum implements Expression {
-    Money augend;
-    Money addend;
+    Expression augend;
+    Expression addend;
 
-    public Sum(Money augend, Money addend) {
-        this.augend = augend;
-        this.addend = addend;
+    public Expression plus (Expression expression) {
+        return null;
+    }
+
+    public Sum(Expression augend, Expression addend) {
+        this.augend = augend; // dollar 5
+        this.addend = addend; // fran 10
+    }
+
+    public Money exchangeRateCalculation(Bank bank, Expression money, String to) {
+        return money.reduce(bank, to);
     }
 
     public Money reduce(Bank bank, String to) {
-        int amount = augend.amount + addend.amount; // 1단계 레퍼런스
+        int amount = exchangeRateCalculation(bank, augend, to).amount  + exchangeRateCalculation(bank, addend, to).amount;
+
         return new Money(amount, to);
     }
 }

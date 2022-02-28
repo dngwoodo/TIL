@@ -10,7 +10,6 @@ class AppTest {
     @Test void testMultiplication() {
         Money five = new Money(5, "USD");
 
-        // assertEquals(10, product.amount);
         assertEquals(new Money(10, "USD"), five.times(2));
         assertEquals(Money.dollar(15), five.times(3));
     }
@@ -31,7 +30,6 @@ class AppTest {
     @Test void testFrancMultiplication() {
         Money five = Money.franc(5);
 
-        // assertEquals(10, product.amount);
         assertEquals(Money.franc(10), five.times(2));
         assertEquals(Money.franc(15), five.times(3));
     }
@@ -42,17 +40,6 @@ class AppTest {
         assertEquals("USD", Money.dollar(1).currency());
         assertEquals("CHF", Money.franc(1).currency());
     }
-
-    // @Test void testDifferentClassEquality(){
-    //     assertTrue(
-    //         new Money(10, "CHF").equals(new Franc(10, "CHF"))
-    //     );
-    // }
-
-    //    @Test void testPlus() {
-    //        // $5 + $5 = $10
-    //        assertEquals(new Money(5, "USD").plus(new Money(5, "USD")),  new Money(10, "USD"));
-    //    }
 
     @Test void simpleAddition() {
         Money five = new Money(5, "USD");
@@ -94,5 +81,15 @@ class AppTest {
     @Test public void testSameCurrencyRate() {
         Bank bank = new Bank();
         assertEquals(1, bank.rate("USD", "USD"));
+    }
+
+    @Test public void testMixedAddition() {
+        Expression fiveBucks = Money.dollar(5);
+        Expression tenFrancs = Money.franc(10);
+        Bank bank = new Bank();
+        bank.addRate("CHF", "USD", 2);
+        Money result = bank.reduce(fiveBucks.plus(tenFrancs), "USD");
+
+        assertEquals(Money.dollar(10), result);
     }
 }
